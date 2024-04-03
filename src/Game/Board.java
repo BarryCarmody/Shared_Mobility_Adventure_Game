@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import Game.Commons;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
@@ -71,9 +72,7 @@ public class Board extends JPanel implements MouseMotionListener{
 
         graph = new Map();
         nodeList=Map.createLevel1(graph);
-        player=new Player(nodeList.get(16));
-        nextLocation(nodeList.get(103));
-        getThere(nodeList.get(103));
+        player=new Player(nodeList.get(0));
 
     }
 
@@ -93,20 +92,9 @@ public class Board extends JPanel implements MouseMotionListener{
     }
 
     private void getThere(Node destination) {
-        List<Node> route = Map.routeBetweenNodes(graph,player.currentNode,destination);
-        //route.add(destination);
-
-        for (int i=0; i<route.size()-1; i++){
-            Node base=route.get(i);
-            Node step=route.get(i+1);
-            int xdist = step.getX()-base.getX();
-            int ydist = step.getY()-base.getY();
-            int eucdist= (int) Math.round(Math.sqrt(xdist*xdist+ydist*ydist));
-            System.out.println(base.getName()+" to "+ step.getName());
-            System.out.println(eucdist);
-            int tempdx = (step.getX()-base.getX())/eucdist;
-            player.setDX(tempdx);
-        }
+        player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
+        player.route.add(destination);
+        player.moving=true;
     }
 
 
@@ -132,8 +120,6 @@ public class Board extends JPanel implements MouseMotionListener{
             g2d.draw(line);
         }
     }
-
-
 
     @Override
     protected void paintComponent(Graphics g){
@@ -188,20 +174,17 @@ public class Board extends JPanel implements MouseMotionListener{
 
         @Override
         public void keyReleased(KeyEvent e) {
-
-            player.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            player.keyPressed(e);
-            int x=player.getX();
-            int y=player.getY();
 
             int key=e.getKeyCode();
-
+            if (key==KeyEvent.VK_SPACE){
+                nextLocation(nodeList.get(19));
+            } else if (key==KeyEvent.VK_UP) {
+                getThere(nodeList.get(19));
+            }
         }
-
-
     }
 }

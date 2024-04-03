@@ -109,10 +109,10 @@ public class Map {
         Node nodeAK = new Node("AK",224,268);
         Node nodeAL = new Node("AL",410,268);
         Node nodeAM = new Node("AM",550,268);
-        Node nodeAN = new Node("AN",621,268);
-        Node nodeAO = new Node("AO",621,358);
-        Node nodeAP = new Node("AP",621,433);
-        Node nodeAQ = new Node("AQ",621,570);
+        Node nodeAN = new Node("AN",622,268);
+        Node nodeAO = new Node("AO",622,358);
+        Node nodeAP = new Node("AP",622,433);
+        Node nodeAQ = new Node("AQ",622,570);
         Node nodeAR = new Node("AR",743,702);
         Node nodeAS = new Node("AS",785,735);
         Node nodeAT = new Node("AT",807,752);

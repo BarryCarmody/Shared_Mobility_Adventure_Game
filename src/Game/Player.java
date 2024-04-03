@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.*;
+import java.util.List;
 import java.awt.event.KeyEvent;
 
 public class Player extends Sprite {
@@ -8,10 +9,10 @@ public class Player extends Sprite {
     private final int PHEIGHT=20;
     private final int PWIDTH=20;
 
-    public Node currentNode;
 
     public Player(Node startNode) {
 
+        speed=6;
         initPlayer(startNode);
         currentNode=startNode;
     }
@@ -27,43 +28,30 @@ public class Player extends Sprite {
     }
 
     public void act() {
-        x += dx;
-        y += dy;
+        if (moving) {
+            int curr=getCurrentSpotOnRoute();
+            Node base=route.get(curr);
+            Node step=route.get(curr+1);
+            directionOfMotion(base, step);
+            x += dx;
+            y += dy;
+            System.out.println("X: "+(x-step.getX()));
+            System.out.println("Y: "+(y-step.getY()));
+
+            if (Math.abs(10+x-step.getX())<(1+speed) && Math.abs(10+y-step.getY())<(1+speed)){
+                x=step.getX()-(PWIDTH/2);
+                y=step.getY()-(PHEIGHT/2);
+                currentNode=step;
+                if (getCurrentSpotOnRoute()==route.size()){
+                    moving=false;
+                }
+            }
+        }
     }
 
     public void draw(Graphics g){
        g.setColor(Color.MAGENTA);
-       g.fillOval(x,y,PWIDTH,PHEIGHT);
-    }
-
-
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -2;
-        }
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 2;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 2;
-        }
-        if (key == KeyEvent.VK_UP) {
-            dy = -2;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT||key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-
-        }
-        if (key == KeyEvent.VK_DOWN||key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
+       g.fillOval((int) Math.round(x), (int) Math.round(y),PWIDTH,PHEIGHT);
     }
 
     public Node getCurrentNode() {
