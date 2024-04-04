@@ -17,6 +17,8 @@ public class Host extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
+
+        getContentPane().requestFocusInWindow();
     }
     public static void main(String[] args){
         EventQueue.invokeLater(() ->{

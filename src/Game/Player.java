@@ -29,22 +29,23 @@ public class Player extends Sprite {
 
     public void act() {
         if (moving) {
+
             int curr=getCurrentSpotOnRoute();
             Node base=route.get(curr);
-            Node step=route.get(curr+1);
+            Node step = route.get(curr+1);
             directionOfMotion(base, step);
+
             x += dx;
             y += dy;
-            System.out.println("X: "+(x-step.getX()));
-            System.out.println("Y: "+(y-step.getY()));
 
-            if (Math.abs(10+x-step.getX())<(1+speed) && Math.abs(10+y-step.getY())<(1+speed)){
-                x=step.getX()-(PWIDTH/2);
-                y=step.getY()-(PHEIGHT/2);
-                currentNode=step;
-                if (getCurrentSpotOnRoute()==route.size()){
-                    moving=false;
+            if (Math.abs(10+x-step.getX())<(1+speed) && Math.abs(10+y-step.getY())<(1+speed)) {
+                System.out.println("shmoving");
+                currentNode = step;
+                if (curr== route.size()-3) {
+                    moving = false;
                 }
+                x = step.getX() - (PWIDTH / 2);
+                y = step.getY() - (PHEIGHT / 2);
             }
         }
     }
