@@ -7,11 +7,11 @@ public class Sprite {
     private boolean visible;
     private Image image;
 
-    double x;
-    double y;
+    public double x;
+     public double y;
 
-    double dx;
-    double dy;
+    public double dx;
+    public double dy;
 
     public Node currentNode;
 
@@ -20,6 +20,8 @@ public class Sprite {
     public boolean moving;
 
     public List<Node> route;
+
+    public int speed;
 
     public Sprite(){
         visible=true;
@@ -43,9 +45,9 @@ public class Sprite {
         return this.image;
     }
 
-    public int speed;
 
     public int getCurrentSpotOnRoute(){
+        System.out.println(route);
         for (int i=0; i<route.size();i++){
             if (currentNode.equals(route.get(i))){
                 return i;
@@ -69,6 +71,10 @@ public class Sprite {
 
     public void setY(double y){
         this.y=y;
+    }
+
+    public void setRoute(List<Node> route){
+        this.route=route;
     }
 
     public double getX(){

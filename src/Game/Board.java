@@ -82,30 +82,32 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void nextLocation(Node destination){
-        List<Node> route = Map.routeBetweenNodes(graph,player.currentNode,destination);
-        route.add(destination);
+        if (player.route!=null) {
+            player.route.clear();
+        }
+
+        player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
         routeLines.clear();
         routeLines= new ArrayList<>();
 
-        for (int i=0; i<route.size() -1; i++){
-            Node base=route.get(i);
-            Node step=route.get(i+1);
+        player.route.add(destination);
+
+        for (int i=0; i<player.route.size()-1; i++){
+            Node base=player.route.get(i);
+            Node step=player.route.get(i+1);
 
             Line2D line = new Line2D.Double(base.getX(), base.getY(), step.getX(), step.getY());
             routeLines.add(line);
             repaint();
         }
-
     }
 
-    private void getThere(Node destination) {
+    private void goThere(Node destination) {
         routeLines.clear();
-        player.route= new ArrayList<>();
-        player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
-        player.route.add(destination);
+        //player.route= new ArrayList<>();
+        //player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
         player.moving=true;
     }
-
 
     private void drawPlayer(Graphics p){
         if (player.isVisible()){
@@ -176,7 +178,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseClicked(MouseEvent e){
-        System.out.println("Mouse Clicked");
         for (Node node: graph.getNodes()){
             Rectangle nodeBox = new Rectangle(node.getX()-20, node.getY()-20,30,30);
             int nodeNum = nodeNumber(node);
@@ -228,7 +229,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                 //nextLocation(targetNode);
 
             } else if (key==KeyEvent.VK_UP) {
-                getThere(targetNode);
+                goThere(targetNode);
             }
         }
     }

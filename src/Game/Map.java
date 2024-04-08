@@ -5,17 +5,20 @@ import java.util.Map.Entry;
 
 public class Map {
 
-    private Set<Node> nodes = new HashSet<>();
+    public Set<Node> nodes = new HashSet<>();
 
     public void addNode(Node nodeA){
         nodes.add(nodeA);
     }
 
     public static Map calculateShortestPathFromSource(Map graph, Node source){
+//        for (Node node: graph.keySet()){
+//            node.setDistance(Integer.MAX_VALUE);
+//        }
+        
         source.setDistance(0);
         Set<Node> settledNodes = new HashSet<>();
         Set<Node> unsettledNodes= new HashSet<>();
-
         unsettledNodes.add(source);
 
         while (unsettledNodes.size() !=0){
@@ -34,6 +37,7 @@ public class Map {
         return graph;
     }
 
+
     private static Node getLowestDistanceNode(Set <Node> unsettledNodes){
         Node lowestDistanceNode=null;
         int lowestDistance = Integer.MAX_VALUE;
@@ -49,6 +53,9 @@ public class Map {
 
     private static void calculateMinimumDistance(Node evaluationNode, Integer edgeWeight, Node sourceNode){
         Integer sourceDistance = sourceNode.getDistance();
+//        if (evaluationNode.getShortestPath()!=null){
+//            evaluationNode.setShortestPath(null);
+//        }
         if (sourceDistance + edgeWeight< evaluationNode.getDistance()){
             evaluationNode.setDistance(sourceDistance+edgeWeight);
             LinkedList<Node> shortestPath = new LinkedList<> (sourceNode.getShortestPath());
@@ -62,7 +69,10 @@ public class Map {
     }
 
     public static List<Node> routeBetweenNodes(Map graph, Node startPoint, Node endPoint){
-        graph=Map.calculateShortestPathFromSource(graph, startPoint);
+//        if (endPoint.getShortestPath()!=null){
+//            endPoint.setShortestPath(null);
+//        }
+        Map.calculateShortestPathFromSource(graph, startPoint);
         return (List<Node>) endPoint.getShortestPath();
     }
 

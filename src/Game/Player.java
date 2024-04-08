@@ -32,20 +32,19 @@ public class Player extends Sprite {
 
             int curr=getCurrentSpotOnRoute();
             Node base=route.get(curr);
-            Node step = route.get(curr+1);
+            Node step=route.get(curr+1);
             directionOfMotion(base, step);
-
             x += dx;
             y += dy;
 
             if (Math.abs(10+x-step.getX())<(1+speed) && Math.abs(10+y-step.getY())<(1+speed)) {
-                System.out.println("shmoving");
                 currentNode = step;
-                if (curr== route.size()-3) {
+                if (curr== route.size()-2) {
                     moving = false;
+                }else {
+                    x = step.getX() - (PWIDTH / 2);
+                    y = step.getY() - (PHEIGHT / 2);
                 }
-                x = step.getX() - (PWIDTH / 2);
-                y = step.getY() - (PHEIGHT / 2);
             }
         }
     }
@@ -62,4 +61,5 @@ public class Player extends Sprite {
     public void setCurrentNode(Node currentNode){
         this.currentNode=currentNode;
     }
+
 }

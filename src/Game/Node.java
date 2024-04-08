@@ -27,8 +27,8 @@ public class Node {
     }
 
     private int calculateDistance(Node destination){
-        double deltaX=this.x - destination.getX();
-        double deltaY=this.y- destination.getY();
+        double deltaX=this.x-destination.getX();
+        double deltaY=this.y-destination.getY();
         return (int) Math.sqrt(deltaX*deltaX+deltaY*deltaY);
     }
 
@@ -78,6 +78,8 @@ public class Node {
     public void setName(String name){
         this.name=name;
     }
+
+    public void setDistance(Integer distance){this.distance=distance;}
 
     @Override
     public String toString(){
