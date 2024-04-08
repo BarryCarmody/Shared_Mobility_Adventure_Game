@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Rectangle;
-import Game.Commons;
-import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 
@@ -27,7 +25,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private Dimension boardSize;
     private Player player;
 
-    private Map graph;
+    private Maps graph;
 
     private Image backgroundImage;
 
@@ -75,8 +73,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void gameInit() {
 
-        graph = new Map();
-        nodeList=Map.createLevel1(graph);
+        graph = new Maps();
+        nodeList= Maps.createLevel1(graph);
         player=new Player(nodeList.get(0));
 
     }
@@ -86,7 +84,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             player.route.clear();
         }
 
-        player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
+        player.route = Maps.routeBetweenNodes(graph,player.currentNode,destination);
         routeLines.clear();
         routeLines= new ArrayList<>();
 
@@ -176,6 +174,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         return -1;
     }
 
+    public void resetNodeDist(){
+        for (Node n: nodeList){
+            n.setDistance(Integer.MAX_VALUE);
+        }
+    }
+
     @Override
     public void mouseClicked(MouseEvent e){
         for (Node node: graph.getNodes()){
@@ -189,6 +193,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             }
         }
         System.out.println("Route from " + player.currentNode +" to: "+targetNode);
+        resetNodeDist();
         nextLocation(targetNode);
     }
 

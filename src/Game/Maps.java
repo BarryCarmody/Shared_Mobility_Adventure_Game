@@ -3,7 +3,7 @@ package Game;
 import java.util.*;
 import java.util.Map.Entry;
 
-public class Map {
+public class Maps {
 
     public Set<Node> nodes = new HashSet<>();
 
@@ -11,11 +11,7 @@ public class Map {
         nodes.add(nodeA);
     }
 
-    public static Map calculateShortestPathFromSource(Map graph, Node source){
-//        for (Node node: graph.keySet()){
-//            node.setDistance(Integer.MAX_VALUE);
-//        }
-        
+    public static Maps calculateShortestPathFromSource(Maps graph, Node source){
         source.setDistance(0);
         Set<Node> settledNodes = new HashSet<>();
         Set<Node> unsettledNodes= new HashSet<>();
@@ -68,15 +64,15 @@ public class Map {
         return nodes;
     }
 
-    public static List<Node> routeBetweenNodes(Map graph, Node startPoint, Node endPoint){
+    public static List<Node> routeBetweenNodes(Maps graph, Node startPoint, Node endPoint){
 //        if (endPoint.getShortestPath()!=null){
 //            endPoint.setShortestPath(null);
 //        }
-        Map.calculateShortestPathFromSource(graph, startPoint);
+        Maps.calculateShortestPathFromSource(graph, startPoint);
         return (List<Node>) endPoint.getShortestPath();
     }
 
-    public static List<Node> createLevel1(Map graph){
+    public static List<Node> createLevel1(Maps graph){
 
         List<Node> nodeList=new ArrayList<>();
 
