@@ -1,5 +1,5 @@
 package Game;
-
+//Score Class
 public class Score {
     int number;
 
