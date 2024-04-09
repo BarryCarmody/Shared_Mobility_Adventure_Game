@@ -10,8 +10,8 @@ public class Score {
         this.number = number;
     }
 
-    public int addScore(){
-        return number + 1;
+    public void addScore(){
+        number = number + 1;
     }
 
 }
