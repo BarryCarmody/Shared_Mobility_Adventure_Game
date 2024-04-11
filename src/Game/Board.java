@@ -18,12 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Rectangle;
 
+import static Game.BusNumber.J4;
 import static java.lang.Math.round;
 
 public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private Dimension boardSize;
     private Player player;
+
+    private Bus bus1;
 
     private Maps graph;
 
@@ -45,7 +48,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         setFocusable(true);
         addMouseMotionListener(this);
         addMouseListener(this);
-
     }
     private void initBoard(){
         addKeyListener(new TAdapter());
@@ -74,8 +76,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void gameInit() {
 
         graph = new Maps();
-        nodeList= Maps.createLevel1(graph);
-        player=new Player(nodeList.get(0));
+        nodeList= Maps.createMap1(graph);
+        bus1= new Bus(Maps.getJ4());
+        player=new Player(nodeList.get(16));
 
     }
 
@@ -98,6 +101,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             routeLines.add(line);
             repaint();
         }
+        System.out.println(player.route);
     }
 
     private void goThere(Node destination) {
@@ -119,11 +123,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
+    private void drawBuses(Graphics p){
+        for (Bus bus: Bus.getBusList()){
+            bus.draw(p);
+        }
+    }
+
     private void drawRouteLines(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(4.0f));
-
 
         for (Line2D line: routeLines){
             g2d.draw(line);
@@ -142,8 +151,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void doDrawing(Graphics g) {
 
         drawNodes(g);
-        drawPlayer(g);
         drawRouteLines(g);
+        drawPlayer(g);
+        drawBuses(g);
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -182,14 +192,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseClicked(MouseEvent e){
-        for (Node node: graph.getNodes()){
-            Rectangle nodeBox = new Rectangle(node.getX()-20, node.getY()-20,30,30);
-            int nodeNum = nodeNumber(node);
-            if (nodeBox.contains(e.getPoint())){
-                System.out.println("Node clicked: "+node);
-                targetNode=node;
-                repaint();
-                break;
+        if (!player.moving) {
+            for (Node node : graph.getNodes()) {
+                Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
+                //int nodeNum = nodeNumber(node);
+                if (nodeBox.contains(e.getPoint())) {
+                    System.out.println("Node clicked: " + node);
+                    targetNode = node;
+                    repaint();
+                    break;
+                }
             }
         }
         System.out.println("Route from " + player.currentNode +" to: "+targetNode);

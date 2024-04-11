@@ -8,7 +8,7 @@ public class Sprite {
     private Image image;
 
     public double x;
-     public double y;
+    public double y;
 
     public double dx;
     public double dy;
@@ -57,12 +57,17 @@ public class Sprite {
     }
 
     public void directionOfMotion(Node base, Node step){
-
         int xdist = step.getX()-base.getX();
         int ydist = step.getY()-base.getY();
-        double eucdist= Math.sqrt(xdist*xdist+ydist*ydist);
-        dx=(step.getX()-base.getX())*speed/eucdist;
-        dy=(step.getY()-base.getY())*speed/eucdist;
+        if ((xdist==0) && (ydist==0)){
+            dx=0;
+            dy=0;
+        } else{
+            double eucdist = Math.sqrt(xdist * xdist + ydist * ydist);
+            dx=(step.getX()-base.getX())*speed/eucdist;
+            dy=(step.getY()-base.getY())*speed/eucdist;
+        }
+
     }
 
     public void setX(double x){

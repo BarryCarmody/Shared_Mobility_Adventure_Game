@@ -7,6 +7,9 @@ public class Maps {
 
     public Set<Node> nodes = new HashSet<>();
 
+    public static BusRoute J4;
+    public static BusRoute J4r;
+
     public void addNode(Node nodeA){
         nodes.add(nodeA);
     }
@@ -72,7 +75,15 @@ public class Maps {
         return (List<Node>) endPoint.getShortestPath();
     }
 
-    public static List<Node> createLevel1(Maps graph){
+    public static BusRoute getJ4() {
+        return J4;
+    }
+
+    public static BusRoute getJ4r() {
+        return J4r;
+    }
+
+    public static List<Node> createMap1(Maps graph){
 
         List<Node> nodeList=new ArrayList<>();
 
@@ -184,6 +195,9 @@ public class Maps {
         Node nodeDC = new Node("DC",809,14);
         Node nodeDD = new Node("DD",144,196);
         Node nodeDF = new Node("DF",842,640);
+        Node nodeStop1 = new Node("Stop1",152,777);
+        Node nodeStop2 = new Node("Stop2",500,777);
+        Node nodeStop3 = new Node("Stop3",750,640);
 
 
 
@@ -199,14 +213,14 @@ public class Maps {
 
         nodeD.addDestination(nodeC);
         nodeD.addDestination(nodeE);
-        nodeD.addDestination(nodeF);
+        nodeD.addDestination(nodeStop1);
 
         nodeE.addDestination(nodeB);
         nodeE.addDestination(nodeD);
         nodeE.addDestination(nodeH);
         nodeE.addDestination(nodeAG);
 
-        nodeF.addDestination(nodeD);
+        nodeF.addDestination(nodeStop1);
         nodeF.addDestination(nodeG);
         nodeF.addDestination(nodeN);
 
@@ -246,7 +260,7 @@ public class Maps {
 
         nodeP.addDestination(nodeN);
         nodeP.addDestination(nodeQ);
-        nodeP.addDestination(nodeS);
+        nodeP.addDestination(nodeStop2);
 
         nodeQ.addDestination(nodeP);
         nodeQ.addDestination(nodeW);
@@ -256,7 +270,7 @@ public class Maps {
         nodeR.addDestination(nodeY);
         nodeR.addDestination(nodeAB);
 
-        nodeS.addDestination(nodeP);
+        nodeS.addDestination(nodeStop2);
         nodeS.addDestination(nodeT);
         nodeS.addDestination(nodeV);
 
@@ -286,7 +300,7 @@ public class Maps {
         nodeZ.addDestination(nodeU);
         nodeZ.addDestination(nodeY);
         nodeZ.addDestination(nodeAQ);
-        nodeZ.addDestination(nodeDF);
+        nodeZ.addDestination(nodeStop3);
 
         nodeAA.addDestination(nodeL);
         nodeAA.addDestination(nodeAB);
@@ -414,7 +428,7 @@ public class Maps {
         nodeBF.addDestination(nodeBQ);
 
         nodeBG.addDestination(nodeAX);
-        nodeBG.addDestination(nodeBG);
+        nodeBG.addDestination(nodeBF);
         nodeBG.addDestination(nodeBH);
 
         nodeBH.addDestination(nodeBG);
@@ -591,9 +605,18 @@ public class Maps {
         nodeDD.addDestination(nodeCM);
         nodeDD.addDestination(nodeCO);
 
-        nodeDF.addDestination(nodeZ);
+        nodeDF.addDestination(nodeStop3);
         nodeDF.addDestination(nodeAR);
         nodeDF.addDestination(nodeAW);
+
+        nodeStop1.addDestination(nodeD);
+        nodeStop1.addDestination(nodeF);
+
+        nodeStop2.addDestination(nodeP);
+        nodeStop2.addDestination(nodeS);
+
+        nodeStop3.addDestination(nodeZ);
+        nodeStop3.addDestination(nodeDF);
 
         nodeList.add(nodeA);
         nodeList.add(nodeB);
@@ -703,6 +726,9 @@ public class Maps {
         nodeList.add(nodeDC);
         nodeList.add(nodeDD);
         nodeList.add(nodeDF);
+        nodeList.add(nodeStop1);
+        nodeList.add(nodeStop2);
+        nodeList.add(nodeStop3);
 
         graph.addNode(nodeA);
         graph.addNode(nodeB);
@@ -812,8 +838,105 @@ public class Maps {
         graph.addNode(nodeDC);
         graph.addNode(nodeDD);
         graph.addNode(nodeDF);
+        graph.addNode(nodeStop1);
+        graph.addNode(nodeStop2);
+        graph.addNode(nodeStop3);
+
+
+        Node J4Start = new Node("J4",-30,nodeC.getY(),Bus.transportType);
+        Node nodeCb = new Node("Cb",nodeC.getX(),nodeC.getY(), Bus.transportType);
+        Node nodeDb = new Node("Db",nodeD.getX(),nodeD.getY(),Bus.transportType);
+        Node nodeStop1b = new Node("Stop1b",nodeStop1.getX(),nodeStop1.getY(), Bus.transportType);
+        Node nodeFb = new Node("Fb",nodeF.getX(),nodeF.getY(),Bus.transportType);
+        Node nodePb = new Node("Pb",nodeP.getX(),nodeP.getY(),Bus.transportType);
+        Node nodeStop2b = new Node("Stop2b",nodeStop2.getX(),nodeStop2.getY(),Bus.transportType);
+        Node nodeSb = new Node("Sb",nodeS.getX(),nodeS.getY(),Bus.transportType);
+        Node nodeTb = new Node("Tb",nodeT.getX(),nodeT.getY(),Bus.transportType);
+        Node nodeZb = new Node("Zb",nodeZ.getX(),nodeZ.getY(),Bus.transportType);
+        Node nodeStop3b = new Node("Stop3b",nodeStop3.getX(),nodeStop3.getY(),Bus.transportType);
+
+        J4Start.addDestination(nodeCb);
+
+        nodeCb.addDestination(J4Start);
+        nodeCb.addDestination(nodeDb);
+
+        nodeDb.addDestination(nodeCb);
+        nodeDb.addDestination(nodeStop1b);
+
+        nodeStop1b.addDestination(nodeDb);
+        nodeStop1b.addDestination(nodeFb);
+
+        nodeFb.addDestination(nodeStop1b);
+        nodeFb.addDestination(nodePb);
+
+        nodePb.addDestination(nodeFb);
+        nodePb.addDestination(nodeStop2b);
+
+        nodeStop2b.addDestination(nodePb);
+        nodeStop2b.addDestination(nodeSb);
+
+        nodeSb.addDestination(nodeStop2b);
+        nodeSb.addDestination(nodeTb);
+
+        nodeTb.addDestination(nodeSb);
+        nodeTb.addDestination(nodeZb);
+
+        nodeZb.addDestination(nodeTb);
+        nodeZb.addDestination(nodeStop3b);
+
+        nodeStop3b.addDestination(nodeZb);
+
+        nodeStop1.addDestination(nodeStop1b);
+        nodeStop1b.addDestination(nodeStop1);
+
+        nodeStop2.addDestination(nodeStop2b);
+        nodeStop2b.addDestination(nodeStop2);
+
+        nodeStop3.addDestination(nodeStop3b);
+        nodeStop3b.addDestination(nodeStop3);
+
+
+        nodeList.add(nodeCb);
+        nodeList.add(nodeDb);
+        nodeList.add(nodeStop1b);
+        nodeList.add(nodeFb);
+        nodeList.add(nodePb);
+        nodeList.add(nodeStop2b);
+        nodeList.add(nodeSb);
+        nodeList.add(nodeTb);
+        nodeList.add(nodeZb);
+        nodeList.add(nodeStop3b);
+
+        graph.addNode(nodeCb);
+        graph.addNode(nodeDb);
+        graph.addNode(nodeStop3b);
+        graph.addNode(nodeFb);
+        graph.addNode(nodePb);
+        graph.addNode(nodeStop2b);
+        graph.addNode(nodeSb);
+        graph.addNode(nodeTb);
+        graph.addNode(nodeZb);
+        graph.addNode(nodeStop3b);
+
+        List<Node> j4Route = new ArrayList<>();
+
+        //j4Route.add(J4Start);
+        j4Route.add(nodeCb);
+        j4Route.add(nodeDb);
+        j4Route.add(nodeStop1b);
+        j4Route.add(nodeFb);
+        j4Route.add(nodePb);
+        j4Route.add(nodeStop2b);
+        j4Route.add(nodeSb);
+        j4Route.add(nodeTb);
+        j4Route.add(nodeZb);
+        j4Route.add(nodeStop3b);
+
+        J4 = new BusRoute(BusNumber.J4,true, new ArrayList<>(j4Route));
+        J4r = new BusRoute(BusNumber.J4,false, new ArrayList<>(j4Route));
 
         return nodeList;
-
     }
 }
+
+
