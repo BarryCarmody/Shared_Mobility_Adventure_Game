@@ -34,6 +34,9 @@ public class Player extends Sprite {
             Node base=route.get(curr);
             Node step=route.get(curr+1);
             directionOfMotion(base, step);
+            System.out.println(currentNode);
+            System.out.println(dx);
+            System.out.println(dy);
             x += dx;
             y += dy;
 
