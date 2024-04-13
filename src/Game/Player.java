@@ -28,25 +28,32 @@ public class Player extends Sprite {
     }
 
     public void act() {
-        if (moving) {
-
+        if (Board.getActive()) {
+            System.out.println(currentNode);
             int curr=getCurrentSpotOnRoute();
             Node base=route.get(curr);
-            Node step=route.get(curr+1);
-            directionOfMotion(base, step);
-            System.out.println(currentNode);
-            System.out.println(dx);
-            System.out.println(dy);
-            x += dx;
-            y += dy;
+            setStepNode(route.get(curr+1));
 
-            if (Math.abs(10+x-step.getX())<(1+speed) && Math.abs(10+y-step.getY())<(1+speed)) {
-                currentNode = step;
+            if(base.getTransportType().equals("Walk") && stepNode.getTransportType().equals("Bus")){
+                moving=false;
+            }else if(base.getTransportType().equals("Bus") && stepNode.getTransportType().equals("Walk")){
+                moving=true;
+            }
+
+            directionOfMotion(base, stepNode);
+            if (moving) {
+                x += dx;
+                y += dy;
+            }
+
+            if (Math.abs(PWIDTH/2+x-stepNode.getX())<(1+speed) && Math.abs(PHEIGHT/2+y-stepNode.getY())<(1+speed)) {
+                currentNode = stepNode;
                 if (curr== route.size()-2) {
                     moving = false;
+                    Board.setActive(false);
                 }else {
-                    x = step.getX() - (PWIDTH / 2);
-                    y = step.getY() - (PHEIGHT / 2);
+                    x = stepNode.getX() - (PWIDTH / 2);
+                    y = stepNode.getY() - (PHEIGHT / 2);
                 }
             }
         }
@@ -65,4 +72,8 @@ public class Player extends Sprite {
         this.currentNode=currentNode;
     }
 
+    public void moveLocationtoNode(Node moveToNode){
+        setX(moveToNode.getX()- (PWIDTH/2));
+        setY(moveToNode.getY()- (PHEIGHT/2));
+    }
 }

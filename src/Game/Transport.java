@@ -17,6 +17,8 @@ abstract class Transport implements Mover {
 
     private Node currentNode;
 
+    private Node stepNode;
+
     private boolean moving;
 
     private List<Node> route;
@@ -43,17 +45,53 @@ abstract class Transport implements Mover {
         return x;
     }
 
-    public void setX(int x){
+    public void setX(double x){
         this.x=x;
     }
 
     public double getY(){return y;}
 
-    public void setY(int y){
+    public void setY(double y){
         this.y=y;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
+    public double getDy() {
+        return dy;
+    }
+
+    public void setDy(double dy) {
+        this.dy = dy;
+    }
+
+    public Node getCurrentNode() {
+        return currentNode;
+    }
+
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public void setMoving(boolean moving){
+        this.moving=moving;
     }
 
     public void setCurrentNode(Node currentNode) {
         this.currentNode = currentNode;
+    }
+
+    public Node getStepNode() {
+        return stepNode;
+    }
+
+    public void setStepNode(Node stepNode) {
+        this.stepNode = stepNode;
     }
 }

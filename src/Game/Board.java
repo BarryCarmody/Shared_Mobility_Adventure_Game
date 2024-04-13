@@ -17,14 +17,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Rectangle;
-
-import static Game.BusNumber.J4;
-import static java.lang.Math.round;
+import java.util.Objects;
 
 public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private Dimension boardSize;
-    private Player player;
+    private static Player player;
 
     private Bus bus1;
 
@@ -36,11 +34,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private JLabel coordinatesLabel;
 
-    private Node targetNode;
-
     private List<Node> nodeList;
 
     private List<Line2D> routeLines = new ArrayList<>();
+
+    private static boolean active;
 
     public Board(){
 
@@ -77,9 +75,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         graph = new Maps();
         nodeList= Maps.createMap1(graph);
+        player=new Player(nodeList.get(15));
         bus1= new Bus(Maps.getJ4());
-        player=new Player(nodeList.get(16));
 
+    }
+
+    public static boolean getActive(){
+        return active;
+    }
+
+    public static void setActive(boolean active) {
+        Board.active = active;
     }
 
     private void nextLocation(Node destination){
@@ -101,14 +107,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             routeLines.add(line);
             repaint();
         }
-        System.out.println(player.route);
+        //System.out.println(player.route);
     }
 
     private void goThere(Node destination) {
         routeLines.clear();
-        //player.route= new ArrayList<>();
-        //player.route = Map.routeBetweenNodes(graph,player.currentNode,destination);
+        setActive(true);
         player.moving=true;
+        for (Bus bus: Bus.getBusList()){
+            bus.setMoving(true);
+        }
+
     }
 
     private void drawPlayer(Graphics p){
@@ -160,6 +169,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void update() {
         player.act();
+        for (Bus bus: Bus.getBusList()){
+            bus.act();
+        }
     }
 
     private void doGameCycle() {
@@ -192,21 +204,27 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseClicked(MouseEvent e){
-        if (!player.moving) {
+        if (!active) {
             for (Node node : graph.getNodes()) {
-                Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
-                //int nodeNum = nodeNumber(node);
-                if (nodeBox.contains(e.getPoint())) {
-                    System.out.println("Node clicked: " + node);
-                    targetNode = node;
-                    repaint();
-                    break;
+                if(Objects.equals(node.getTransportType(), "Walk")) {
+                    Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
+                    //int nodeNum = nodeNumber(node);
+                    if (nodeBox.contains(e.getPoint())) {
+                        System.out.println("Node clicked: " + node);
+                        player.setTargetNode(node);
+                        repaint();
+                        break;
+                    }
                 }
             }
         }
-        System.out.println("Route from " + player.currentNode +" to: "+targetNode);
+        //System.out.println("Route from " + player.currentNode +" to: "+targetNode);
         resetNodeDist();
-        nextLocation(targetNode);
+        nextLocation(player.getTargetNode());
+    }
+
+    public static Player getPlayer() {
+        return player;
     }
 
     @Override
@@ -241,12 +259,13 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         public void keyPressed(KeyEvent e) {
             int key=e.getKeyCode();
 
+
             if (key==KeyEvent.VK_SPACE){
-                System.out.println("ON");
-                //nextLocation(targetNode);
 
             } else if (key==KeyEvent.VK_UP) {
-                goThere(targetNode);
+                if(!active) {
+                    goThere(player.getTargetNode());
+                }
             }
         }
     }

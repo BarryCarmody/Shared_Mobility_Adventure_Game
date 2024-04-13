@@ -17,6 +17,8 @@ public class Sprite {
 
     public Node targetNode;
 
+    public Node stepNode;
+
     public boolean moving;
 
     public List<Node> route;
@@ -47,7 +49,7 @@ public class Sprite {
 
 
     public int getCurrentSpotOnRoute(){
-        System.out.println(route);
+        //System.out.println(route);
         for (int i=0; i<route.size();i++){
             if (currentNode.equals(route.get(i))){
                 return i;
@@ -103,4 +105,21 @@ public class Sprite {
     public double getDY() {
         return dy;
     }
+
+    public void setStepNode(Node stepNode) {
+        this.stepNode = stepNode;
+    }
+
+    public Node getStepNode() {
+        return stepNode;
+    }
+
+    public void setTargetNode(Node targetNode) {
+        this.targetNode = targetNode;
+    }
+
+    public Node getTargetNode() {
+        return targetNode;
+    }
+
 }

@@ -19,6 +19,8 @@ public class Node {
 
     private final String transportType;
 
+    private final boolean transportStop;
+
     Map<Node, Integer> adjacentNodes = new HashMap<>();
 
     public Node(String name, int x, int y){
@@ -26,6 +28,7 @@ public class Node {
         this.x=x;
         this.y=y;
         this.transportType="Walk";
+        this.transportStop=false;
     }
 
     public Node(String name, int x, int y, String transport){
@@ -33,19 +36,28 @@ public class Node {
         this.x=x;
         this.y=y;
         this.transportType=transport;
+        this.transportStop=false;
+    }
+
+    public Node(String name, int x, int y, String transport, boolean transportStop){
+        this.name=name;
+        this.x=x;
+        this.y=y;
+        this.transportType=transport;
+        this.transportStop=transportStop;
     }
 
 
     public void addDestination(Node destination){
         int distance = calculateDistance(destination);
-        System.out.println("Dist from "+ name +" to "+ destination.name + " is "+ distance);
+        //System.out.println("Dist from "+ name +" to "+ destination.name + " is "+ distance);
         adjacentNodes.put(destination,distance);
     }
 
     private int calculateDistance(Node destination){
         int speed;
         if (Objects.equals(transportType, "Walk")){
-            speed=6;
+            speed=4;
         }
         else if (Objects.equals(transportType, "Bus")){
             speed=Bus.speed;
@@ -100,6 +112,14 @@ public class Node {
     }
 
     public void setDistance(Integer distance){this.distance=distance;}
+
+    public String getTransportType() {
+        return transportType;
+    }
+
+    public boolean getTransportStop(){
+        return transportStop;
+    }
 
     @Override
     public String toString(){

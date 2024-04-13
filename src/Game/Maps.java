@@ -119,10 +119,10 @@ public class Maps {
         Node nodeAD = new Node("AD",247,512);
         Node nodeAE = new Node("AE",247,413);
         Node nodeAF = new Node("AF",144,268);
-        Node nodeAG = new Node("AG",75,268);
+        Node nodeAG = new Node("AG",78,268);
         Node nodeAH = new Node("AH",22,268);
         Node nodeAI = new Node("AI",22,198);
-        Node nodeAJ = new Node("AJ",75,198);
+        Node nodeAJ = new Node("AJ",78,198);
         Node nodeAK = new Node("AK",224,268);
         Node nodeAL = new Node("AL",410,268);
         Node nodeAM = new Node("AM",550,268);
@@ -198,9 +198,10 @@ public class Maps {
         Node nodeStop1 = new Node("Stop1",152,777);
         Node nodeStop2 = new Node("Stop2",500,777);
         Node nodeStop3 = new Node("Stop3",750,640);
-
-
-
+        Node nodeStop4 = new Node("Stop4",844,541);
+        Node nodeStop5 = new Node("Stop5",622,295);
+        Node nodeStop6 = new Node("Stop6", 300,268);
+        Node nodeStop7 = new Node("Stop7", 78,120);
 
         nodeA.addDestination(nodeB);
 
@@ -342,12 +343,13 @@ public class Maps {
 
         nodeAJ.addDestination(nodeAH);
         nodeAJ.addDestination(nodeAJ);
+        nodeAJ.addDestination(nodeStop7);
 
         nodeAK.addDestination(nodeAF);
-        nodeAK.addDestination(nodeAL);
+        nodeAK.addDestination(nodeStop6);
         nodeAK.addDestination(nodeCM);
 
-        nodeAL.addDestination(nodeAK);
+        nodeAL.addDestination(nodeStop6);
         nodeAL.addDestination(nodeAM);
         nodeAL.addDestination(nodeCL);
 
@@ -357,10 +359,10 @@ public class Maps {
 
         nodeAN.addDestination(nodeAE);
         nodeAN.addDestination(nodeAM);
-        nodeAN.addDestination(nodeAO);
+        nodeAN.addDestination(nodeStop5);
         nodeAN.addDestination(nodeBY);
 
-        nodeAO.addDestination(nodeAN);
+        nodeAO.addDestination(nodeStop5);
         nodeAO.addDestination(nodeAP);
         nodeAO.addDestination(nodeBE);
 
@@ -396,10 +398,10 @@ public class Maps {
         nodeAW.addDestination(nodeDF);
 
         nodeAX.addDestination(nodeAW);
-        nodeAX.addDestination(nodeAY);
+        nodeAX.addDestination(nodeStop4);
         nodeAX.addDestination(nodeBG);
 
-        nodeAY.addDestination(nodeAX);
+        nodeAY.addDestination(nodeStop4);
         nodeAY.addDestination(nodeAZ);
         nodeAY.addDestination(nodeBD);
 
@@ -618,6 +620,17 @@ public class Maps {
         nodeStop3.addDestination(nodeZ);
         nodeStop3.addDestination(nodeDF);
 
+        nodeStop4.addDestination(nodeAX);
+        nodeStop4.addDestination(nodeAY);
+
+        nodeStop5.addDestination(nodeAN);
+        nodeStop5.addDestination(nodeAO);
+
+        nodeStop6.addDestination(nodeAK);
+        nodeStop6.addDestination(nodeAL);
+
+        nodeStop7.addDestination(nodeAJ);
+
         nodeList.add(nodeA);
         nodeList.add(nodeB);
         nodeList.add(nodeC);
@@ -729,6 +742,10 @@ public class Maps {
         nodeList.add(nodeStop1);
         nodeList.add(nodeStop2);
         nodeList.add(nodeStop3);
+        nodeList.add(nodeStop4);
+        nodeList.add(nodeStop5);
+        nodeList.add(nodeStop6);
+        nodeList.add(nodeStop7);
 
         graph.addNode(nodeA);
         graph.addNode(nodeB);
@@ -841,19 +858,41 @@ public class Maps {
         graph.addNode(nodeStop1);
         graph.addNode(nodeStop2);
         graph.addNode(nodeStop3);
+        graph.addNode(nodeStop4);
+        graph.addNode(nodeStop5);
+        graph.addNode(nodeStop6);
+        graph.addNode(nodeStop7);
 
 
-        Node J4Start = new Node("J4",-30,nodeC.getY(),Bus.transportType);
+        Node J4Start = new Node("J4",-300,nodeC.getY(),Bus.transportType);
         Node nodeCb = new Node("Cb",nodeC.getX(),nodeC.getY(), Bus.transportType);
         Node nodeDb = new Node("Db",nodeD.getX(),nodeD.getY(),Bus.transportType);
-        Node nodeStop1b = new Node("Stop1b",nodeStop1.getX(),nodeStop1.getY(), Bus.transportType);
+        Node nodeStop1b = new Node("Stop1b",nodeStop1.getX(),nodeStop1.getY(), Bus.transportType,true);
         Node nodeFb = new Node("Fb",nodeF.getX(),nodeF.getY(),Bus.transportType);
         Node nodePb = new Node("Pb",nodeP.getX(),nodeP.getY(),Bus.transportType);
-        Node nodeStop2b = new Node("Stop2b",nodeStop2.getX(),nodeStop2.getY(),Bus.transportType);
+        Node nodeStop2b = new Node("Stop2b",nodeStop2.getX(),nodeStop2.getY(),Bus.transportType,true);
         Node nodeSb = new Node("Sb",nodeS.getX(),nodeS.getY(),Bus.transportType);
         Node nodeTb = new Node("Tb",nodeT.getX(),nodeT.getY(),Bus.transportType);
         Node nodeZb = new Node("Zb",nodeZ.getX(),nodeZ.getY(),Bus.transportType);
-        Node nodeStop3b = new Node("Stop3b",nodeStop3.getX(),nodeStop3.getY(),Bus.transportType);
+        Node nodeStop3b = new Node("Stop3b",nodeStop3.getX(),nodeStop3.getY(),Bus.transportType,true);
+        Node nodeDFb = new Node("DFb",nodeDF.getX(),nodeDF.getY(),Bus.transportType);
+        Node nodeAWb = new Node("AWb",nodeAW.getX(),nodeAW.getY(),Bus.transportType);
+        Node nodeAXb = new Node("AXb",nodeAX.getX(),nodeAX.getY(),Bus.transportType);
+        Node nodeStop4b = new Node("Stop4b",nodeStop4.getX(),nodeStop4.getY(),Bus.transportType,true);
+        Node nodeAYb = new Node("AYb",nodeAY.getX(),nodeAY.getY(),Bus.transportType);
+        Node nodeBDb = new Node("BDb",nodeBD.getX(),nodeBD.getY(),Bus.transportType);
+        Node nodeBEb = new Node("BEb",nodeBE.getX(),nodeBE.getY(),Bus.transportType);
+        Node nodeAOb = new Node("AOb",nodeAO.getX(),nodeAO.getY(),Bus.transportType);
+        Node nodeStop5b = new Node("Stop5b",nodeStop5.getX(),nodeStop5.getY(),Bus.transportType,true);
+        Node nodeANb = new Node("ANb",nodeAN.getX(),nodeAN.getY(),Bus.transportType);
+        Node nodeAMb = new Node("AMb",nodeAM.getX(),nodeAM.getY(),Bus.transportType);
+        Node nodeALb = new Node("ALb",nodeAL.getX(),nodeAL.getY(),Bus.transportType);
+        Node nodeStop6b = new Node("Stop6b",nodeStop6.getX(),nodeStop6.getY(),Bus.transportType,true);
+        Node nodeAKb = new Node("AKb",nodeAK.getX(),nodeAK.getY(),Bus.transportType);
+        Node nodeAGb = new Node("AGb",nodeAG.getX(),nodeAG.getY(),Bus.transportType);
+        Node nodeAJb = new Node("AJb",nodeAG.getX(),nodeAJ.getY(),Bus.transportType);
+        Node nodeStop7b = new Node("Stop7b",nodeStop7.getX(),nodeStop7.getY(),Bus.transportType,true);
+        Node J4End = new Node("J4End",nodeStop7.getX(),-300,Bus.transportType);
 
         J4Start.addDestination(nodeCb);
 
@@ -885,6 +924,60 @@ public class Maps {
         nodeZb.addDestination(nodeStop3b);
 
         nodeStop3b.addDestination(nodeZb);
+        nodeStop3b.addDestination(nodeDFb);
+
+        nodeDFb.addDestination(nodeStop3b);
+        nodeDFb.addDestination(nodeAWb);
+
+        nodeAWb.addDestination(nodeDFb);
+        nodeAWb.addDestination(nodeAXb);
+
+        nodeAXb.addDestination(nodeAWb);
+        nodeAXb.addDestination(nodeStop4b);
+
+        nodeStop4b.addDestination(nodeAXb);
+        nodeStop4b.addDestination(nodeAYb);
+
+        nodeAYb.addDestination(nodeStop4b);
+        nodeAYb.addDestination(nodeBDb);
+
+        nodeBDb.addDestination(nodeAYb);
+        nodeBDb.addDestination(nodeBEb);
+
+        nodeBEb.addDestination(nodeBDb);
+        nodeBEb.addDestination(nodeAOb);
+
+        nodeAOb.addDestination(nodeBEb);
+        nodeAOb.addDestination(nodeStop5b);
+
+        nodeStop5b.addDestination(nodeAOb);
+        nodeStop5b.addDestination(nodeANb);
+
+        nodeANb.addDestination(nodeStop5b);
+        nodeANb.addDestination(nodeAMb);
+
+        nodeAMb.addDestination(nodeANb);
+        nodeAMb.addDestination(nodeALb);
+
+        nodeALb.addDestination(nodeAMb);
+        nodeALb.addDestination(nodeStop6b);
+
+        nodeStop6b.addDestination(nodeALb);
+        nodeStop6b.addDestination(nodeAKb);
+
+        nodeAKb.addDestination(nodeStop6b);
+        nodeAKb.addDestination(nodeAGb);
+
+        nodeAGb.addDestination(nodeAKb);
+        nodeAGb.addDestination(nodeAJb);
+
+        nodeAJb.addDestination(nodeAGb);
+        nodeAJb.addDestination(nodeStop7b);
+
+        nodeStop7b.addDestination(nodeAJb);
+        nodeStop7b.addDestination(J4End);
+
+        J4End.addDestination(nodeStop7b);
 
         nodeStop1.addDestination(nodeStop1b);
         nodeStop1b.addDestination(nodeStop1);
@@ -895,7 +988,19 @@ public class Maps {
         nodeStop3.addDestination(nodeStop3b);
         nodeStop3b.addDestination(nodeStop3);
 
+        nodeStop4.addDestination(nodeStop4b);
+        nodeStop4b.addDestination(nodeStop4);
 
+        nodeStop5.addDestination(nodeStop5b);
+        nodeStop5b.addDestination(nodeStop5);
+
+        nodeStop6.addDestination(nodeStop6b);
+        nodeStop6b.addDestination(nodeStop6);
+
+        nodeStop7.addDestination(nodeStop7b);
+        nodeStop7b.addDestination(nodeStop7);
+
+        nodeList.add(J4Start);
         nodeList.add(nodeCb);
         nodeList.add(nodeDb);
         nodeList.add(nodeStop1b);
@@ -906,7 +1011,27 @@ public class Maps {
         nodeList.add(nodeTb);
         nodeList.add(nodeZb);
         nodeList.add(nodeStop3b);
+        nodeList.add(nodeDFb);
+        nodeList.add(nodeAWb);
+        nodeList.add(nodeAXb);
+        nodeList.add(nodeStop4b);
+        nodeList.add(nodeAYb);
+        nodeList.add(nodeBDb);
+        nodeList.add(nodeBEb);
+        nodeList.add(nodeAOb);
+        nodeList.add(nodeStop5b);
+        nodeList.add(nodeANb);
+        nodeList.add(nodeAMb);
+        nodeList.add(nodeALb);
+        nodeList.add(nodeStop6b);
+        nodeList.add(nodeAKb);
+        nodeList.add(nodeAGb);
+        nodeList.add(nodeAJb);
+        nodeList.add(nodeStop7b);
+        nodeList.add(J4End);
 
+
+        graph.addNode(J4Start);
         graph.addNode(nodeCb);
         graph.addNode(nodeDb);
         graph.addNode(nodeStop3b);
@@ -917,10 +1042,28 @@ public class Maps {
         graph.addNode(nodeTb);
         graph.addNode(nodeZb);
         graph.addNode(nodeStop3b);
+        graph.addNode(nodeDFb);
+        graph.addNode(nodeAWb);
+        graph.addNode(nodeAXb);
+        graph.addNode(nodeStop4b);
+        graph.addNode(nodeAYb);
+        graph.addNode(nodeBDb);
+        graph.addNode(nodeBEb);
+        graph.addNode(nodeAOb);
+        graph.addNode(nodeStop5b);
+        graph.addNode(nodeANb);
+        graph.addNode(nodeAMb);
+        graph.addNode(nodeALb);
+        graph.addNode(nodeStop6b);
+        graph.addNode(nodeAKb);
+        graph.addNode(nodeAGb);
+        graph.addNode(nodeAJb);
+        graph.addNode(nodeStop7b);
+        graph.addNode(J4End);
 
         List<Node> j4Route = new ArrayList<>();
 
-        //j4Route.add(J4Start);
+        j4Route.add(J4Start);
         j4Route.add(nodeCb);
         j4Route.add(nodeDb);
         j4Route.add(nodeStop1b);
@@ -931,6 +1074,24 @@ public class Maps {
         j4Route.add(nodeTb);
         j4Route.add(nodeZb);
         j4Route.add(nodeStop3b);
+        j4Route.add(nodeDFb);
+        j4Route.add(nodeAWb);
+        j4Route.add(nodeAXb);
+        j4Route.add(nodeStop4b);
+        j4Route.add(nodeAYb);
+        j4Route.add(nodeBDb);
+        j4Route.add(nodeBEb);
+        j4Route.add(nodeAOb);
+        j4Route.add(nodeStop5b);
+        j4Route.add(nodeANb);
+        j4Route.add(nodeAMb);
+        j4Route.add(nodeALb);
+        j4Route.add(nodeStop6b);
+        j4Route.add(nodeAKb);
+        j4Route.add(nodeAGb);
+        j4Route.add(nodeAJb);
+        j4Route.add(nodeStop7b);
+        j4Route.add(J4End);
 
         J4 = new BusRoute(BusNumber.J4,true, new ArrayList<>(j4Route));
         J4r = new BusRoute(BusNumber.J4,false, new ArrayList<>(j4Route));
