@@ -57,7 +57,7 @@ public class Node {
     private int calculateDistance(Node destination){
         int speed;
         if (Objects.equals(transportType, "Walk")){
-            speed=4;
+            speed=Player.speed;
         }
         else if (Objects.equals(transportType, "Bus")){
             speed=Bus.speed;
@@ -103,8 +103,30 @@ public class Node {
     }
 
     public void draw(Graphics g){
-        g.setColor(Color.ORANGE);
-        g.fillOval(x-5,y-5,10,10);
+        if((Objects.equals(getTransportType(), "Walk"))) {
+            g.setColor(Color.ORANGE);
+            g.fillOval(x - 5, y - 5, 10, 10);
+        }else if(transportStop){
+            g.setColor(Color.YELLOW);
+            g.fillRect(x - 8, y - 8, 16, 16);
+            g.setColor(Color.BLUE);
+            g.drawRect(x - 8, y - 8, 16, 16);
+        }
+
+    }
+
+    public void drawLinks(Graphics g){
+        for (Map.Entry<Node,Integer> entry: adjacentNodes.entrySet()){
+            Node destination= entry.getKey();
+            int distance= entry.getValue();
+
+            //Line draw details
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.DARK_GRAY);
+            g2d.setStroke(new BasicStroke(4.0f));
+
+            g2d.drawLine(x,y, destination.getX(), destination.getY());
+        }
     }
 
     public void setName(String name){

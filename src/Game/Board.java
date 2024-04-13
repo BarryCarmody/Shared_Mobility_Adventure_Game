@@ -24,9 +24,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private Dimension boardSize;
     private static Player player;
 
-    private Bus bus1;
+    //private static Bus bus1;
 
-    private Maps graph;
+    private static Maps graph;
 
     private Image backgroundImage;
 
@@ -34,11 +34,13 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private JLabel coordinatesLabel;
 
-    private List<Node> nodeList;
+    private static List<Node> nodeList;
 
     private List<Line2D> routeLines = new ArrayList<>();
 
     private static boolean active;
+
+    private Level level;
 
     public Board(){
 
@@ -51,13 +53,13 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         addKeyListener(new TAdapter());
         setFocusable(true);
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
-        setBackground(Color.BLACK);
+        setBackground(Color.LIGHT_GRAY);
 
-        try {
-            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+//        try {
+//            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
@@ -65,7 +67,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         gameInit();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
-        coordinatesLabel.setForeground(Color.WHITE);
+        coordinatesLabel.setForeground(Color.BLACK);
         add(coordinatesLabel);
 
         //addMouseMotionListener(this);
@@ -74,9 +76,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void gameInit() {
 
         graph = new Maps();
-        nodeList= Maps.createMap1(graph);
-        player=new Player(nodeList.get(15));
-        bus1= new Bus(Maps.getJ4());
+        level = new Level(1);
 
     }
 
@@ -127,8 +127,20 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void drawNodes(Graphics p){
+
+        //Draw Main Nodes First
         for (Node selectedNode: nodeList){
-            selectedNode.draw(p);
+            if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
+                selectedNode.drawLinks(p);
+                selectedNode.draw(p);
+            }
+        }
+
+        //Layer Special Nodes After
+        for (Node selectedNode: nodeList){
+            if(selectedNode.getTransportStop()) {
+                selectedNode.draw(p);
+            }
         }
     }
 
@@ -147,6 +159,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             g2d.draw(line);
         }
     }
+
+//    private void drawPaths(Graphics g){
+//        for (Node node:nodeList){
+//            node.draw(g);
+//        }
+//    }
 
     @Override
     protected void paintComponent(Graphics g){
@@ -225,6 +243,34 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     public static Player getPlayer() {
         return player;
+    }
+
+    public static void setPlayer(Player player) {
+        Board.player = player;
+    }
+
+//    public static Bus getBus1() {
+//        return bus1;
+//    }
+//
+//    public static void setBus1(Bus bus1) {
+//        Board.bus1 = bus1;
+//    }
+
+    public static List<Node> getNodeList() {
+        return nodeList;
+    }
+
+    public static void setNodeList(List<Node> nodeList) {
+        Board.nodeList = nodeList;
+    }
+
+    public static Maps getGraph() {
+        return graph;
+    }
+
+    public static void setGraph(Maps graph) {
+        Board.graph = graph;
     }
 
     @Override

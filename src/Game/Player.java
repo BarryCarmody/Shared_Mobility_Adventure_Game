@@ -9,10 +9,8 @@ public class Player extends Sprite {
     private final int PHEIGHT=20;
     private final int PWIDTH=20;
 
-
     public Player(Node startNode) {
 
-        speed=6;
         initPlayer(startNode);
         currentNode=startNode;
     }
@@ -29,7 +27,6 @@ public class Player extends Sprite {
 
     public void act() {
         if (Board.getActive()) {
-            System.out.println(currentNode);
             int curr=getCurrentSpotOnRoute();
             Node base=route.get(curr);
             setStepNode(route.get(curr+1));

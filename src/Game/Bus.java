@@ -27,13 +27,17 @@ public class Bus extends Transport {
 
     public boolean onboard;
 
-    public Bus(BusRoute busroute){
+    public int delay;
+
+    public Bus(BusRoute busroute, int delay){
 
         initBus(busroute.getRoute().get(0));
         setCurrentNode(busroute.getRoute().get(0));
+        this.delay=delay;
         busList.add(this);
         setRoute(busroute.getRoute());
         passenger=Board.getPlayer();
+
     }
 
     public void initBus(Node start){
@@ -67,57 +71,67 @@ public class Bus extends Transport {
         return busList;
     }
 
-    public void act() {
+    public static void setBusList(List<Bus> busList) {
+        Bus.busList = busList;
+    }
+
+    public void act(){
+
         if (Board.getActive()) {
+            if (delay==0) {
 
-            int curr = getCurrentSpotOnRoute();
-            Node base = route.get(curr);
-            setStepNode(route.get(curr + 1));
-            directionOfMotion(base, getStepNode());
 
-            if(isMoving()) {
-                setX(getX() + getDx());
-                setY(getY() + getDy());
-            }else if(stoppedTime==stopTime){
-                setMoving(true);
-            }
-            if(onboard){
-                if(passengerStop()){
-                    dropOff();
+                int curr = getCurrentSpotOnRoute();
+                Node base = route.get(curr);
+                setStepNode(route.get(curr + 1));
+                directionOfMotion(base, getStepNode());
+
+                if (isMoving()) {
+                    setX(getX() + getDx());
+                    setY(getY() + getDy());
+                } else if (stoppedTime == stopTime) {
+                    setMoving(true);
                 }
-            }
-            if (getCurrentNode().getTransportStop()){
-                stoppedTime+=1;
-                if(passengerWaiting()){
-                    pickUp();
+                if (onboard) {
+                    if (passengerStop()) {
+                        dropOff();
+                    }
                 }
-            }
-
-
-            //If close to next node
-            if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
-
-                setCurrentNode(getStepNode());
-                if(onboard){
-                    passenger.moveLocationtoNode(getStepNode());
+                if (getCurrentNode().getTransportStop()) {
+                    stoppedTime += 1;
+                    if (passengerWaiting()) {
+                        pickUp();
+                    }
                 }
 
-                //Wait at bus stop briefly
-                if(getCurrentNode().getTransportStop()) {
-                    stoppedTime = 0;
-                    stopTime = 5;
-                    setMoving(false);
-                }
 
-                //If at end of route
-                if (curr == route.size() - 2) {
-                    //Do the route in reverse
-                    Collections.reverse(route);
-                } else {
-                    //Move to exact spot of Node
-                    setX(getStepNode().getX() - (PWIDTH / 2));
-                    setY(getStepNode().getY() - (PHEIGHT / 2));
+                //If close to next node
+                if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
+
+                    setCurrentNode(getStepNode());
+                    if (onboard) {
+                        passenger.moveLocationtoNode(getStepNode());
+                    }
+
+                    //Wait at bus stop briefly
+                    if (getCurrentNode().getTransportStop()) {
+                        stoppedTime = 0;
+                        stopTime = 5;
+                        setMoving(false);
+                    }
+
+                    //If at end of route
+                    if (curr == route.size() - 2) {
+                        //Do the route in reverse
+                        Collections.reverse(route);
+                    } else {
+                        //Move to exact spot of Node
+                        setX(getStepNode().getX() - (PWIDTH / 2));
+                        setY(getStepNode().getY() - (PHEIGHT / 2));
+                    }
                 }
+            } else{
+                delay-=1;
             }
         }
     }
@@ -158,5 +172,7 @@ public class Bus extends Transport {
     public void setRoute(List<Node> route) {
         this.route = route;
     }
+
+
 
 }

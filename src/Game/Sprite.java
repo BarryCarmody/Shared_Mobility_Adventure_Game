@@ -23,7 +23,7 @@ public class Sprite {
 
     public List<Node> route;
 
-    public int speed;
+    static int speed=2;
 
     public Sprite(){
         visible=true;
