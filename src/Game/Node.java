@@ -55,29 +55,9 @@ public class Node {
     }
 
     private int calculateDistance(Node destination){
-        int speed;
-        if (Objects.equals(transportType, "Walk")){
-            speed=Player.speed;
-        }
-        else if (Objects.equals(transportType, "Bus")){
-            if(Level.isBusFilter()) {
-                speed = Bus.speed;
-            }else{
-                speed=1;
-            }
-
-        }else if(Objects.equals(transportType, "Bike")){
-            if(Level.isBikeFilter()) {
-                speed = Bike.speed;
-            }else{
-                speed=1;
-            }
-        }else{
-            speed=1;
-        }
         double deltaX=this.x-destination.getX();
         double deltaY=this.y-destination.getY();
-        return (int) (Math.sqrt(deltaX*deltaX+deltaY*deltaY))/speed;
+        return (int) (Math.sqrt(deltaX*deltaX+deltaY*deltaY));
     }
 
     public int getX(){

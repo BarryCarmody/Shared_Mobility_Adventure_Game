@@ -27,7 +27,43 @@ public class Maps {
             unsettledNodes.remove(currentNode);
             for(Entry <Node, Integer> adjacencyPair: currentNode.getAdjacentNodes().entrySet()){
                 Node adjacentNode=adjacencyPair.getKey();
-                Integer edgeWeight = adjacencyPair.getValue();
+
+
+
+
+
+
+
+
+
+                int speed;
+                if (Objects.equals(currentNode.getTransportType(), "Walk")){
+                    speed=Player.speed;
+                } else if (Objects.equals(currentNode.getTransportType(), "Bus")){
+                    if(Level.isBusFilter()) {
+                        speed = Bus.speed;
+                    }else{
+                        speed=1;
+                    }
+                }else if(Objects.equals(currentNode.getTransportType(), "Bike")){
+                    if(Level.isBikeFilter()) {
+                        speed = Bike.speed;
+                    }else{
+                        speed=1;
+                    }
+                }else{
+                    speed=1;
+                }
+
+
+
+                Integer edgeWeight = adjacencyPair.getValue()/speed;
+
+
+
+
+
+
                 if (!settledNodes.contains(adjacentNode)){
                     calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
                     unsettledNodes.add(adjacentNode);
