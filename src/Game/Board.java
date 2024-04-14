@@ -166,6 +166,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
+    private void drawButtons(Graphics g){
+        for (Button button: Level.getButtonList()){
+            button.draw(g);
+        }
+    }
+
 
     @Override
     protected void paintComponent(Graphics g){
@@ -183,6 +189,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         drawPlayer(g);
         drawBuses(g);
         drawBikes(g);
+        drawButtons(g);
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -226,7 +233,28 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     @Override
+    //Action if mouse clicked
     public void mouseClicked(MouseEvent e){
+        for(Button button: Level.getButtonList()){
+            if(!Objects.equals(button.getType(),"Text")) {
+                Rectangle buttonBox = new Rectangle(button.getX(), button.getY(), button.getWidth(), button.getHeight());
+                if(buttonBox.contains(e.getPoint())){
+                    System.out.println(button.getType()+" clicked");
+                    if(Objects.equals(button.getType(),"Bike")){
+                        Level.setBikeFilter(!Level.isBikeFilter());
+                        button.setSelected(!button.isSelected());
+                        System.out.println("Bike Filter is "+Level.isBikeFilter());
+                    }else if(Objects.equals(button.getType(),"Bus")){
+                        Level.setBusFilter(!Level.isBusFilter());
+                        button.setSelected(!button.isSelected());
+                        System.out.println("Bus Filter is "+Level.isBusFilter());
+                    }
+
+                }
+            }
+
+        }
+        //Click on Node set as target node and plan the route
         if (!active) {
             for (Node node : graph.getNodes()) {
                 if(Objects.equals(node.getTransportType(), "Walk")) {
@@ -242,8 +270,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             }
         }
         //System.out.println("Route from " + player.currentNode +" to: "+targetNode);
-        resetNodeDist();
-        nextLocation(player.getTargetNode());
+        if(player.getTargetNode()!=null) {
+            System.out.println("Resetting");
+            resetNodeDist();
+            nextLocation(player.getTargetNode());
+        }
     }
 
     public static Player getPlayer() {
@@ -253,14 +284,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     public static void setPlayer(Player player) {
         Board.player = player;
     }
-
-//    public static Bus getBus1() {
-//        return bus1;
-//    }
-//
-//    public static void setBus1(Bus bus1) {
-//        Board.bus1 = bus1;
-//    }
 
     public static List<Node> getNodeList() {
         return nodeList;

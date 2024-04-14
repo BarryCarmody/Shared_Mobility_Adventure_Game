@@ -60,10 +60,18 @@ public class Node {
             speed=Player.speed;
         }
         else if (Objects.equals(transportType, "Bus")){
-            speed=Bus.speed;
+            if(Level.isBusFilter()) {
+                speed = Bus.speed;
+            }else{
+                speed=1;
+            }
 
         }else if(Objects.equals(transportType, "Bike")){
-            speed=Bike.speed;
+            if(Level.isBikeFilter()) {
+                speed = Bike.speed;
+            }else{
+                speed=1;
+            }
         }else{
             speed=1;
         }

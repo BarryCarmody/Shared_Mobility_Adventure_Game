@@ -54,9 +54,7 @@ public class Maps {
 
     private static void calculateMinimumDistance(Node evaluationNode, Integer edgeWeight, Node sourceNode){
         Integer sourceDistance = sourceNode.getDistance();
-//        if (evaluationNode.getShortestPath()!=null){
-//            evaluationNode.setShortestPath(null);
-//        }
+
         if (sourceDistance + edgeWeight< evaluationNode.getDistance()){
             evaluationNode.setDistance(sourceDistance+edgeWeight);
             LinkedList<Node> shortestPath = new LinkedList<> (sourceNode.getShortestPath());
