@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame implements Runnable {
-    public static int currentState;
-    public static Scene currentScene;
+    private int currentState;
+    private Scene currentScene;
 
-    public static KL keyListener = new KL();
-    public static ML mouseListener = new ML();
+    private final KL keyListener = new KL();
+    private final ML mouseListener = new ML();
 
     public Window(int width, int height, String title) {
         setSize(width, height);
@@ -16,41 +16,39 @@ public class Window extends JFrame implements Runnable {
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addKeyListener(Window.keyListener);
+        addKeyListener(keyListener);
         addMouseListener(mouseListener);
         addMouseMotionListener(mouseListener);
-
-        Window.changeState(0);
+        changeState(0);
     }
 
-    public static void changeState(int newState) {
-        Window.currentState = newState;
-        switch (Window.currentState) {
+    public void changeState(int newState) {
+        currentState = newState;
+        switch (currentState) {
             case 0:
-                Window.currentScene = new MenuScene(Window.keyListener, Window.mouseListener);
+                currentScene = new MenuScene(this, keyListener, mouseListener);
                 break;
             case 1:
-                Window.currentScene = new GameScene();
+                currentScene = new GameScene(this, keyListener, mouseListener);
                 break;
             default:
                 System.out.println("Unknown scene.");
-                Window.currentScene = null;
+                currentScene = null;
                 break;
         }
     }
 
-
     public void update() {
         Image dbImage = createImage(getWidth(), getHeight());
         Graphics dbg = dbImage.getGraphics();
-        this.draw(dbg);
+        draw(dbg);
         getGraphics().drawImage(dbImage, 0, 0, this);
 
         currentScene.update();
     }
 
     public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g; //sets graphics object to a 2D object
+        //Graphics2D g2 = (Graphics2D) g; //sets graphics object to a 2D object
         currentScene.draw(g);
     }
 

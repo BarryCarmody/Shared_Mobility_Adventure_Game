@@ -7,15 +7,16 @@ import java.io.File;
 
 public class MenuScene extends Scene {
 
-    public KL keyListener;
-    public ML mouseListener;
-    public BufferedImage title, play, playPressed, leaderBoard, leaderBoardPressed;
+    private final Window window;
+    private final KL keyListener;
+    private final ML mouseListener;
+    private BufferedImage title, play, playPressed, leaderBoard, leaderBoardPressed;
+    private BufferedImage playCurrentImage, leaderboardCurrentImage;
+    private final Rectangle playRect = new Rectangle(320, 370, 200, 50);
+    private final Rectangle leaderBoardRect = new Rectangle(320, 430, 200, 50);
 
-    public BufferedImage playCurrentImage, leaderboardCurrentImage;
-
-    public Rectangle playRect, leaderBoardRect;
-
-    public MenuScene(KL keyListener, ML mouseListener) {
+    public MenuScene(final Window window, final KL keyListener, final ML mouseListener) {
+        this.window = window;
         this.keyListener = keyListener;
         this.mouseListener = mouseListener;
 
@@ -32,34 +33,28 @@ public class MenuScene extends Scene {
 
         playCurrentImage = play;
         leaderboardCurrentImage = leaderBoard;
-
-        playRect = new Rectangle(320, 370, 200, 50);
-        leaderBoardRect = new Rectangle(320, 430, 200, 50);
-
     }
 
     //    int i = 0;
     @Override
     public void update() {
 //        if (i==100) {
-//            Window.changeState(1);
+//            window.changeState(1);
 //        }
 //        i++;
 //        if (keyListener.isKeyPressed(KeyEvent.VK_UP)) {
 //            System.out.println("Up");
 //        }
-        if (mouseListener.getX() >= playRect.getX() && mouseListener.getX() <= playRect.getX() + playRect.width &&
-                mouseListener.getY() >= playRect.getY() && mouseListener.getY() <= playRect.getY() + playRect.height) {
+        if (mouseListener.isInRectangle(playRect)) {
             playCurrentImage = playPressed;
             if (mouseListener.isPressed()) {
-                Window.changeState(1);
+                window.changeState(1);
             }
         } else {
             playCurrentImage = play;
         }
 
-        if (mouseListener.getX() >= leaderBoardRect.getX() && mouseListener.getX() <= leaderBoardRect.getX() + leaderBoardRect.width &&
-                mouseListener.getY() >= leaderBoardRect.getY() && mouseListener.getY() <= leaderBoardRect.getY() + leaderBoardRect.height) {
+        if (mouseListener.isInRectangle(leaderBoardRect)) {
             leaderboardCurrentImage = leaderBoardPressed;
         } else {
             leaderboardCurrentImage = leaderBoard;
@@ -74,6 +69,5 @@ public class MenuScene extends Scene {
         g.drawImage(title, 180, 100, 500, 250, null);
         g.drawImage(playCurrentImage, playRect.x, playRect.y, playRect.width, playRect.height, null);
         g.drawImage(leaderboardCurrentImage, leaderBoardRect.x, leaderBoardRect.y, leaderBoardRect.width, leaderBoardRect.height, null);
-
     }
 }

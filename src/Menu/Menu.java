@@ -7,9 +7,7 @@ public class Menu {
 
     public static void main(String[] args) {
         Window window = new Window(width, height, title);
-
         Thread thread = new Thread(window);
         thread.start();
-
     }
 }
