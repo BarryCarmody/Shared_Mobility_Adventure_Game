@@ -6,7 +6,7 @@ public class Level {
 
     public int number;
 
-    public Bus bus1;
+    private static Bike bike;
 
     public boolean bikeButton;
 
@@ -17,6 +17,14 @@ public class Level {
     public Level(int number){
         this.number=number;
         initLevel();
+    }
+
+    public static void setBike(Bike bike) {
+        Level.bike = bike;
+    }
+
+    public static Bike getBike() {
+        return bike;
     }
 
     public void initLevel(){

@@ -55,7 +55,6 @@ public class Bus extends Transport {
         double eucdist = Math.sqrt(xdist * xdist + ydist * ydist);
         setDx((step.getX()-base.getX())*speed/eucdist);
         setDy((step.getY()-base.getY())*speed/eucdist);
-
     }
 
     public void draw(Graphics g){
@@ -172,7 +171,5 @@ public class Bus extends Transport {
     public void setRoute(List<Node> route) {
         this.route = route;
     }
-
-
 
 }

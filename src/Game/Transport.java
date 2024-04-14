@@ -94,4 +94,12 @@ abstract class Transport implements Mover {
     public void setStepNode(Node stepNode) {
         this.stepNode = stepNode;
     }
+
+    public void setRoute(List<Node> route) {
+        this.route = route;
+    }
+
+    public List<Node> getRoute() {
+        return route;
+    }
 }

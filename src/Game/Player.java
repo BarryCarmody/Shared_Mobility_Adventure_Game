@@ -9,6 +9,8 @@ public class Player extends Sprite {
     private final int PHEIGHT=20;
     private final int PWIDTH=20;
 
+    private int wait=0;
+
     public Player(Node startNode) {
 
         initPlayer(startNode);
@@ -27,14 +29,20 @@ public class Player extends Sprite {
 
     public void act() {
         if (Board.getActive()) {
-            int curr=getCurrentSpotOnRoute();
-            Node base=route.get(curr);
-            setStepNode(route.get(curr+1));
 
-            if(base.getTransportType().equals("Walk") && stepNode.getTransportType().equals("Bus")){
-                moving=false;
-            }else if(base.getTransportType().equals("Bus") && stepNode.getTransportType().equals("Walk")){
-                moving=true;
+            int curr = getCurrentSpotOnRoute();
+            Node base = route.get(curr);
+            setStepNode(route.get(curr + 1));
+
+            if (base.getTransportType().equals("Walk") && stepNode.getTransportType().equals("Bus")) {
+                moving = false;
+            } else if (base.getTransportType().equals("Bus") && stepNode.getTransportType().equals("Walk")) {
+                moving = true;
+            } else if (base.getTransportType().equals("Walk") && stepNode.getTransportType().equals("Bike")) {
+                moving = false;
+                pickingUpBike();
+            } else if (base.getTransportType().equals("Bike") && stepNode.getTransportType().equals("Walk")) {
+                moving = true;
             }
 
             directionOfMotion(base, stepNode);
@@ -43,16 +51,17 @@ public class Player extends Sprite {
                 y += dy;
             }
 
-            if (Math.abs(PWIDTH/2+x-stepNode.getX())<(1+speed) && Math.abs(PHEIGHT/2+y-stepNode.getY())<(1+speed)) {
+            if (Math.abs(PWIDTH / 2 + x - stepNode.getX()) < (1 + speed) && Math.abs(PHEIGHT / 2 + y - stepNode.getY()) < (1 + speed)) {
                 currentNode = stepNode;
-                if (curr== route.size()-2) {
+                if (curr == route.size() - 2) {
                     moving = false;
                     Board.setActive(false);
-                }else {
+                } else {
                     x = stepNode.getX() - (PWIDTH / 2);
                     y = stepNode.getY() - (PHEIGHT / 2);
                 }
             }
+
         }
     }
 
@@ -72,5 +81,9 @@ public class Player extends Sprite {
     public void moveLocationtoNode(Node moveToNode){
         setX(moveToNode.getX()- (PWIDTH/2));
         setY(moveToNode.getY()- (PHEIGHT/2));
+    }
+
+    public void pickingUpBike(){
+        Level.setBike(new Bike(this));
     }
 }

@@ -1482,13 +1482,13 @@ public class Maps {
         Node nodeStop11k = new Node("Stop11k", nodeStop11.getX(), nodeStop11.getY(), Bike.transportType);
         Node nodeStop12k = new Node("Stop12k", nodeStop12.getX(), nodeStop12.getY(), Bike.transportType);
         Node nodeStop13k = new Node("Stop13k", nodeStop13.getX(), nodeStop13.getY(), Bike.transportType);
-        Node nodeBStop1k = new Node("BStop1k", nodeBStop1.getX(), nodeBStop1.getY(), Bike.transportType);
-        Node nodeBStop2k = new Node("BStop2k", nodeBStop2.getX(), nodeBStop2.getY(), Bike.transportType);
-        Node nodeBStop3k = new Node("BStop3k", nodeBStop3.getX(), nodeBStop3.getY(), Bike.transportType);
-        Node nodeBStop4k = new Node("BStop4k", nodeBStop4.getX(), nodeBStop4.getY(), Bike.transportType);
-        Node nodeBStop5k = new Node("BStop5k", nodeBStop5.getX(), nodeBStop5.getY(), Bike.transportType);
-        Node nodeBStop6k = new Node("BStop6k", nodeBStop6.getX(), nodeBStop6.getY(), Bike.transportType);
-        Node nodeBStop7k = new Node("BStop7k", nodeBStop7.getX(), nodeBStop7.getY(), Bike.transportType);
+        Node nodeBStop1k = new Node("BStop1k", nodeBStop1.getX(), nodeBStop1.getY(), Bike.transportType,true);
+        Node nodeBStop2k = new Node("BStop2k", nodeBStop2.getX(), nodeBStop2.getY(), Bike.transportType,true);
+        Node nodeBStop3k = new Node("BStop3k", nodeBStop3.getX(), nodeBStop3.getY(), Bike.transportType,true);
+        Node nodeBStop4k = new Node("BStop4k", nodeBStop4.getX(), nodeBStop4.getY(), Bike.transportType,true);
+        Node nodeBStop5k = new Node("BStop5k", nodeBStop5.getX(), nodeBStop5.getY(), Bike.transportType,true);
+        Node nodeBStop6k = new Node("BStop6k", nodeBStop6.getX(), nodeBStop6.getY(), Bike.transportType,true);
+        Node nodeBStop7k = new Node("BStop7k", nodeBStop7.getX(), nodeBStop7.getY(), Bike.transportType,true);
 
         nodeAk.addDestination(nodeBk);
 

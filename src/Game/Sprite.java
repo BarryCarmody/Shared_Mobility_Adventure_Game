@@ -47,6 +47,9 @@ public class Sprite {
         return this.image;
     }
 
+    public List<Node> getRoute() {
+        return route;
+    }
 
     public int getCurrentSpotOnRoute(){
         //System.out.println(route);

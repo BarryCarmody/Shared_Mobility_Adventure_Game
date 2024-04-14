@@ -150,6 +150,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
+    private void drawBikes(Graphics p){
+        if(Level.getBike()!=null){
+            Level.getBike().draw(p);
+        }
+    }
+
     private void drawRouteLines(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLUE);
@@ -160,11 +166,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
-//    private void drawPaths(Graphics g){
-//        for (Node node:nodeList){
-//            node.draw(g);
-//        }
-//    }
 
     @Override
     protected void paintComponent(Graphics g){
@@ -181,6 +182,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         drawRouteLines(g);
         drawPlayer(g);
         drawBuses(g);
+        drawBikes(g);
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -189,6 +191,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         player.act();
         for (Bus bus: Bus.getBusList()){
             bus.act();
+        }
+        if (Level.getBike() !=null){
+            Level.getBike().act();
         }
     }
 
