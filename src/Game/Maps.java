@@ -210,6 +210,14 @@ public class Maps {
         Node nodeStop11 = new Node("Stop11", 300,100);
         Node nodeStop12 = new Node("Stop12", 600,75);
         Node nodeStop13 = new Node("Stop13", 809,58);
+        Node nodeBStop1 = new Node("BStop1",78, 473);
+        Node nodeBStop2 = new Node("BStop2",472,328);
+        Node nodeBStop3 = new Node("BStop3",506,570);
+        Node nodeBStop4 = new Node("BStop4",709,721);
+        Node nodeBStop5 = new Node("BStop5",945,640);
+        Node nodeBStop6 = new Node("BStop6",900,126);
+        Node nodeBStop7 = new Node("BStop7",222,75);
+
 
         nodeA.addDestination(nodeB);
 
@@ -227,7 +235,7 @@ public class Maps {
         nodeE.addDestination(nodeB);
         nodeE.addDestination(nodeD);
         nodeE.addDestination(nodeH);
-        nodeE.addDestination(nodeAG);
+        nodeE.addDestination(nodeBStop1);
 
         nodeF.addDestination(nodeStop1);
         nodeF.addDestination(nodeG);
@@ -285,7 +293,7 @@ public class Maps {
 
         nodeT.addDestination(nodeS);
         nodeT.addDestination(nodeU);
-        nodeT.addDestination(nodeAR);
+        nodeT.addDestination(nodeBStop4);
 
         nodeU.addDestination(nodeT);
         nodeU.addDestination(nodeV);
@@ -314,7 +322,7 @@ public class Maps {
         nodeAA.addDestination(nodeL);
         nodeAA.addDestination(nodeAB);
         nodeAA.addDestination(nodeAC);
-        nodeAA.addDestination(nodeAQ);
+        nodeAA.addDestination(nodeBStop3);
 
         nodeAB.addDestination(nodeM);
         nodeAB.addDestination(nodeR);
@@ -330,7 +338,7 @@ public class Maps {
 
         nodeAE.addDestination(nodeAD);
         nodeAE.addDestination(nodeAF);
-        nodeAE.addDestination(nodeAN);
+        nodeAE.addDestination(nodeBStop2);
 
         nodeAF.addDestination(nodeJ);
         nodeAF.addDestination(nodeAE);
@@ -338,7 +346,7 @@ public class Maps {
         nodeAF.addDestination(nodeAK);
         nodeAF.addDestination(nodeDD);
 
-        nodeAG.addDestination(nodeE);
+        nodeAG.addDestination(nodeBStop1);
         nodeAG.addDestination(nodeAF);
         nodeAG.addDestination(nodeAH);
         nodeAG.addDestination(nodeAJ);
@@ -365,7 +373,7 @@ public class Maps {
         nodeAM.addDestination(nodeAN);
         nodeAM.addDestination(nodeCK);
 
-        nodeAN.addDestination(nodeAE);
+        nodeAN.addDestination(nodeBStop2);
         nodeAN.addDestination(nodeAM);
         nodeAN.addDestination(nodeStop5);
         nodeAN.addDestination(nodeBY);
@@ -379,14 +387,14 @@ public class Maps {
         nodeAP.addDestination(nodeBD);
 
         nodeAQ.addDestination(nodeZ);
-        nodeAQ.addDestination(nodeAA);
+        nodeAQ.addDestination(nodeBStop3);
         nodeAQ.addDestination(nodeAP);
 
         nodeAQ.addDestination(nodeZ);
         nodeAQ.addDestination(nodeAA);
         nodeAQ.addDestination(nodeAP);
 
-        nodeAR.addDestination(nodeT);
+        nodeAR.addDestination(nodeBStop4);
         nodeAR.addDestination(nodeAS);
         nodeAR.addDestination(nodeDF);
 
@@ -402,7 +410,7 @@ public class Maps {
         nodeAV.addDestination(nodeAS);
 
         nodeAW.addDestination(nodeAX);
-        nodeAW.addDestination(nodeBJ);
+        nodeAW.addDestination(nodeBStop5);
         nodeAW.addDestination(nodeDF);
 
         nodeAX.addDestination(nodeAW);
@@ -448,7 +456,7 @@ public class Maps {
         nodeBI.addDestination(nodeStop8);
         nodeBI.addDestination(nodeBJ);
 
-        nodeBJ.addDestination(nodeAW);
+        nodeBJ.addDestination(nodeBStop5);
         nodeBJ.addDestination(nodeBI);
         nodeBJ.addDestination(nodeBK);
 
@@ -517,14 +525,14 @@ public class Maps {
         nodeCC.addDestination(nodeCB);
         nodeCC.addDestination(nodeCD);
         nodeCC.addDestination(nodeCE);
-        nodeCC.addDestination(nodeCF);
+        nodeCC.addDestination(nodeBStop6);
 
         nodeCD.addDestination(nodeCC);
 
         nodeCE.addDestination(nodeCC);
 
         nodeCF.addDestination(nodeCA);
-        nodeCF.addDestination(nodeCC);
+        nodeCF.addDestination(nodeBStop6);
         nodeCF.addDestination(nodeCG);
 
         nodeCG.addDestination(nodeCF);
@@ -572,7 +580,7 @@ public class Maps {
         nodeCP.addDestination(nodeCR);
 
         nodeCQ.addDestination(nodeCP);
-        nodeCQ.addDestination(nodeCT);
+        nodeCQ.addDestination(nodeBStop7);
 
         nodeCR.addDestination(nodeCN);
         nodeCR.addDestination(nodeCP);
@@ -583,7 +591,7 @@ public class Maps {
         nodeCS.addDestination(nodeStop11);
 
         nodeCT.addDestination(nodeCH);
-        nodeCT.addDestination(nodeCQ);
+        nodeCT.addDestination(nodeBStop7);
         nodeCT.addDestination(nodeStop11);
         nodeCT.addDestination(nodeCU);
 
@@ -656,6 +664,27 @@ public class Maps {
 
         nodeStop13.addDestination(nodeDB);
         nodeStop13.addDestination(nodeDC);
+
+        nodeBStop1.addDestination(nodeE);
+        nodeBStop1.addDestination(nodeAG);
+
+        nodeBStop2.addDestination(nodeAE);
+        nodeBStop2.addDestination(nodeAN);
+
+        nodeBStop3.addDestination(nodeAA);
+        nodeBStop3.addDestination(nodeAQ);
+
+        nodeBStop4.addDestination(nodeT);
+        nodeBStop4.addDestination(nodeAR);
+
+        nodeBStop5.addDestination(nodeAW);
+        nodeBStop5.addDestination(nodeBJ);
+
+        nodeBStop6.addDestination(nodeCC);
+        nodeBStop6.addDestination(nodeCF);
+
+        nodeBStop7.addDestination(nodeCQ);
+        nodeBStop7.addDestination(nodeCT);
 
         nodeList.add(nodeA);
         nodeList.add(nodeB);
@@ -778,6 +807,13 @@ public class Maps {
         nodeList.add(nodeStop11);
         nodeList.add(nodeStop12);
         nodeList.add(nodeStop13);
+        nodeList.add(nodeBStop1);
+        nodeList.add(nodeBStop2);
+        nodeList.add(nodeBStop3);
+        nodeList.add(nodeBStop4);
+        nodeList.add(nodeBStop5);
+        nodeList.add(nodeBStop6);
+        nodeList.add(nodeBStop7);
 
         graph.addNode(nodeA);
         graph.addNode(nodeB);
@@ -900,6 +936,13 @@ public class Maps {
         graph.addNode(nodeStop11);
         graph.addNode(nodeStop12);
         graph.addNode(nodeStop13);
+        graph.addNode(nodeBStop1);
+        graph.addNode(nodeBStop2);
+        graph.addNode(nodeBStop3);
+        graph.addNode(nodeBStop4);
+        graph.addNode(nodeBStop5);
+        graph.addNode(nodeBStop6);
+        graph.addNode(nodeBStop7);
 
         //Mapping J4 Route
 
@@ -1316,6 +1359,883 @@ public class Maps {
         w31Route.add(nodeStop13b);
         w31Route.add(nodeDCb);
         w31Route.add(W31End);
+
+        //Bike Paths
+        Node nodeAk = new Node("Ak", nodeA.getX(), nodeA.getY(), Bike.transportType);
+        Node nodeBk = new Node("Bk", nodeB.getX(), nodeB.getY(), Bike.transportType);
+        Node nodeCk = new Node("Ck", nodeC.getX(), nodeC.getY(), Bike.transportType);
+        Node nodeDk = new Node("Dk", nodeD.getX(), nodeD.getY(), Bike.transportType);
+        Node nodeEk = new Node("Ek", nodeE.getX(), nodeE.getY(), Bike.transportType);
+        Node nodeFk = new Node("Fk", nodeF.getX(), nodeF.getY(), Bike.transportType);
+        Node nodeGk = new Node("Gk", nodeG.getX(), nodeG.getY(), Bike.transportType);
+        Node nodeHk = new Node("Hk", nodeH.getX(), nodeH.getY(), Bike.transportType);
+        Node nodeIk = new Node("Ik", nodeI.getX(), nodeI.getY(), Bike.transportType);
+        Node nodeJk = new Node("Jk", nodeJ.getX(), nodeJ.getY(), Bike.transportType);
+        Node nodeKk = new Node("Kk", nodeK.getX(), nodeK.getY(), Bike.transportType);
+        Node nodeLk = new Node("Lk", nodeL.getX(), nodeL.getY(), Bike.transportType);
+        Node nodeMk = new Node("Mk", nodeM.getX(), nodeM.getY(), Bike.transportType);
+        Node nodeNk = new Node("Nk", nodeN.getX(), nodeN.getY(), Bike.transportType);
+        Node nodeOk = new Node("Ok", nodeO.getX(), nodeO.getY(), Bike.transportType);
+        Node nodePk = new Node("Pk", nodeP.getX(), nodeP.getY(), Bike.transportType);
+        Node nodeQk = new Node("Qk", nodeQ.getX(), nodeQ.getY(), Bike.transportType);
+        Node nodeRk = new Node("Rk", nodeR.getX(), nodeR.getY(), Bike.transportType);
+        Node nodeSk = new Node("Sk", nodeS.getX(), nodeS.getY(), Bike.transportType);
+        Node nodeTk = new Node("Tk", nodeT.getX(), nodeT.getY(), Bike.transportType);
+        Node nodeUk = new Node("Uk", nodeU.getX(), nodeU.getY(), Bike.transportType);
+        Node nodeVk = new Node("Vk", nodeV.getX(), nodeV.getY(), Bike.transportType);
+        Node nodeWk = new Node("Wk", nodeW.getX(), nodeW.getY(), Bike.transportType);
+        Node nodeXk = new Node("Xk", nodeX.getX(), nodeX.getY(), Bike.transportType);
+        Node nodeYk = new Node("Yk", nodeY.getX(), nodeY.getY(), Bike.transportType);
+        Node nodeZk = new Node("Zk", nodeZ.getX(), nodeZ.getY(), Bike.transportType);
+        Node nodeAAk = new Node("AAk", nodeAA.getX(), nodeAA.getY(), Bike.transportType);
+        Node nodeABk = new Node("ABk", nodeAB.getX(), nodeAB.getY(), Bike.transportType);
+        Node nodeACk = new Node("ACk", nodeAC.getX(), nodeAC.getY(), Bike.transportType);
+        Node nodeADk = new Node("ADk", nodeAD.getX(), nodeAD.getY(), Bike.transportType);
+        Node nodeAEk = new Node("AEk", nodeAE.getX(), nodeAE.getY(), Bike.transportType);
+        Node nodeAFk = new Node("AFk", nodeAF.getX(), nodeAF.getY(), Bike.transportType);
+        Node nodeAGk = new Node("AGk", nodeAG.getX(), nodeAG.getY(), Bike.transportType);
+        Node nodeAHk = new Node("AHk", nodeAH.getX(), nodeAH.getY(), Bike.transportType);
+        Node nodeAIk = new Node("AIk", nodeAI.getX(), nodeAI.getY(), Bike.transportType);
+        Node nodeAJk = new Node("AJk", nodeAJ.getX(), nodeAJ.getY(), Bike.transportType);
+        Node nodeAKk = new Node("AKk", nodeAK.getX(), nodeAK.getY(), Bike.transportType);
+        Node nodeALk = new Node("ALk", nodeAL.getX(), nodeAL.getY(), Bike.transportType);
+        Node nodeAMk = new Node("AMk", nodeAM.getX(), nodeAM.getY(), Bike.transportType);
+        Node nodeANk = new Node("ANk", nodeAN.getX(), nodeAN.getY(), Bike.transportType);
+        Node nodeAOk = new Node("AOk", nodeAO.getX(), nodeAO.getY(), Bike.transportType);
+        Node nodeAPk = new Node("APk", nodeAP.getX(), nodeAP.getY(), Bike.transportType);
+        Node nodeAQk = new Node("AQk", nodeAQ.getX(), nodeAQ.getY(), Bike.transportType);
+        Node nodeARk = new Node("ARk", nodeAR.getX(), nodeAR.getY(), Bike.transportType);
+        Node nodeASk = new Node("ASk", nodeAS.getX(), nodeAS.getY(), Bike.transportType);
+        Node nodeATk = new Node("ATk", nodeAT.getX(), nodeAT.getY(), Bike.transportType);
+        Node nodeAUk = new Node("AUk", nodeAU.getX(), nodeAU.getY(), Bike.transportType);
+        Node nodeAVk = new Node("AVk", nodeAV.getX(), nodeAV.getY(), Bike.transportType);
+        Node nodeAWk = new Node("AWk", nodeAW.getX(), nodeAW.getY(), Bike.transportType);
+        Node nodeAXk = new Node("AXk", nodeAX.getX(), nodeAX.getY(), Bike.transportType);
+        Node nodeAYk = new Node("AYk", nodeAY.getX(), nodeAY.getY(), Bike.transportType);
+        Node nodeAZk = new Node("AZk", nodeAZ.getX(), nodeAZ.getY(), Bike.transportType);
+        Node nodeBAk = new Node("BAk", nodeBA.getX(), nodeBA.getY(), Bike.transportType);
+        Node nodeBBk = new Node("BBk", nodeBB.getX(), nodeBB.getY(), Bike.transportType);
+        Node nodeBCk = new Node("BCk", nodeBC.getX(), nodeBC.getY(), Bike.transportType);
+        Node nodeBDk = new Node("BDk", nodeBD.getX(), nodeBD.getY(), Bike.transportType);
+        Node nodeBEk = new Node("BEk", nodeBE.getX(), nodeBE.getY(), Bike.transportType);
+        Node nodeBFk = new Node("BFk", nodeBF.getX(), nodeBF.getY(), Bike.transportType);
+        Node nodeBGk = new Node("BGk", nodeBG.getX(), nodeBG.getY(), Bike.transportType);
+        Node nodeBHk = new Node("BHk", nodeBH.getX(), nodeBH.getY(), Bike.transportType);
+        Node nodeBIk = new Node("BIk", nodeBI.getX(), nodeBI.getY(), Bike.transportType);
+        Node nodeBJk = new Node("BJk", nodeBJ.getX(), nodeBJ.getY(), Bike.transportType);
+        Node nodeBKk = new Node("BKk", nodeBK.getX(), nodeBK.getY(), Bike.transportType);
+        Node nodeBLk = new Node("BLk", nodeBL.getX(), nodeBL.getY(), Bike.transportType);
+        Node nodeBMk = new Node("BMk", nodeBM.getX(), nodeBM.getY(), Bike.transportType);
+        Node nodeBNk = new Node("BNk", nodeBN.getX(), nodeBN.getY(), Bike.transportType);
+        Node nodeBOk = new Node("BOk", nodeBO.getX(), nodeBO.getY(), Bike.transportType);
+        Node nodeBPk = new Node("BPk", nodeBP.getX(), nodeBP.getY(), Bike.transportType);
+        Node nodeBQk = new Node("BQk", nodeBQ.getX(), nodeBQ.getY(), Bike.transportType);
+        Node nodeBRk = new Node("BRk", nodeBR.getX(), nodeBR.getY(), Bike.transportType);
+        Node nodeBSk = new Node("BSk", nodeBS.getX(), nodeBS.getY(), Bike.transportType);
+        Node nodeBTk = new Node("BTk", nodeBT.getX(), nodeBT.getY(), Bike.transportType);
+        Node nodeBUk = new Node("BUk", nodeBU.getX(), nodeBU.getY(), Bike.transportType);
+        Node nodeBVk = new Node("BVk", nodeBV.getX(), nodeBV.getY(), Bike.transportType);
+        Node nodeBWk = new Node("BWk", nodeBW.getX(), nodeBW.getY(), Bike.transportType);
+        Node nodeBXk = new Node("BXk", nodeBX.getX(), nodeBX.getY(), Bike.transportType);
+        Node nodeBYk = new Node("BYk", nodeBY.getX(), nodeBY.getY(), Bike.transportType);
+        Node nodeBZk = new Node("BZk", nodeBZ.getX(), nodeBZ.getY(), Bike.transportType);
+        Node nodeCAk = new Node("CAk", nodeCA.getX(), nodeCA.getY(), Bike.transportType);
+        Node nodeCBk = new Node("CBk", nodeCB.getX(), nodeCB.getY(), Bike.transportType);
+        Node nodeCCk = new Node("CCk", nodeCC.getX(), nodeCC.getY(), Bike.transportType);
+        Node nodeCDk = new Node("CDk", nodeCD.getX(), nodeCD.getY(), Bike.transportType);
+        Node nodeCEk = new Node("CEk", nodeCE.getX(), nodeCE.getY(), Bike.transportType);
+        Node nodeCFk = new Node("CFk", nodeCF.getX(), nodeCF.getY(), Bike.transportType);
+        Node nodeCGk = new Node("CGk", nodeCG.getX(), nodeCG.getY(), Bike.transportType);
+        Node nodeCHk = new Node("CHk", nodeCH.getX(), nodeCH.getY(), Bike.transportType);
+        Node nodeCIk = new Node("CIk", nodeCI.getX(), nodeCI.getY(), Bike.transportType);
+        Node nodeCJk = new Node("CJk", nodeCJ.getX(), nodeCJ.getY(), Bike.transportType);
+        Node nodeCKk = new Node("CKk", nodeCK.getX(), nodeCK.getY(), Bike.transportType);
+        Node nodeCLk = new Node("CLk", nodeCL.getX(), nodeCL.getY(), Bike.transportType);
+        Node nodeCMk = new Node("CMk", nodeCM.getX(), nodeCM.getY(), Bike.transportType);
+        Node nodeCNk = new Node("CNk", nodeCN.getX(), nodeCN.getY(), Bike.transportType);
+        Node nodeCOk = new Node("COk", nodeCO.getX(), nodeCO.getY(), Bike.transportType);
+        Node nodeCPk = new Node("CPk", nodeCP.getX(), nodeCP.getY(), Bike.transportType);
+        Node nodeCQk = new Node("CQk", nodeCQ.getX(), nodeCQ.getY(), Bike.transportType);
+        Node nodeCRk = new Node("CRk", nodeCR.getX(), nodeCR.getY(), Bike.transportType);
+        Node nodeCSk = new Node("CSk", nodeCS.getX(), nodeCS.getY(), Bike.transportType);
+        Node nodeCTk = new Node("CTk", nodeCT.getX(), nodeCT.getY(), Bike.transportType);
+        Node nodeCUk = new Node("CUk", nodeCU.getX(), nodeCU.getY(), Bike.transportType);
+        Node nodeCVk = new Node("CVk", nodeCV.getX(), nodeCV.getY(), Bike.transportType);
+        Node nodeCXk = new Node("CXk", nodeCX.getX(), nodeCX.getY(), Bike.transportType);
+        Node nodeCYk = new Node("CYk", nodeCY.getX(), nodeCY.getY(), Bike.transportType);
+        Node nodeCZk = new Node("CZk", nodeCZ.getX(), nodeCZ.getY(), Bike.transportType);
+        Node nodeDAk = new Node("DAk", nodeDA.getX(), nodeDA.getY(), Bike.transportType);
+        Node nodeDBk = new Node("DBk", nodeDB.getX(), nodeDB.getY(), Bike.transportType);
+        Node nodeDCk = new Node("DCk", nodeDC.getX(), nodeDC.getY(), Bike.transportType);
+        Node nodeDDk = new Node("DDk", nodeDD.getX(), nodeDD.getY(), Bike.transportType);
+        Node nodeDFk = new Node("DFk", nodeDF.getX(), nodeDF.getY(), Bike.transportType);
+        Node nodeStop1k = new Node("Stop1k", nodeStop1.getX(), nodeStop1.getY(), Bike.transportType);
+        Node nodeStop2k = new Node("Stop2k", nodeStop2.getX(), nodeStop2.getY(), Bike.transportType);
+        Node nodeStop3k = new Node("Stop3k", nodeStop3.getX(), nodeStop3.getY(), Bike.transportType);
+        Node nodeStop4k = new Node("Stop4k", nodeStop4.getX(), nodeStop4.getY(), Bike.transportType);
+        Node nodeStop5k = new Node("Stop5k", nodeStop5.getX(), nodeStop5.getY(), Bike.transportType);
+        Node nodeStop6k = new Node("Stop6k", nodeStop6.getX(), nodeStop6.getY(), Bike.transportType);
+        Node nodeStop7k = new Node("Stop7k", nodeStop7.getX(), nodeStop7.getY(), Bike.transportType);
+        Node nodeStop8k = new Node("Stop8k", nodeStop8.getX(), nodeStop8.getY(), Bike.transportType);
+        Node nodeStop9k = new Node("Stop9k", nodeStop9.getX(), nodeStop9.getY(), Bike.transportType);
+        Node nodeStop10k = new Node("Stop10k", nodeStop10.getX(), nodeStop10.getY(), Bike.transportType);
+        Node nodeStop11k = new Node("Stop11k", nodeStop11.getX(), nodeStop11.getY(), Bike.transportType);
+        Node nodeStop12k = new Node("Stop12k", nodeStop12.getX(), nodeStop12.getY(), Bike.transportType);
+        Node nodeStop13k = new Node("Stop13k", nodeStop13.getX(), nodeStop13.getY(), Bike.transportType);
+        Node nodeBStop1k = new Node("BStop1k", nodeBStop1.getX(), nodeBStop1.getY(), Bike.transportType);
+        Node nodeBStop2k = new Node("BStop2k", nodeBStop2.getX(), nodeBStop2.getY(), Bike.transportType);
+        Node nodeBStop3k = new Node("BStop3k", nodeBStop3.getX(), nodeBStop3.getY(), Bike.transportType);
+        Node nodeBStop4k = new Node("BStop4k", nodeBStop4.getX(), nodeBStop4.getY(), Bike.transportType);
+        Node nodeBStop5k = new Node("BStop5k", nodeBStop5.getX(), nodeBStop5.getY(), Bike.transportType);
+        Node nodeBStop6k = new Node("BStop6k", nodeBStop6.getX(), nodeBStop6.getY(), Bike.transportType);
+        Node nodeBStop7k = new Node("BStop7k", nodeBStop7.getX(), nodeBStop7.getY(), Bike.transportType);
+
+        nodeAk.addDestination(nodeBk);
+
+        nodeBk.addDestination(nodeAk);
+        nodeBk.addDestination(nodeCk);
+        nodeBk.addDestination(nodeEk);
+
+        nodeCk.addDestination(nodeBk);
+        nodeCk.addDestination(nodeDk);
+
+        nodeDk.addDestination(nodeCk);
+        nodeDk.addDestination(nodeEk);
+        nodeDk.addDestination(nodeStop1k);
+
+        nodeEk.addDestination(nodeBk);
+        nodeEk.addDestination(nodeDk);
+        nodeEk.addDestination(nodeHk);
+        nodeEk.addDestination(nodeBStop1k);
+
+        nodeFk.addDestination(nodeStop1k);
+        nodeFk.addDestination(nodeGk);
+        nodeFk.addDestination(nodeNk);
+
+        nodeGk.addDestination(nodeFk);
+        nodeGk.addDestination(nodeIk);
+        nodeGk.addDestination(nodeMk);
+
+        nodeHk.addDestination(nodeEk);
+        nodeHk.addDestination(nodeIk);
+        nodeHk.addDestination(nodeJk);
+        nodeHk.addDestination(nodeKk);
+
+        nodeIk.addDestination(nodeGk);
+        nodeIk.addDestination(nodeHk);
+
+        nodeJk.addDestination(nodeHk);
+        nodeJk.addDestination(nodeADk);
+        nodeJk.addDestination(nodeAFk);
+
+        nodeKk.addDestination(nodeHk);
+        nodeKk.addDestination(nodeLk);
+        nodeKk.addDestination(nodeADk);
+
+        nodeLk.addDestination(nodeKk);
+        nodeLk.addDestination(nodeMk);
+        nodeLk.addDestination(nodeAAk);
+
+        nodeMk.addDestination(nodeGk);
+        nodeMk.addDestination(nodeLk);
+        nodeMk.addDestination(nodeABk);
+
+        nodeNk.addDestination(nodeFk);
+        nodeNk.addDestination(nodeOk);
+        nodeNk.addDestination(nodePk);
+
+        nodeOk.addDestination(nodeNk);
+
+        nodePk.addDestination(nodeNk);
+        nodePk.addDestination(nodeQk);
+        nodePk.addDestination(nodeStop2k);
+
+        nodeQk.addDestination(nodePk);
+        nodeQk.addDestination(nodeWk);
+        nodeQk.addDestination(nodeXk);
+
+        nodeRk.addDestination(nodeXk);
+        nodeRk.addDestination(nodeYk);
+        nodeRk.addDestination(nodeABk);
+
+        nodeSk.addDestination(nodeStop2k);
+        nodeSk.addDestination(nodeTk);
+        nodeSk.addDestination(nodeVk);
+
+        nodeTk.addDestination(nodeSk);
+        nodeTk.addDestination(nodeUk);
+        nodeTk.addDestination(nodeBStop4k);
+
+        nodeUk.addDestination(nodeTk);
+        nodeUk.addDestination(nodeVk);
+        nodeUk.addDestination(nodeZk);
+
+        nodeVk.addDestination(nodeSk);
+        nodeVk.addDestination(nodeUk);
+        nodeVk.addDestination(nodeWk);
+
+        nodeWk.addDestination(nodeQk);
+        nodeWk.addDestination(nodeVk);
+        nodeWk.addDestination(nodeYk);
+
+        nodeXk.addDestination(nodeQk);
+        nodeXk.addDestination(nodeRk);
+
+        nodeYk.addDestination(nodeRk);
+        nodeYk.addDestination(nodeWk);
+        nodeYk.addDestination(nodeZk);
+
+        nodeZk.addDestination(nodeUk);
+        nodeZk.addDestination(nodeYk);
+        nodeZk.addDestination(nodeAQk);
+        nodeZk.addDestination(nodeStop3k);
+
+        nodeAAk.addDestination(nodeLk);
+        nodeAAk.addDestination(nodeABk);
+        nodeAAk.addDestination(nodeACk);
+        nodeAAk.addDestination(nodeBStop3k);
+
+        nodeABk.addDestination(nodeMk);
+        nodeABk.addDestination(nodeRk);
+        nodeABk.addDestination(nodeAAk);
+
+        nodeACk.addDestination(nodeAAk);
+        nodeACk.addDestination(nodeADk);
+
+        nodeADk.addDestination(nodeJk);
+        nodeADk.addDestination(nodeKk);
+        nodeADk.addDestination(nodeACk);
+        nodeADk.addDestination(nodeAEk);
+
+        nodeAEk.addDestination(nodeADk);
+        nodeAEk.addDestination(nodeAFk);
+        nodeAEk.addDestination(nodeBStop2k);
+
+        nodeAFk.addDestination(nodeJk);
+        nodeAFk.addDestination(nodeAEk);
+        nodeAFk.addDestination(nodeAGk);
+        nodeAFk.addDestination(nodeAKk);
+        nodeAFk.addDestination(nodeDDk);
+
+        nodeAGk.addDestination(nodeBStop1k);
+        nodeAGk.addDestination(nodeAFk);
+        nodeAGk.addDestination(nodeAHk);
+        nodeAGk.addDestination(nodeAJk);
+
+        nodeAHk.addDestination(nodeAGk);
+        nodeAHk.addDestination(nodeAIk);
+
+        nodeAIk.addDestination(nodeAHk);
+        nodeAIk.addDestination(nodeAJk);
+
+        nodeAJk.addDestination(nodeDDk);
+        nodeAJk.addDestination(nodeAJk);
+        nodeAJk.addDestination(nodeStop7k);
+
+        nodeAKk.addDestination(nodeAFk);
+        nodeAKk.addDestination(nodeStop6k);
+        nodeAKk.addDestination(nodeCMk);
+
+        nodeALk.addDestination(nodeStop6k);
+        nodeALk.addDestination(nodeAMk);
+        nodeALk.addDestination(nodeCLk);
+
+        nodeAMk.addDestination(nodeALk);
+        nodeAMk.addDestination(nodeANk);
+        nodeAMk.addDestination(nodeCKk);
+
+        nodeANk.addDestination(nodeBStop2k);
+        nodeANk.addDestination(nodeAMk);
+        nodeANk.addDestination(nodeStop5k);
+        nodeANk.addDestination(nodeBYk);
+
+        nodeAOk.addDestination(nodeStop5k);
+        nodeAOk.addDestination(nodeAPk);
+        nodeAOk.addDestination(nodeBEk);
+
+        nodeAPk.addDestination(nodeAOk);
+        nodeAPk.addDestination(nodeAQk);
+        nodeAPk.addDestination(nodeBDk);
+
+        nodeAQk.addDestination(nodeZk);
+        nodeAQk.addDestination(nodeBStop3k);
+        nodeAQk.addDestination(nodeAPk);
+
+        nodeAQk.addDestination(nodeZk);
+        nodeAQk.addDestination(nodeAAk);
+        nodeAQk.addDestination(nodeAPk);
+
+        nodeARk.addDestination(nodeBStop4k);
+        nodeARk.addDestination(nodeASk);
+        nodeARk.addDestination(nodeDFk);
+
+        nodeASk.addDestination(nodeARk);
+        nodeASk.addDestination(nodeATk);
+        nodeASk.addDestination(nodeAVk);
+
+        nodeATk.addDestination(nodeASk);
+        nodeATk.addDestination(nodeAUk);
+
+        nodeAUk.addDestination(nodeATk);
+
+        nodeAVk.addDestination(nodeASk);
+
+        nodeAWk.addDestination(nodeAXk);
+        nodeAWk.addDestination(nodeBStop5k);
+        nodeAWk.addDestination(nodeDFk);
+
+        nodeAXk.addDestination(nodeAWk);
+        nodeAXk.addDestination(nodeStop4k);
+        nodeAXk.addDestination(nodeBGk);
+
+        nodeAYk.addDestination(nodeStop4k);
+        nodeAYk.addDestination(nodeAZk);
+        nodeAYk.addDestination(nodeBDk);
+
+        nodeAZk.addDestination(nodeAYk);
+        nodeAZk.addDestination(nodeBAk);
+        nodeAZk.addDestination(nodeBCk);
+
+        nodeBAk.addDestination(nodeAZk);
+        nodeBAk.addDestination(nodeBBk);
+
+        nodeBBk.addDestination(nodeBAk);
+
+        nodeBCk.addDestination(nodeAZk);
+
+        nodeBDk.addDestination(nodeAPk);
+        nodeBDk.addDestination(nodeAYk);
+        nodeBDk.addDestination(nodeBEk);
+
+        nodeBEk.addDestination(nodeAOk);
+        nodeBEk.addDestination(nodeBDk);
+        nodeBEk.addDestination(nodeBFk);
+        nodeBEk.addDestination(nodeBUk);
+
+        nodeBFk.addDestination(nodeBEk);
+        nodeBFk.addDestination(nodeBGk);
+        nodeBFk.addDestination(nodeBQk);
+
+        nodeBGk.addDestination(nodeAXk);
+        nodeBGk.addDestination(nodeBFk);
+        nodeBGk.addDestination(nodeBHk);
+
+        nodeBHk.addDestination(nodeBGk);
+        nodeBHk.addDestination(nodeStop8k);
+        nodeBHk.addDestination(nodeBPk);
+
+        nodeBIk.addDestination(nodeStop8k);
+        nodeBIk.addDestination(nodeBJk);
+
+        nodeBJk.addDestination(nodeBStop5k);
+        nodeBJk.addDestination(nodeBIk);
+        nodeBJk.addDestination(nodeBKk);
+
+        nodeBKk.addDestination(nodeBJk);
+        nodeBKk.addDestination(nodeBLk);
+        nodeBKk.addDestination(nodeBMk);
+
+        nodeBLk.addDestination(nodeBKk);
+
+        nodeBMk.addDestination(nodeBKk);
+        nodeBMk.addDestination(nodeBNk);
+        nodeBMk.addDestination(nodeBOk);
+
+        nodeBNk.addDestination(nodeBMk);
+
+        nodeBOk.addDestination(nodeBMk);
+
+        nodeBPk.addDestination(nodeBHk);
+        nodeBPk.addDestination(nodeStop9k);
+
+        nodeBQk.addDestination(nodeBFk);
+        nodeBQk.addDestination(nodeBRk);
+        nodeBQk.addDestination(nodeBSk);
+
+        nodeBRk.addDestination(nodeStop9k);
+        nodeBRk.addDestination(nodeBQk);
+        nodeBRk.addDestination(nodeCAk);
+
+        nodeBSk.addDestination(nodeBQk);
+        nodeBSk.addDestination(nodeBTk);
+        nodeBSk.addDestination(nodeBUk);
+
+        nodeBTk.addDestination(nodeBSk);
+
+        nodeBUk.addDestination(nodeBEk);
+        nodeBUk.addDestination(nodeBSk);
+        nodeBUk.addDestination(nodeBVk);
+
+        nodeBVk.addDestination(nodeBUk);
+        nodeBVk.addDestination(nodeBWk);
+
+        nodeBWk.addDestination(nodeBVk);
+        nodeBWk.addDestination(nodeBXk);
+        nodeBWk.addDestination(nodeBYk);
+
+        nodeBXk.addDestination(nodeBWk);
+        nodeBXk.addDestination(nodeBZk);
+        nodeBXk.addDestination(nodeCAk);
+
+        nodeBYk.addDestination(nodeANk);
+        nodeBYk.addDestination(nodeBWk);
+        nodeBYk.addDestination(nodeBZk);
+
+        nodeBZk.addDestination(nodeBXk);
+        nodeBZk.addDestination(nodeBZk);
+        nodeBZk.addDestination(nodeCJk);
+
+        nodeCAk.addDestination(nodeBRk);
+        nodeCAk.addDestination(nodeBXk);
+        nodeCAk.addDestination(nodeCBk);
+        nodeCAk.addDestination(nodeCFk);
+
+        nodeCBk.addDestination(nodeCAk);
+        nodeCBk.addDestination(nodeCCk);
+
+        nodeCCk.addDestination(nodeCBk);
+        nodeCCk.addDestination(nodeCDk);
+        nodeCCk.addDestination(nodeCEk);
+        nodeCCk.addDestination(nodeBStop6k);
+
+        nodeCDk.addDestination(nodeCCk);
+
+        nodeCEk.addDestination(nodeCCk);
+
+        nodeCFk.addDestination(nodeCAk);
+        nodeCFk.addDestination(nodeBStop6k);
+        nodeCFk.addDestination(nodeCGk);
+
+        nodeCGk.addDestination(nodeCFk);
+        nodeCGk.addDestination(nodeCHk);
+        nodeCGk.addDestination(nodeCIk);
+        nodeCGk.addDestination(nodeCSk);
+
+        nodeCHk.addDestination(nodeCGk);
+        nodeCHk.addDestination(nodeCTk);
+        nodeCHk.addDestination(nodeCVk);
+        nodeCHk.addDestination(nodeCXk);
+
+        nodeCIk.addDestination(nodeCGk);
+        nodeCIk.addDestination(nodeStop10k);
+        nodeCIk.addDestination(nodeCLk);
+        nodeCIk.addDestination(nodeCNk);
+
+        nodeCJk.addDestination(nodeBZk);
+        nodeCJk.addDestination(nodeStop10k);
+        nodeCJk.addDestination(nodeCKk);
+
+        nodeCKk.addDestination(nodeAMk);
+        nodeCKk.addDestination(nodeCJk);
+        nodeCKk.addDestination(nodeCLk);
+
+        nodeCLk.addDestination(nodeALk);
+        nodeCLk.addDestination(nodeCIk);
+        nodeCLk.addDestination(nodeCKk);
+
+        nodeCMk.addDestination(nodeAKk);
+        nodeCMk.addDestination(nodeCNk);
+        nodeCMk.addDestination(nodeDDk);
+
+        nodeCNk.addDestination(nodeCIk);
+        nodeCNk.addDestination(nodeCMk);
+        nodeCNk.addDestination(nodeCOk);
+        nodeCNk.addDestination(nodeCRk);
+
+        nodeCOk.addDestination(nodeCNk);
+        nodeCOk.addDestination(nodeCPk);
+        nodeCOk.addDestination(nodeDDk);
+
+        nodeCPk.addDestination(nodeCOk);
+        nodeCPk.addDestination(nodeCQk);
+        nodeCPk.addDestination(nodeCRk);
+
+        nodeCQk.addDestination(nodeCPk);
+        nodeCQk.addDestination(nodeBStop7k);
+
+        nodeCRk.addDestination(nodeCNk);
+        nodeCRk.addDestination(nodeCPk);
+        nodeCRk.addDestination(nodeCSk);
+
+        nodeCSk.addDestination(nodeCGk);
+        nodeCSk.addDestination(nodeCRk);
+        nodeCSk.addDestination(nodeStop11k);
+
+        nodeCTk.addDestination(nodeCHk);
+        nodeCTk.addDestination(nodeBStop7k);
+        nodeCTk.addDestination(nodeStop11k);
+        nodeCTk.addDestination(nodeCUk);
+
+        nodeCUk.addDestination(nodeCTk);
+        nodeCUk.addDestination(nodeCVk);
+
+        nodeCVk.addDestination(nodeCHk);
+        nodeCVk.addDestination(nodeCUk);
+
+        nodeCXk.addDestination(nodeCHk);
+        nodeCXk.addDestination(nodeCYk);
+        nodeCXk.addDestination(nodeStop12k);
+
+        nodeCYk.addDestination(nodeCXk);
+
+        nodeCZk.addDestination(nodeStop12k);
+        nodeCZk.addDestination(nodeDAk);
+        nodeCZk.addDestination(nodeDBk);
+
+        nodeDAk.addDestination(nodeCZk);
+
+        nodeDBk.addDestination(nodeCZk);
+        nodeDBk.addDestination(nodeStop13k);
+
+        nodeDCk.addDestination(nodeStop13k);
+
+        nodeDDk.addDestination(nodeAFk);
+        nodeDDk.addDestination(nodeAJk);
+        nodeDDk.addDestination(nodeCMk);
+        nodeDDk.addDestination(nodeCOk);
+
+        nodeDFk.addDestination(nodeStop3k);
+        nodeDFk.addDestination(nodeARk);
+        nodeDFk.addDestination(nodeAWk);
+
+        nodeStop1k.addDestination(nodeDk);
+        nodeStop1k.addDestination(nodeFk);
+
+        nodeStop2k.addDestination(nodePk);
+        nodeStop2k.addDestination(nodeSk);
+
+        nodeStop3k.addDestination(nodeZk);
+        nodeStop3k.addDestination(nodeDFk);
+
+        nodeStop4k.addDestination(nodeAXk);
+        nodeStop4k.addDestination(nodeAYk);
+
+        nodeStop5k.addDestination(nodeANk);
+        nodeStop5k.addDestination(nodeAOk);
+
+        nodeStop6k.addDestination(nodeAKk);
+        nodeStop6k.addDestination(nodeALk);
+
+        nodeStop7k.addDestination(nodeAJk);
+
+        nodeStop8k.addDestination(nodeBIk);
+        nodeStop8k.addDestination(nodeBHk);
+
+        nodeStop9k.addDestination(nodeBPk);
+        nodeStop9k.addDestination(nodeBRk);
+
+        nodeStop10k.addDestination(nodeCJk);
+        nodeStop10k.addDestination(nodeCIk);
+
+        nodeStop11k.addDestination(nodeCSk);
+        nodeStop11k.addDestination(nodeCTk);
+
+        nodeStop12k.addDestination(nodeCXk);
+        nodeStop12k.addDestination(nodeCZk);
+
+        nodeStop13k.addDestination(nodeDBk);
+        nodeStop13k.addDestination(nodeDCk);
+
+        nodeBStop1k.addDestination(nodeEk);
+        nodeBStop1k.addDestination(nodeAGk);
+
+        nodeBStop2k.addDestination(nodeAEk);
+        nodeBStop2k.addDestination(nodeANk);
+
+        nodeBStop3k.addDestination(nodeAAk);
+        nodeBStop3k.addDestination(nodeAQk);
+
+        nodeBStop4k.addDestination(nodeTk);
+        nodeBStop4k.addDestination(nodeARk);
+
+        nodeBStop5k.addDestination(nodeAWk);
+        nodeBStop5k.addDestination(nodeBJk);
+
+        nodeBStop6k.addDestination(nodeCCk);
+        nodeBStop6k.addDestination(nodeCFk);
+
+        nodeBStop7k.addDestination(nodeCQk);
+        nodeBStop7k.addDestination(nodeCTk);
+
+        nodeList.add(nodeAk);
+        nodeList.add(nodeBk);
+        nodeList.add(nodeCk);
+        nodeList.add(nodeDk);
+        nodeList.add(nodeEk);
+        nodeList.add(nodeFk);
+        nodeList.add(nodeGk);
+        nodeList.add(nodeHk);
+        nodeList.add(nodeIk);
+        nodeList.add(nodeJk);
+        nodeList.add(nodeKk);
+        nodeList.add(nodeLk);
+        nodeList.add(nodeMk);
+        nodeList.add(nodeNk);
+        nodeList.add(nodeOk);
+        nodeList.add(nodePk);
+        nodeList.add(nodeQk);
+        nodeList.add(nodeRk);
+        nodeList.add(nodeSk);
+        nodeList.add(nodeTk);
+        nodeList.add(nodeUk);
+        nodeList.add(nodeVk);
+        nodeList.add(nodeWk);
+        nodeList.add(nodeXk);
+        nodeList.add(nodeYk);
+        nodeList.add(nodeZk);
+        nodeList.add(nodeAAk);
+        nodeList.add(nodeABk);
+        nodeList.add(nodeACk);
+        nodeList.add(nodeADk);
+        nodeList.add(nodeAEk);
+        nodeList.add(nodeAFk);
+        nodeList.add(nodeAGk);
+        nodeList.add(nodeAHk);
+        nodeList.add(nodeAIk);
+        nodeList.add(nodeAJk);
+        nodeList.add(nodeAKk);
+        nodeList.add(nodeALk);
+        nodeList.add(nodeAMk);
+        nodeList.add(nodeANk);
+        nodeList.add(nodeAOk);
+        nodeList.add(nodeAPk);
+        nodeList.add(nodeAQk);
+        nodeList.add(nodeARk);
+        nodeList.add(nodeASk);
+        nodeList.add(nodeATk);
+        nodeList.add(nodeAUk);
+        nodeList.add(nodeAVk);
+        nodeList.add(nodeAWk);
+        nodeList.add(nodeAXk);
+        nodeList.add(nodeAYk);
+        nodeList.add(nodeAZk);
+        nodeList.add(nodeBAk);
+        nodeList.add(nodeBBk);
+        nodeList.add(nodeBCk);
+        nodeList.add(nodeBDk);
+        nodeList.add(nodeBEk);
+        nodeList.add(nodeBFk);
+        nodeList.add(nodeBGk);
+        nodeList.add(nodeBHk);
+        nodeList.add(nodeBIk);
+        nodeList.add(nodeBJk);
+        nodeList.add(nodeBKk);
+        nodeList.add(nodeBLk);
+        nodeList.add(nodeBMk);
+        nodeList.add(nodeBNk);
+        nodeList.add(nodeBOk);
+        nodeList.add(nodeBPk);
+        nodeList.add(nodeBQk);
+        nodeList.add(nodeBRk);
+        nodeList.add(nodeBSk);
+        nodeList.add(nodeBTk);
+        nodeList.add(nodeBUk);
+        nodeList.add(nodeBVk);
+        nodeList.add(nodeBWk);
+        nodeList.add(nodeBXk);
+        nodeList.add(nodeBYk);
+        nodeList.add(nodeBZk);
+        nodeList.add(nodeCAk);
+        nodeList.add(nodeCBk);
+        nodeList.add(nodeCCk);
+        nodeList.add(nodeCDk);
+        nodeList.add(nodeCEk);
+        nodeList.add(nodeCFk);
+        nodeList.add(nodeCGk);
+        nodeList.add(nodeCHk);
+        nodeList.add(nodeCIk);
+        nodeList.add(nodeCJk);
+        nodeList.add(nodeCKk);
+        nodeList.add(nodeCLk);
+        nodeList.add(nodeCMk);
+        nodeList.add(nodeCNk);
+        nodeList.add(nodeCOk);
+        nodeList.add(nodeCPk);
+        nodeList.add(nodeCQk);
+        nodeList.add(nodeCRk);
+        nodeList.add(nodeCSk);
+        nodeList.add(nodeCTk);
+        nodeList.add(nodeCUk);
+        nodeList.add(nodeCVk);
+        nodeList.add(nodeCXk);
+        nodeList.add(nodeCYk);
+        nodeList.add(nodeCZk);
+        nodeList.add(nodeDAk);
+        nodeList.add(nodeDBk);
+        nodeList.add(nodeDCk);
+        nodeList.add(nodeDDk);
+        nodeList.add(nodeDFk);
+        nodeList.add(nodeStop1k);
+        nodeList.add(nodeStop2k);
+        nodeList.add(nodeStop3k);
+        nodeList.add(nodeStop4k);
+        nodeList.add(nodeStop5k);
+        nodeList.add(nodeStop6k);
+        nodeList.add(nodeStop7k);
+        nodeList.add(nodeStop8k);
+        nodeList.add(nodeStop9k);
+        nodeList.add(nodeStop10k);
+        nodeList.add(nodeStop11k);
+        nodeList.add(nodeStop12k);
+        nodeList.add(nodeStop13k);
+        nodeList.add(nodeBStop1k);
+        nodeList.add(nodeBStop2k);
+        nodeList.add(nodeBStop3k);
+        nodeList.add(nodeBStop4k);
+        nodeList.add(nodeBStop5k);
+        nodeList.add(nodeBStop6k);
+        nodeList.add(nodeBStop7k);
+
+
+        graph.addNode(nodeAk);
+        graph.addNode(nodeBk);
+        graph.addNode(nodeCk);
+        graph.addNode(nodeDk);
+        graph.addNode(nodeEk);
+        graph.addNode(nodeFk);
+        graph.addNode(nodeGk);
+        graph.addNode(nodeHk);
+        graph.addNode(nodeIk);
+        graph.addNode(nodeJk);
+        graph.addNode(nodeKk);
+        graph.addNode(nodeLk);
+        graph.addNode(nodeMk);
+        graph.addNode(nodeNk);
+        graph.addNode(nodeOk);
+        graph.addNode(nodePk);
+        graph.addNode(nodeQk);
+        graph.addNode(nodeRk);
+        graph.addNode(nodeSk);
+        graph.addNode(nodeTk);
+        graph.addNode(nodeUk);
+        graph.addNode(nodeVk);
+        graph.addNode(nodeWk);
+        graph.addNode(nodeXk);
+        graph.addNode(nodeYk);
+        graph.addNode(nodeZk);
+        graph.addNode(nodeAAk);
+        graph.addNode(nodeABk);
+        graph.addNode(nodeACk);
+        graph.addNode(nodeADk);
+        graph.addNode(nodeAEk);
+        graph.addNode(nodeAFk);
+        graph.addNode(nodeAGk);
+        graph.addNode(nodeAHk);
+        graph.addNode(nodeAIk);
+        graph.addNode(nodeAJk);
+        graph.addNode(nodeAKk);
+        graph.addNode(nodeALk);
+        graph.addNode(nodeAMk);
+        graph.addNode(nodeANk);
+        graph.addNode(nodeAOk);
+        graph.addNode(nodeAPk);
+        graph.addNode(nodeAQk);
+        graph.addNode(nodeARk);
+        graph.addNode(nodeASk);
+        graph.addNode(nodeATk);
+        graph.addNode(nodeAUk);
+        graph.addNode(nodeAVk);
+        graph.addNode(nodeAWk);
+        graph.addNode(nodeAXk);
+        graph.addNode(nodeAYk);
+        graph.addNode(nodeAZk);
+        graph.addNode(nodeBAk);
+        graph.addNode(nodeBBk);
+        graph.addNode(nodeBCk);
+        graph.addNode(nodeBDk);
+        graph.addNode(nodeBEk);
+        graph.addNode(nodeBFk);
+        graph.addNode(nodeBGk);
+        graph.addNode(nodeBHk);
+        graph.addNode(nodeBIk);
+        graph.addNode(nodeBJk);
+        graph.addNode(nodeBKk);
+        graph.addNode(nodeBLk);
+        graph.addNode(nodeBMk);
+        graph.addNode(nodeBNk);
+        graph.addNode(nodeBOk);
+        graph.addNode(nodeBPk);
+        graph.addNode(nodeBQk);
+        graph.addNode(nodeBRk);
+        graph.addNode(nodeBSk);
+        graph.addNode(nodeBTk);
+        graph.addNode(nodeBUk);
+        graph.addNode(nodeBVk);
+        graph.addNode(nodeBWk);
+        graph.addNode(nodeBXk);
+        graph.addNode(nodeBYk);
+        graph.addNode(nodeBZk);
+        graph.addNode(nodeCAk);
+        graph.addNode(nodeCBk);
+        graph.addNode(nodeCCk);
+        graph.addNode(nodeCDk);
+        graph.addNode(nodeCEk);
+        graph.addNode(nodeCFk);
+        graph.addNode(nodeCGk);
+        graph.addNode(nodeCHk);
+        graph.addNode(nodeCIk);
+        graph.addNode(nodeCJk);
+        graph.addNode(nodeCKk);
+        graph.addNode(nodeCLk);
+        graph.addNode(nodeCMk);
+        graph.addNode(nodeCNk);
+        graph.addNode(nodeCOk);
+        graph.addNode(nodeCPk);
+        graph.addNode(nodeCQk);
+        graph.addNode(nodeCRk);
+        graph.addNode(nodeCSk);
+        graph.addNode(nodeCTk);
+        graph.addNode(nodeCUk);
+        graph.addNode(nodeCVk);
+        graph.addNode(nodeCXk);
+        graph.addNode(nodeCYk);
+        graph.addNode(nodeCZk);
+        graph.addNode(nodeDAk);
+        graph.addNode(nodeDBk);
+        graph.addNode(nodeDCk);
+        graph.addNode(nodeDDk);
+        graph.addNode(nodeDFk);
+        graph.addNode(nodeStop1k);
+        graph.addNode(nodeStop2k);
+        graph.addNode(nodeStop3k);
+        graph.addNode(nodeStop4k);
+        graph.addNode(nodeStop5k);
+        graph.addNode(nodeStop6k);
+        graph.addNode(nodeStop7k);
+        graph.addNode(nodeStop8k);
+        graph.addNode(nodeStop9k);
+        graph.addNode(nodeStop10k);
+        graph.addNode(nodeStop11k);
+        graph.addNode(nodeStop12k);
+        graph.addNode(nodeStop13k);
+        graph.addNode(nodeBStop1k);
+        graph.addNode(nodeBStop2k);
+        graph.addNode(nodeBStop3k);
+        graph.addNode(nodeBStop4k);
+        graph.addNode(nodeBStop5k);
+        graph.addNode(nodeBStop6k);
+        graph.addNode(nodeBStop7k);
+
+        nodeBStop1.addDestination(nodeBStop1k);
+        nodeBStop1k.addDestination(nodeBStop1);
+
+        nodeBStop2.addDestination(nodeBStop2k);
+        nodeBStop2k.addDestination(nodeBStop2);
+
+        nodeBStop3.addDestination(nodeBStop3k);
+        nodeBStop3k.addDestination(nodeBStop3);
+
+        nodeBStop4.addDestination(nodeBStop4k);
+        nodeBStop4k.addDestination(nodeBStop4);
+
+        nodeBStop5.addDestination(nodeBStop5k);
+        nodeBStop5k.addDestination(nodeBStop5);
+
+        nodeBStop6.addDestination(nodeBStop6k);
+        nodeBStop6k.addDestination(nodeBStop6);
+
+        nodeBStop7.addDestination(nodeBStop7k);
+        nodeBStop7k.addDestination(nodeBStop7);
 
         return nodeList;
     }

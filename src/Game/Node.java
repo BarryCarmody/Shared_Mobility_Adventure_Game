@@ -61,8 +61,10 @@ public class Node {
         }
         else if (Objects.equals(transportType, "Bus")){
             speed=Bus.speed;
-        }
-        else{
+
+        }else if(Objects.equals(transportType, "Bike")){
+            speed=Bike.speed;
+        }else{
             speed=1;
         }
         double deltaX=this.x-destination.getX();

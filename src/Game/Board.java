@@ -107,7 +107,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             routeLines.add(line);
             repaint();
         }
-        //System.out.println(player.route);
+        System.out.println(player.route);
     }
 
     private void goThere(Node destination) {
