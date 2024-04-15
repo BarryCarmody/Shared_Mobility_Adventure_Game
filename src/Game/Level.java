@@ -13,6 +13,8 @@ public class Level {
 
     private static boolean busFilter = true;
 
+    private static boolean carFilter = true;
+
     public static List<Button> buttonList = new ArrayList<>();
 
     public Level(int number){
@@ -32,7 +34,7 @@ public class Level {
         if (number==1){
             Board.setNodeList(Maps.createMap1(Board.getGraph()));
             Board.setPlayer(new Player(Board.getNodeList().get(0)));
-            //new Bus(Maps.getJ4(),0);
+
             new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),0);
             new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),150);
             new Bus(new BusRoute(BusNumber.J4,false,new ArrayList<>(Maps.getJ4Route())),10);
@@ -48,6 +50,21 @@ public class Level {
             buttonList.add(bikeButton);
             Button busButton=new Button(1230,170,80,250,"Include Bus in Route","Bus");
             buttonList.add(busButton);
+            Button carButton=new Button(1230,260,80,250,"Include Car in Route","Car");
+            buttonList.add(carButton);
+
+
+            Car.setCarGraph(new Maps());
+            Car.setCarNodeList(Maps.createMap1(Car.getCarGraph()));
+
+            List<Node> carStart= new ArrayList<Node>();
+            carStart.add(Board.getNodeList().get(13));
+//            carStart.add(Board.getNodeList().get(46));
+//            carStart.add(Board.getNodeList().get(78));
+//            carStart.add(Board.getNodeList().get(19));
+//            carStart.add(Board.getNodeList().get(64));
+            Car.setPotentialStarts(carStart);
+
         }
     }
 
@@ -70,4 +87,13 @@ public class Level {
     public static void setBusFilter(boolean busFilter) {
         Level.busFilter = busFilter;
     }
+
+    public static boolean isCarFilter() {
+        return carFilter;
+    }
+
+    public static void setCarFilter(boolean carFilter) {
+        Level.carFilter = carFilter;
+    }
+
 }

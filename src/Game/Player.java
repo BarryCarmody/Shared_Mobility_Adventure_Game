@@ -43,6 +43,10 @@ public class Player extends Sprite {
                 pickingUpBike();
             } else if (base.getTransportType().equals("Bike") && stepNode.getTransportType().equals("Walk")) {
                 moving = true;
+            }else if (base.getTransportType().equals("Walk") && stepNode.getTransportType().equals("Car")) {
+                moving = false;
+            }else if (base.getTransportType().equals("Car") && stepNode.getTransportType().equals("Walk")) {
+                moving = true;
             }
 
             directionOfMotion(base, stepNode);

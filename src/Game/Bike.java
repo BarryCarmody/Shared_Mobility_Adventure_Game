@@ -48,7 +48,7 @@ public class Bike extends Transport{
                     setX(getX() + getDx());
                     setY(getY() + getDy());
 
-                    System.out.println(player.currentNode);
+                    //System.out.println(player.currentNode);
                     if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
 
                         setCurrentNode(getStepNode());

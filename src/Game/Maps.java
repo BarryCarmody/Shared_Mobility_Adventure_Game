@@ -28,14 +28,6 @@ public class Maps {
             for(Entry <Node, Integer> adjacencyPair: currentNode.getAdjacentNodes().entrySet()){
                 Node adjacentNode=adjacencyPair.getKey();
 
-
-
-
-
-
-
-
-
                 int speed;
                 if (Objects.equals(currentNode.getTransportType(), "Walk")){
                     speed=Player.speed;
@@ -51,18 +43,17 @@ public class Maps {
                     }else{
                         speed=1;
                     }
+                }else if(Objects.equals(currentNode.getTransportType(), "Car")){
+                    if(Level.isCarFilter()) {
+                        speed = Car.speed;
+                    }else{
+                        speed=1;
+                    }
                 }else{
                     speed=1;
                 }
 
-
-
                 Integer edgeWeight = adjacencyPair.getValue()/speed;
-
-
-
-
-
 
                 if (!settledNodes.contains(adjacentNode)){
                     calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
@@ -2270,6 +2261,1182 @@ public class Maps {
 
         nodeBStop7.addDestination(nodeBStop7k);
         nodeBStop7k.addDestination(nodeBStop7);
+
+        //Add Car Routes
+        Node nodeAc = new Node("Ac", nodeA.getX(), nodeA.getY(), Car.transportType);
+        Node nodeBc = new Node("Bc", nodeB.getX(), nodeB.getY(), Car.transportType);
+        Node nodeCc = new Node("Cc", nodeC.getX(), nodeC.getY(), Car.transportType);
+        Node nodeDc = new Node("Dc", nodeD.getX(), nodeD.getY(), Car.transportType);
+        Node nodeEc = new Node("Ec", nodeE.getX(), nodeE.getY(), Car.transportType);
+        Node nodeFc = new Node("Fc", nodeF.getX(), nodeF.getY(), Car.transportType);
+        Node nodeGc = new Node("Gc", nodeG.getX(), nodeG.getY(), Car.transportType);
+        Node nodeHc = new Node("Hc", nodeH.getX(), nodeH.getY(), Car.transportType);
+        Node nodeIc = new Node("Ic", nodeI.getX(), nodeI.getY(), Car.transportType);
+        Node nodeJc = new Node("Jc", nodeJ.getX(), nodeJ.getY(), Car.transportType);
+        Node nodeMc = new Node("Mc", nodeM.getX(), nodeM.getY(), Car.transportType);
+        Node nodeNc = new Node("Nc", nodeN.getX(), nodeN.getY(), Car.transportType);
+        Node nodeOc = new Node("Oc", nodeO.getX(), nodeO.getY(), Car.transportType);
+        Node nodePc = new Node("Pc", nodeP.getX(), nodeP.getY(), Car.transportType);
+        Node nodeQc = new Node("Qc", nodeQ.getX(), nodeQ.getY(), Car.transportType);
+        Node nodeRc = new Node("Rc", nodeR.getX(), nodeR.getY(), Car.transportType);
+        Node nodeSc = new Node("Sc", nodeS.getX(), nodeS.getY(), Car.transportType);
+        Node nodeTc = new Node("Tc", nodeT.getX(), nodeT.getY(), Car.transportType);
+        Node nodeUc = new Node("Uc", nodeU.getX(), nodeU.getY(), Car.transportType);
+        Node nodeVc = new Node("Vc", nodeV.getX(), nodeV.getY(), Car.transportType);
+        Node nodeWc = new Node("Wc", nodeW.getX(), nodeW.getY(), Car.transportType);
+        Node nodeXc = new Node("Xc", nodeX.getX(), nodeX.getY(), Car.transportType);
+        Node nodeYc = new Node("Yc", nodeY.getX(), nodeY.getY(), Car.transportType);
+        Node nodeZc = new Node("Zc", nodeZ.getX(), nodeZ.getY(), Car.transportType);
+        Node nodeAAc = new Node("AAc", nodeAA.getX(), nodeAA.getY(), Car.transportType);
+        Node nodeABc = new Node("ABc", nodeAB.getX(), nodeAB.getY(), Car.transportType);
+        Node nodeACc = new Node("ACc", nodeAC.getX(), nodeAC.getY(), Car.transportType);
+        Node nodeADc = new Node("ADc", nodeAD.getX(), nodeAD.getY(), Car.transportType);
+        Node nodeAFc = new Node("AFc", nodeAF.getX(), nodeAF.getY(), Car.transportType);
+        Node nodeAGc = new Node("AGc", nodeAG.getX(), nodeAG.getY(), Car.transportType);
+        Node nodeAIc = new Node("AIc", nodeAI.getX(), nodeAI.getY(), Car.transportType);
+        Node nodeAJc = new Node("AJc", nodeAJ.getX(), nodeAJ.getY(), Car.transportType);
+        Node nodeAKc = new Node("AKc", nodeAK.getX(), nodeAK.getY(), Car.transportType);
+        Node nodeALc = new Node("ALc", nodeAL.getX(), nodeAL.getY(), Car.transportType);
+        Node nodeAMc = new Node("AMc", nodeAM.getX(), nodeAM.getY(), Car.transportType);
+        Node nodeANc = new Node("ANc", nodeAN.getX(), nodeAN.getY(), Car.transportType);
+        Node nodeAOc = new Node("AOc", nodeAO.getX(), nodeAO.getY(), Car.transportType);
+        Node nodeAPc = new Node("APc", nodeAP.getX(), nodeAP.getY(), Car.transportType);
+        Node nodeAQc = new Node("AQc", nodeAQ.getX(), nodeAQ.getY(), Car.transportType);
+        Node nodeARc = new Node("ARc", nodeAR.getX(), nodeAR.getY(), Car.transportType);
+        Node nodeASc = new Node("ASc", nodeAS.getX(), nodeAS.getY(), Car.transportType);
+        Node nodeATc = new Node("ATc", nodeAT.getX(), nodeAT.getY(), Car.transportType);
+        Node nodeAUc = new Node("AUc", nodeAU.getX(), nodeAU.getY(), Car.transportType);
+        Node nodeAVc = new Node("AVc", nodeAV.getX(), nodeAV.getY(), Car.transportType);
+        Node nodeAWc = new Node("AWc", nodeAW.getX(), nodeAW.getY(), Car.transportType);
+        Node nodeAXc = new Node("AXc", nodeAX.getX(), nodeAX.getY(), Car.transportType);
+        Node nodeAYc = new Node("AYc", nodeAY.getX(), nodeAY.getY(), Car.transportType);
+        Node nodeAZc = new Node("AZc", nodeAZ.getX(), nodeAZ.getY(), Car.transportType);
+        Node nodeBAc = new Node("BAc", nodeBA.getX(), nodeBA.getY(), Car.transportType);
+        Node nodeBBc = new Node("BBc", nodeBB.getX(), nodeBB.getY(), Car.transportType);
+        Node nodeBCc = new Node("BCc", nodeBC.getX(), nodeBC.getY(), Car.transportType);
+        Node nodeBDc = new Node("BDc", nodeBD.getX(), nodeBD.getY(), Car.transportType);
+        Node nodeBEc = new Node("BEc", nodeBE.getX(), nodeBE.getY(), Car.transportType);
+        Node nodeBFc = new Node("BFc", nodeBF.getX(), nodeBF.getY(), Car.transportType);
+        Node nodeBGc = new Node("BGc", nodeBG.getX(), nodeBG.getY(), Car.transportType);
+        Node nodeBHc = new Node("BHc", nodeBH.getX(), nodeBH.getY(), Car.transportType);
+        Node nodeBIc = new Node("BIc", nodeBI.getX(), nodeBI.getY(), Car.transportType);
+        Node nodeBJc = new Node("BJc", nodeBJ.getX(), nodeBJ.getY(), Car.transportType);
+        Node nodeBKc = new Node("BKc", nodeBK.getX(), nodeBK.getY(), Car.transportType);
+        Node nodeBLc = new Node("BLc", nodeBL.getX(), nodeBL.getY(), Car.transportType);
+        Node nodeBMc = new Node("BMc", nodeBM.getX(), nodeBM.getY(), Car.transportType);
+        Node nodeBNc = new Node("BNc", nodeBN.getX(), nodeBN.getY(), Car.transportType);
+        Node nodeBOc = new Node("BOc", nodeBO.getX(), nodeBO.getY(), Car.transportType);
+        Node nodeBPc = new Node("BPc", nodeBP.getX(), nodeBP.getY(), Car.transportType);
+        Node nodeBQc = new Node("BQc", nodeBQ.getX(), nodeBQ.getY(), Car.transportType);
+        Node nodeBRc = new Node("BRc", nodeBR.getX(), nodeBR.getY(), Car.transportType);
+        Node nodeBSc = new Node("BSc", nodeBS.getX(), nodeBS.getY(), Car.transportType);
+        Node nodeBTc = new Node("BTc", nodeBT.getX(), nodeBT.getY(), Car.transportType);
+        Node nodeBUc = new Node("BUc", nodeBU.getX(), nodeBU.getY(), Car.transportType);
+        Node nodeBVc = new Node("BVc", nodeBV.getX(), nodeBV.getY(), Car.transportType);
+        Node nodeBWc = new Node("BWc", nodeBW.getX(), nodeBW.getY(), Car.transportType);
+        Node nodeBXc = new Node("BXc", nodeBX.getX(), nodeBX.getY(), Car.transportType);
+        Node nodeBYc = new Node("BYc", nodeBY.getX(), nodeBY.getY(), Car.transportType);
+        Node nodeBZc = new Node("BZc", nodeBZ.getX(), nodeBZ.getY(), Car.transportType);
+        Node nodeCAc = new Node("CAc", nodeCA.getX(), nodeCA.getY(), Car.transportType);
+        Node nodeCBc = new Node("CBc", nodeCB.getX(), nodeCB.getY(), Car.transportType);
+        Node nodeCCc = new Node("CCc", nodeCC.getX(), nodeCC.getY(), Car.transportType);
+        Node nodeCDc = new Node("CDc", nodeCD.getX(), nodeCD.getY(), Car.transportType);
+        Node nodeCEc = new Node("CEc", nodeCE.getX(), nodeCE.getY(), Car.transportType);
+        Node nodeCFc = new Node("CFc", nodeCF.getX(), nodeCF.getY(), Car.transportType);
+        Node nodeCGc = new Node("CGc", nodeCG.getX(), nodeCG.getY(), Car.transportType);
+        Node nodeCHc = new Node("CHc", nodeCH.getX(), nodeCH.getY(), Car.transportType);
+        Node nodeCIc = new Node("CIc", nodeCI.getX(), nodeCI.getY(), Car.transportType);
+        Node nodeCJc = new Node("CJc", nodeCJ.getX(), nodeCJ.getY(), Car.transportType);
+        Node nodeCKc = new Node("CKc", nodeCK.getX(), nodeCK.getY(), Car.transportType);
+        Node nodeCLc = new Node("CLc", nodeCL.getX(), nodeCL.getY(), Car.transportType);
+        Node nodeCMc = new Node("CMc", nodeCM.getX(), nodeCM.getY(), Car.transportType);
+        Node nodeCNc = new Node("CNc", nodeCN.getX(), nodeCN.getY(), Car.transportType);
+        Node nodeCOc = new Node("COc", nodeCO.getX(), nodeCO.getY(), Car.transportType);
+        Node nodeCPc = new Node("CPc", nodeCP.getX(), nodeCP.getY(), Car.transportType);
+        Node nodeCQc = new Node("CQc", nodeCQ.getX(), nodeCQ.getY(), Car.transportType);
+        Node nodeCRc = new Node("CRc", nodeCR.getX(), nodeCR.getY(), Car.transportType);
+        Node nodeCSc = new Node("CSc", nodeCS.getX(), nodeCS.getY(), Car.transportType);
+        Node nodeCTc = new Node("CTc", nodeCT.getX(), nodeCT.getY(), Car.transportType);
+        Node nodeCUc = new Node("CUc", nodeCU.getX(), nodeCU.getY(), Car.transportType);
+        Node nodeCVc = new Node("CVc", nodeCV.getX(), nodeCV.getY(), Car.transportType);
+        Node nodeCXc = new Node("CXc", nodeCX.getX(), nodeCX.getY(), Car.transportType);
+        Node nodeCYc = new Node("CYc", nodeCY.getX(), nodeCY.getY(), Car.transportType);
+        Node nodeCZc = new Node("CZc", nodeCZ.getX(), nodeCZ.getY(), Car.transportType);
+        Node nodeDAc = new Node("DAc", nodeDA.getX(), nodeDA.getY(), Car.transportType);
+        Node nodeDBc = new Node("DBc", nodeDB.getX(), nodeDB.getY(), Car.transportType);
+        Node nodeDCc = new Node("DCc", nodeDC.getX(), nodeDC.getY(), Car.transportType);
+        Node nodeDDc = new Node("DDc", nodeDD.getX(), nodeDD.getY(), Car.transportType);
+        Node nodeDFc = new Node("DFc", nodeDF.getX(), nodeDF.getY(), Car.transportType);
+        Node nodeStop1c = new Node("Stop1c", nodeStop1.getX(), nodeStop1.getY(), Car.transportType);
+        Node nodeStop2c = new Node("Stop2c", nodeStop2.getX(), nodeStop2.getY(), Car.transportType);
+        Node nodeStop3c = new Node("Stop3c", nodeStop3.getX(), nodeStop3.getY(), Car.transportType);
+        Node nodeStop4c = new Node("Stop4c", nodeStop4.getX(), nodeStop4.getY(), Car.transportType);
+        Node nodeStop5c = new Node("Stop5c", nodeStop5.getX(), nodeStop5.getY(), Car.transportType);
+        Node nodeStop6c = new Node("Stop6c", nodeStop6.getX(), nodeStop6.getY(), Car.transportType);
+        Node nodeStop7c = new Node("Stop7c", nodeStop7.getX(), nodeStop7.getY(), Car.transportType);
+        Node nodeStop8c = new Node("Stop8c", nodeStop8.getX(), nodeStop8.getY(), Car.transportType);
+        Node nodeStop9c = new Node("Stop9c", nodeStop9.getX(), nodeStop9.getY(), Car.transportType);
+        Node nodeStop10c = new Node("Stop10c", nodeStop10.getX(), nodeStop10.getY(), Car.transportType);
+        Node nodeStop11c = new Node("Stop11c", nodeStop11.getX(), nodeStop11.getY(), Car.transportType);
+        Node nodeStop12c = new Node("Stop12c", nodeStop12.getX(), nodeStop12.getY(), Car.transportType);
+        Node nodeStop13c = new Node("Stop13c", nodeStop13.getX(), nodeStop13.getY(), Car.transportType);
+        Node nodeBStop1c = new Node("BStop1c", nodeBStop1.getX(), nodeBStop1.getY(), Car.transportType);
+        Node nodeBStop2c = new Node("BStop2c", nodeBStop2.getX(), nodeBStop2.getY(), Car.transportType);
+        Node nodeBStop3c = new Node("BStop3c", nodeBStop3.getX(), nodeBStop3.getY(), Car.transportType);
+        Node nodeBStop4c = new Node("BStop4c", nodeBStop4.getX(), nodeBStop4.getY(), Car.transportType);
+        Node nodeBStop5c = new Node("BStop5c", nodeBStop5.getX(), nodeBStop5.getY(), Car.transportType);
+        Node nodeBStop6c = new Node("BStop6c", nodeBStop6.getX(), nodeBStop6.getY(), Car.transportType);
+        Node nodeBStop7c = new Node("BStop7c", nodeBStop7.getX(), nodeBStop7.getY(), Car.transportType);
+        Node carStart1 = new Node("CS1c", J4Start.getX(),J4Start.getY(),Car.transportType);
+
+
+        nodeAc.addDestination(nodeBc);
+
+        nodeBc.addDestination(nodeAc);
+        nodeBc.addDestination(nodeCc);
+
+        nodeCc.addDestination(nodeBc);
+        nodeCc.addDestination(nodeDc);
+
+        nodeDc.addDestination(nodeCc);
+        nodeDc.addDestination(nodeEc);
+        nodeDc.addDestination(nodeStop1c);
+
+        nodeEc.addDestination(nodeDc);
+        nodeEc.addDestination(nodeHc);
+        nodeEc.addDestination(nodeBStop1c);
+
+        nodeFc.addDestination(nodeStop1c);
+        nodeFc.addDestination(nodeGc);
+        nodeFc.addDestination(nodeNc);
+
+        nodeGc.addDestination(nodeFc);
+        nodeGc.addDestination(nodeIc);
+        nodeGc.addDestination(nodeMc);
+
+        nodeHc.addDestination(nodeEc);
+        nodeHc.addDestination(nodeIc);
+        nodeHc.addDestination(nodeJc);
+
+        nodeIc.addDestination(nodeGc);
+        nodeIc.addDestination(nodeHc);
+
+        nodeJc.addDestination(nodeHc);
+        nodeJc.addDestination(nodeADc);
+        nodeJc.addDestination(nodeAFc);
+
+        nodeMc.addDestination(nodeGc);
+        nodeMc.addDestination(nodeABc);
+
+        nodeNc.addDestination(nodeFc);
+        nodeNc.addDestination(nodeOc);
+        nodeNc.addDestination(nodePc);
+
+        nodeOc.addDestination(nodeNc);
+
+        nodePc.addDestination(nodeNc);
+        nodePc.addDestination(nodeQc);
+        nodePc.addDestination(nodeStop2c);
+
+        nodeQc.addDestination(nodePc);
+
+        nodeRc.addDestination(nodeXc);
+        nodeRc.addDestination(nodeYc);
+        nodeRc.addDestination(nodeABc);
+
+        nodeSc.addDestination(nodeStop2c);
+        nodeSc.addDestination(nodeTc);
+        nodeSc.addDestination(nodeVc);
+
+        nodeTc.addDestination(nodeSc);
+        nodeTc.addDestination(nodeUc);
+        nodeTc.addDestination(nodeBStop4c);
+
+        nodeUc.addDestination(nodeTc);
+        nodeUc.addDestination(nodeZc);
+
+        nodeVc.addDestination(nodeSc);
+
+        nodeWc.addDestination(nodeYc);
+
+        nodeXc.addDestination(nodeRc);
+
+        nodeYc.addDestination(nodeRc);
+        nodeYc.addDestination(nodeWc);
+        nodeYc.addDestination(nodeZc);
+
+        nodeZc.addDestination(nodeUc);
+        nodeZc.addDestination(nodeYc);
+        nodeZc.addDestination(nodeAQc);
+        nodeZc.addDestination(nodeStop3c);
+
+        nodeAAc.addDestination(nodeABc);
+        nodeAAc.addDestination(nodeACc);
+        nodeAAc.addDestination(nodeBStop3c);
+
+        nodeABc.addDestination(nodeMc);
+        nodeABc.addDestination(nodeRc);
+        nodeABc.addDestination(nodeAAc);
+
+        nodeACc.addDestination(nodeAAc);
+        nodeACc.addDestination(nodeADc);
+
+        nodeADc.addDestination(nodeJc);
+        nodeADc.addDestination(nodeACc);
+
+        nodeAFc.addDestination(nodeJc);
+        nodeAFc.addDestination(nodeAGc);
+        nodeAFc.addDestination(nodeAKc);
+        nodeAFc.addDestination(nodeDDc);
+
+        nodeAGc.addDestination(nodeBStop1c);
+        nodeAGc.addDestination(nodeAFc);
+        nodeAGc.addDestination(nodeAJc);
+
+
+        nodeAIc.addDestination(nodeAJc);
+
+        nodeAJc.addDestination(nodeDDc);
+        nodeAJc.addDestination(nodeAJc);
+        nodeAJc.addDestination(nodeStop7c);
+
+        nodeAKc.addDestination(nodeAFc);
+        nodeAKc.addDestination(nodeStop6c);
+        nodeAKc.addDestination(nodeCMc);
+
+        nodeALc.addDestination(nodeStop6c);
+        nodeALc.addDestination(nodeAMc);
+        nodeALc.addDestination(nodeCLc);
+
+        nodeAMc.addDestination(nodeALc);
+        nodeAMc.addDestination(nodeANc);
+        nodeAMc.addDestination(nodeCKc);
+
+        nodeANc.addDestination(nodeAMc);
+        nodeANc.addDestination(nodeStop5c);
+
+        nodeAOc.addDestination(nodeStop5c);
+        nodeAOc.addDestination(nodeAPc);
+        nodeAOc.addDestination(nodeBEc);
+
+        nodeAPc.addDestination(nodeAOc);
+        nodeAPc.addDestination(nodeAQc);
+        nodeAPc.addDestination(nodeBDc);
+
+        nodeAQc.addDestination(nodeZc);
+        nodeAQc.addDestination(nodeBStop3c);
+        nodeAQc.addDestination(nodeAPc);
+
+        nodeAQc.addDestination(nodeZc);
+        nodeAQc.addDestination(nodeAAc);
+        nodeAQc.addDestination(nodeAPc);
+
+        nodeARc.addDestination(nodeBStop4c);
+        nodeARc.addDestination(nodeASc);
+        nodeARc.addDestination(nodeDFc);
+
+        nodeASc.addDestination(nodeARc);
+        nodeASc.addDestination(nodeATc);
+        nodeASc.addDestination(nodeAVc);
+
+        nodeATc.addDestination(nodeASc);
+        nodeATc.addDestination(nodeAUc);
+
+        nodeAUc.addDestination(nodeATc);
+
+        nodeAVc.addDestination(nodeASc);
+
+        nodeAWc.addDestination(nodeAXc);
+        nodeAWc.addDestination(nodeBStop5c);
+        nodeAWc.addDestination(nodeDFc);
+
+        nodeAXc.addDestination(nodeAWc);
+        nodeAXc.addDestination(nodeStop4c);
+        nodeAXc.addDestination(nodeBGc);
+
+        nodeAYc.addDestination(nodeStop4c);
+        nodeAYc.addDestination(nodeAZc);
+        nodeAYc.addDestination(nodeBDc);
+
+        nodeAZc.addDestination(nodeAYc);
+        nodeAZc.addDestination(nodeBAc);
+        nodeAZc.addDestination(nodeBCc);
+
+        nodeBAc.addDestination(nodeAZc);
+        nodeBAc.addDestination(nodeBBc);
+
+        nodeBBc.addDestination(nodeBAc);
+
+        nodeBCc.addDestination(nodeAZc);
+
+        nodeBDc.addDestination(nodeAPc);
+        nodeBDc.addDestination(nodeAYc);
+        nodeBDc.addDestination(nodeBEc);
+
+        nodeBEc.addDestination(nodeAOc);
+        nodeBEc.addDestination(nodeBDc);
+        nodeBEc.addDestination(nodeBFc);
+        nodeBEc.addDestination(nodeBUc);
+
+        nodeBFc.addDestination(nodeBEc);
+        nodeBFc.addDestination(nodeBGc);
+        nodeBFc.addDestination(nodeBQc);
+
+        nodeBGc.addDestination(nodeAXc);
+        nodeBGc.addDestination(nodeBFc);
+
+        nodeBHc.addDestination(nodeStop8c);
+        nodeBHc.addDestination(nodeBPc);
+
+        nodeBIc.addDestination(nodeStop8c);
+        nodeBIc.addDestination(nodeBJc);
+
+        nodeBJc.addDestination(nodeBStop5c);
+        nodeBJc.addDestination(nodeBIc);
+        nodeBJc.addDestination(nodeBKc);
+
+        nodeBKc.addDestination(nodeBJc);
+        nodeBKc.addDestination(nodeBLc);
+        nodeBKc.addDestination(nodeBMc);
+
+        nodeBLc.addDestination(nodeBKc);
+
+        nodeBMc.addDestination(nodeBKc);
+        nodeBMc.addDestination(nodeBNc);
+        nodeBMc.addDestination(nodeBOc);
+
+        nodeBNc.addDestination(nodeBMc);
+
+        nodeBOc.addDestination(nodeBMc);
+
+        nodeBPc.addDestination(nodeBHc);
+        nodeBPc.addDestination(nodeStop9c);
+
+        nodeBQc.addDestination(nodeBFc);
+        nodeBQc.addDestination(nodeBRc);
+        nodeBQc.addDestination(nodeBSc);
+
+        nodeBRc.addDestination(nodeStop9c);
+        nodeBRc.addDestination(nodeBQc);
+        nodeBRc.addDestination(nodeCAc);
+
+        nodeBSc.addDestination(nodeBQc);
+        nodeBSc.addDestination(nodeBTc);
+        nodeBSc.addDestination(nodeBUc);
+
+        nodeBTc.addDestination(nodeBSc);
+
+        nodeBUc.addDestination(nodeBEc);
+        nodeBUc.addDestination(nodeBSc);
+        nodeBUc.addDestination(nodeBVc);
+
+        nodeBVc.addDestination(nodeBUc);
+
+        nodeBWc.addDestination(nodeBXc);
+        nodeBWc.addDestination(nodeBYc);
+
+        nodeBXc.addDestination(nodeBWc);
+        nodeBXc.addDestination(nodeBZc);
+        nodeBXc.addDestination(nodeCAc);
+
+        nodeBYc.addDestination(nodeBWc);
+        nodeBYc.addDestination(nodeBZc);
+
+        nodeBZc.addDestination(nodeBXc);
+        nodeBZc.addDestination(nodeBZc);
+        nodeBZc.addDestination(nodeCJc);
+
+        nodeCAc.addDestination(nodeBRc);
+        nodeCAc.addDestination(nodeBXc);
+        nodeCAc.addDestination(nodeCBc);
+        nodeCAc.addDestination(nodeCFc);
+
+        nodeCBc.addDestination(nodeCAc);
+        nodeCBc.addDestination(nodeCCc);
+
+        nodeCCc.addDestination(nodeCBc);
+        nodeCCc.addDestination(nodeCDc);
+        nodeCCc.addDestination(nodeCEc);
+        nodeCCc.addDestination(nodeBStop6c);
+
+        nodeCDc.addDestination(nodeCCc);
+
+        nodeCEc.addDestination(nodeCCc);
+
+        nodeCFc.addDestination(nodeCAc);
+        nodeCFc.addDestination(nodeBStop6c);
+        nodeCFc.addDestination(nodeCGc);
+
+        nodeCGc.addDestination(nodeCFc);
+        nodeCGc.addDestination(nodeCHc);
+        nodeCGc.addDestination(nodeCIc);
+        nodeCGc.addDestination(nodeCSc);
+
+        nodeCHc.addDestination(nodeCGc);
+        nodeCHc.addDestination(nodeCTc);
+        nodeCHc.addDestination(nodeCVc);
+        nodeCHc.addDestination(nodeCXc);
+
+        nodeCIc.addDestination(nodeCGc);
+        nodeCIc.addDestination(nodeStop10c);
+        nodeCIc.addDestination(nodeCLc);
+        nodeCIc.addDestination(nodeCNc);
+
+        nodeCJc.addDestination(nodeBZc);
+        nodeCJc.addDestination(nodeStop10c);
+        nodeCJc.addDestination(nodeCKc);
+
+        nodeCKc.addDestination(nodeAMc);
+        nodeCKc.addDestination(nodeCJc);
+        nodeCKc.addDestination(nodeCLc);
+
+        nodeCLc.addDestination(nodeALc);
+        nodeCLc.addDestination(nodeCIc);
+        nodeCLc.addDestination(nodeCKc);
+
+        nodeCMc.addDestination(nodeAKc);
+        nodeCMc.addDestination(nodeCNc);
+        nodeCMc.addDestination(nodeDDc);
+
+        nodeCNc.addDestination(nodeCIc);
+        nodeCNc.addDestination(nodeCMc);
+        nodeCNc.addDestination(nodeCOc);
+        nodeCNc.addDestination(nodeCRc);
+
+        nodeCOc.addDestination(nodeCNc);
+        nodeCOc.addDestination(nodeCPc);
+        nodeCOc.addDestination(nodeDDc);
+
+        nodeCPc.addDestination(nodeCOc);
+        nodeCPc.addDestination(nodeCQc);
+        nodeCPc.addDestination(nodeCRc);
+
+        nodeCQc.addDestination(nodeCPc);
+        nodeCQc.addDestination(nodeBStop7c);
+
+        nodeCRc.addDestination(nodeCNc);
+        nodeCRc.addDestination(nodeCPc);
+        nodeCRc.addDestination(nodeCSc);
+
+        nodeCSc.addDestination(nodeCGc);
+        nodeCSc.addDestination(nodeCRc);
+        nodeCSc.addDestination(nodeStop11c);
+
+        nodeCTc.addDestination(nodeCHc);
+        nodeCTc.addDestination(nodeBStop7c);
+        nodeCTc.addDestination(nodeStop11c);
+        nodeCTc.addDestination(nodeCUc);
+
+        nodeCUc.addDestination(nodeCTc);
+        nodeCUc.addDestination(nodeCVc);
+
+        nodeCVc.addDestination(nodeCHc);
+        nodeCVc.addDestination(nodeCUc);
+
+        nodeCXc.addDestination(nodeCHc);
+        nodeCXc.addDestination(nodeCYc);
+        nodeCXc.addDestination(nodeStop12c);
+
+        nodeCYc.addDestination(nodeCXc);
+
+        nodeCZc.addDestination(nodeStop12c);
+        nodeCZc.addDestination(nodeDAc);
+        nodeCZc.addDestination(nodeDBc);
+
+        nodeDAc.addDestination(nodeCZc);
+
+        nodeDBc.addDestination(nodeCZc);
+        nodeDBc.addDestination(nodeStop13c);
+
+        nodeDCc.addDestination(nodeStop13c);
+
+        nodeDDc.addDestination(nodeAFc);
+        nodeDDc.addDestination(nodeAJc);
+        nodeDDc.addDestination(nodeCMc);
+        nodeDDc.addDestination(nodeCOc);
+
+        nodeDFc.addDestination(nodeStop3c);
+        nodeDFc.addDestination(nodeARc);
+        nodeDFc.addDestination(nodeAWc);
+
+        nodeStop1c.addDestination(nodeDc);
+        nodeStop1c.addDestination(nodeFc);
+
+        nodeStop2c.addDestination(nodePc);
+        nodeStop2c.addDestination(nodeSc);
+
+        nodeStop3c.addDestination(nodeZc);
+        nodeStop3c.addDestination(nodeDFc);
+
+        nodeStop4c.addDestination(nodeAXc);
+        nodeStop4c.addDestination(nodeAYc);
+
+        nodeStop5c.addDestination(nodeANc);
+        nodeStop5c.addDestination(nodeAOc);
+
+        nodeStop6c.addDestination(nodeAKc);
+        nodeStop6c.addDestination(nodeALc);
+
+        nodeStop7c.addDestination(nodeAJc);
+
+        nodeStop8c.addDestination(nodeBIc);
+        nodeStop8c.addDestination(nodeBHc);
+
+        nodeStop9c.addDestination(nodeBPc);
+        nodeStop9c.addDestination(nodeBRc);
+
+        nodeStop10c.addDestination(nodeCJc);
+        nodeStop10c.addDestination(nodeCIc);
+
+        nodeStop11c.addDestination(nodeCSc);
+        nodeStop11c.addDestination(nodeCTc);
+
+        nodeStop12c.addDestination(nodeCXc);
+        nodeStop12c.addDestination(nodeCZc);
+
+        nodeStop13c.addDestination(nodeDBc);
+        nodeStop13c.addDestination(nodeDCc);
+
+        nodeBStop1c.addDestination(nodeEc);
+        nodeBStop1c.addDestination(nodeAGc);
+
+        nodeBStop3c.addDestination(nodeAAc);
+        nodeBStop3c.addDestination(nodeAQc);
+
+        nodeBStop4c.addDestination(nodeTc);
+        nodeBStop4c.addDestination(nodeARc);
+
+        nodeBStop5c.addDestination(nodeAWc);
+        nodeBStop5c.addDestination(nodeBJc);
+
+        nodeBStop6c.addDestination(nodeCCc);
+        nodeBStop6c.addDestination(nodeCFc);
+
+        nodeBStop7c.addDestination(nodeCQc);
+        nodeBStop7c.addDestination(nodeCTc);
+
+        nodeA.addDestination(nodeAc);
+        nodeAc.addDestination(nodeA);
+
+        nodeB.addDestination(nodeBc);
+        nodeBc.addDestination(nodeB);
+
+        nodeC.addDestination(nodeCc);
+        nodeCc.addDestination(nodeC);
+
+        nodeD.addDestination(nodeDc);
+        nodeDc.addDestination(nodeD);
+
+        nodeE.addDestination(nodeEc);
+        nodeEc.addDestination(nodeE);
+
+        nodeF.addDestination(nodeFc);
+        nodeFc.addDestination(nodeF);
+
+        nodeG.addDestination(nodeGc);
+        nodeGc.addDestination(nodeG);
+
+        nodeH.addDestination(nodeHc);
+        nodeHc.addDestination(nodeH);
+
+        nodeI.addDestination(nodeIc);
+        nodeIc.addDestination(nodeI);
+
+        nodeJ.addDestination(nodeJc);
+        nodeJc.addDestination(nodeJ);
+
+        nodeM.addDestination(nodeMc);
+        nodeMc.addDestination(nodeM);
+
+        nodeN.addDestination(nodeNc);
+        nodeNc.addDestination(nodeN);
+
+        nodeO.addDestination(nodeOc);
+        nodeOc.addDestination(nodeO);
+
+        nodeP.addDestination(nodePc);
+        nodePc.addDestination(nodeP);
+
+        nodeQ.addDestination(nodeQc);
+        nodeQc.addDestination(nodeQ);
+
+        nodeR.addDestination(nodeRc);
+        nodeRc.addDestination(nodeR);
+
+        nodeS.addDestination(nodeSc);
+        nodeSc.addDestination(nodeS);
+
+        nodeT.addDestination(nodeTc);
+        nodeTc.addDestination(nodeT);
+
+        nodeU.addDestination(nodeUc);
+        nodeUc.addDestination(nodeU);
+
+        nodeV.addDestination(nodeVc);
+        nodeVc.addDestination(nodeV);
+
+        nodeW.addDestination(nodeWc);
+        nodeWc.addDestination(nodeW);
+
+        nodeX.addDestination(nodeXc);
+        nodeXc.addDestination(nodeX);
+
+        nodeY.addDestination(nodeYc);
+        nodeYc.addDestination(nodeY);
+
+        nodeZ.addDestination(nodeZc);
+        nodeZc.addDestination(nodeZ);
+
+        nodeAA.addDestination(nodeAAc);
+        nodeAAc.addDestination(nodeAA);
+
+        nodeAB.addDestination(nodeABc);
+        nodeABc.addDestination(nodeAB);
+
+        nodeAC.addDestination(nodeACc);
+        nodeACc.addDestination(nodeAC);
+
+        nodeAD.addDestination(nodeADc);
+        nodeADc.addDestination(nodeAD);
+
+        nodeAF.addDestination(nodeAFc);
+        nodeAFc.addDestination(nodeAF);
+
+        nodeAG.addDestination(nodeAGc);
+        nodeAGc.addDestination(nodeAG);
+
+        nodeAI.addDestination(nodeAIc);
+        nodeAIc.addDestination(nodeAI);
+
+        nodeAJ.addDestination(nodeAJc);
+        nodeAJc.addDestination(nodeAJ);
+
+        nodeAK.addDestination(nodeAKc);
+        nodeAKc.addDestination(nodeAK);
+
+        nodeAL.addDestination(nodeALc);
+        nodeALc.addDestination(nodeAL);
+
+        nodeAM.addDestination(nodeAMc);
+        nodeAMc.addDestination(nodeAM);
+
+        nodeAN.addDestination(nodeANc);
+        nodeANc.addDestination(nodeAN);
+
+        nodeAO.addDestination(nodeAOc);
+        nodeAOc.addDestination(nodeAO);
+
+        nodeAP.addDestination(nodeAPc);
+        nodeAPc.addDestination(nodeAP);
+
+        nodeAQ.addDestination(nodeAQc);
+        nodeAQc.addDestination(nodeAQ);
+
+        nodeAR.addDestination(nodeARc);
+        nodeARc.addDestination(nodeAR);
+
+        nodeAS.addDestination(nodeASc);
+        nodeASc.addDestination(nodeAS);
+
+        nodeAT.addDestination(nodeATc);
+        nodeATc.addDestination(nodeAT);
+
+        nodeAU.addDestination(nodeAUc);
+        nodeAUc.addDestination(nodeAU);
+
+        nodeAV.addDestination(nodeAVc);
+        nodeAVc.addDestination(nodeAV);
+
+        nodeAW.addDestination(nodeAWc);
+        nodeAWc.addDestination(nodeAW);
+
+        nodeAX.addDestination(nodeAXc);
+        nodeAXc.addDestination(nodeAX);
+
+        nodeAY.addDestination(nodeAYc);
+        nodeAYc.addDestination(nodeAY);
+
+        nodeAZ.addDestination(nodeAZc);
+        nodeAZc.addDestination(nodeAZ);
+
+        nodeBA.addDestination(nodeBAc);
+        nodeBAc.addDestination(nodeBA);
+
+        nodeBB.addDestination(nodeBBc);
+        nodeBBc.addDestination(nodeBB);
+
+        nodeBC.addDestination(nodeBCc);
+        nodeBCc.addDestination(nodeBC);
+
+        nodeBD.addDestination(nodeBDc);
+        nodeBDc.addDestination(nodeBD);
+
+        nodeBE.addDestination(nodeBEc);
+        nodeBEc.addDestination(nodeBE);
+
+        nodeBF.addDestination(nodeBFc);
+        nodeBFc.addDestination(nodeBF);
+
+        nodeBG.addDestination(nodeBGc);
+        nodeBGc.addDestination(nodeBG);
+
+        nodeBH.addDestination(nodeBHc);
+        nodeBHc.addDestination(nodeBH);
+
+        nodeBI.addDestination(nodeBIc);
+        nodeBIc.addDestination(nodeBI);
+
+        nodeBJ.addDestination(nodeBJc);
+        nodeBJc.addDestination(nodeBJ);
+
+        nodeBK.addDestination(nodeBKc);
+        nodeBKc.addDestination(nodeBK);
+
+        nodeBL.addDestination(nodeBLc);
+        nodeBLc.addDestination(nodeBL);
+
+        nodeBM.addDestination(nodeBMc);
+        nodeBMc.addDestination(nodeBM);
+
+        nodeBN.addDestination(nodeBNc);
+        nodeBNc.addDestination(nodeBN);
+
+        nodeBO.addDestination(nodeBOc);
+        nodeBOc.addDestination(nodeBO);
+
+        nodeBP.addDestination(nodeBPc);
+        nodeBPc.addDestination(nodeBP);
+
+        nodeBQ.addDestination(nodeBQc);
+        nodeBQc.addDestination(nodeBQ);
+
+        nodeBR.addDestination(nodeBRc);
+        nodeBRc.addDestination(nodeBR);
+
+        nodeBS.addDestination(nodeBSc);
+        nodeBSc.addDestination(nodeBS);
+
+        nodeBT.addDestination(nodeBTc);
+        nodeBTc.addDestination(nodeBT);
+
+        nodeBU.addDestination(nodeBUc);
+        nodeBUc.addDestination(nodeBU);
+
+        nodeBV.addDestination(nodeBVc);
+        nodeBVc.addDestination(nodeBV);
+
+        nodeBW.addDestination(nodeBWc);
+        nodeBWc.addDestination(nodeBW);
+
+        nodeBX.addDestination(nodeBXc);
+        nodeBXc.addDestination(nodeBX);
+
+        nodeBY.addDestination(nodeBYc);
+        nodeBYc.addDestination(nodeBY);
+
+        nodeBZ.addDestination(nodeBZc);
+        nodeBZc.addDestination(nodeBZ);
+
+        nodeCA.addDestination(nodeCAc);
+        nodeCAc.addDestination(nodeCA);
+
+        nodeCB.addDestination(nodeCBc);
+        nodeCBc.addDestination(nodeCB);
+
+        nodeCC.addDestination(nodeCCc);
+        nodeCCc.addDestination(nodeCC);
+
+        nodeCD.addDestination(nodeCDc);
+        nodeCDc.addDestination(nodeCD);
+
+        nodeCE.addDestination(nodeCEc);
+        nodeCEc.addDestination(nodeCE);
+
+        nodeCF.addDestination(nodeCFc);
+        nodeCFc.addDestination(nodeCF);
+
+        nodeCG.addDestination(nodeCGc);
+        nodeCGc.addDestination(nodeCG);
+
+        nodeCH.addDestination(nodeCHc);
+        nodeCHc.addDestination(nodeCH);
+
+        nodeCI.addDestination(nodeCIc);
+        nodeCIc.addDestination(nodeCI);
+
+        nodeCJ.addDestination(nodeCJc);
+        nodeCJc.addDestination(nodeCJ);
+
+        nodeCK.addDestination(nodeCKc);
+        nodeCKc.addDestination(nodeCK);
+
+        nodeCL.addDestination(nodeCLc);
+        nodeCLc.addDestination(nodeCL);
+
+        nodeCM.addDestination(nodeCMc);
+        nodeCMc.addDestination(nodeCM);
+
+        nodeCN.addDestination(nodeCNc);
+        nodeCNc.addDestination(nodeCN);
+
+        nodeCO.addDestination(nodeCOc);
+        nodeCOc.addDestination(nodeCO);
+
+        nodeCP.addDestination(nodeCPc);
+        nodeCPc.addDestination(nodeCP);
+
+        nodeCQ.addDestination(nodeCQc);
+        nodeCQc.addDestination(nodeCQ);
+
+        nodeCR.addDestination(nodeCRc);
+        nodeCRc.addDestination(nodeCR);
+
+        nodeCS.addDestination(nodeCSc);
+        nodeCSc.addDestination(nodeCS);
+
+        nodeCT.addDestination(nodeCTc);
+        nodeCTc.addDestination(nodeCT);
+
+        nodeCU.addDestination(nodeCUc);
+        nodeCUc.addDestination(nodeCU);
+
+        nodeCV.addDestination(nodeCVc);
+        nodeCVc.addDestination(nodeCV);
+
+        nodeCX.addDestination(nodeCXc);
+        nodeCXc.addDestination(nodeCX);
+
+        nodeCY.addDestination(nodeCYc);
+        nodeCYc.addDestination(nodeCY);
+
+        nodeCZ.addDestination(nodeCZc);
+        nodeCZc.addDestination(nodeCZ);
+
+        nodeDA.addDestination(nodeDAc);
+        nodeDAc.addDestination(nodeDA);
+
+        nodeDB.addDestination(nodeDBc);
+        nodeDBc.addDestination(nodeDB);
+
+        nodeDC.addDestination(nodeDCc);
+        nodeDCc.addDestination(nodeDC);
+
+        nodeDD.addDestination(nodeDDc);
+        nodeDDc.addDestination(nodeDD);
+
+        nodeDF.addDestination(nodeDFc);
+        nodeDFc.addDestination(nodeDF);
+
+        nodeStop1.addDestination(nodeStop1c);
+        nodeStop1c.addDestination(nodeStop1);
+
+        nodeStop2.addDestination(nodeStop2c);
+        nodeStop2c.addDestination(nodeStop2);
+
+        nodeStop3.addDestination(nodeStop3c);
+        nodeStop3c.addDestination(nodeStop3);
+
+        nodeStop4.addDestination(nodeStop4c);
+        nodeStop4c.addDestination(nodeStop4);
+
+        nodeStop5.addDestination(nodeStop5c);
+        nodeStop5c.addDestination(nodeStop5);
+
+        nodeStop6.addDestination(nodeStop6c);
+        nodeStop6c.addDestination(nodeStop6);
+
+        nodeStop7.addDestination(nodeStop7c);
+        nodeStop7c.addDestination(nodeStop7);
+
+        nodeStop8.addDestination(nodeStop8c);
+        nodeStop8c.addDestination(nodeStop8);
+
+        nodeStop9.addDestination(nodeStop9c);
+        nodeStop9c.addDestination(nodeStop9);
+
+        nodeStop10.addDestination(nodeStop10c);
+        nodeStop10c.addDestination(nodeStop10);
+
+        nodeStop11.addDestination(nodeStop11c);
+        nodeStop11c.addDestination(nodeStop11);
+
+        nodeStop12.addDestination(nodeStop12c);
+        nodeStop12c.addDestination(nodeStop12);
+
+        nodeStop13.addDestination(nodeStop13c);
+        nodeStop13c.addDestination(nodeStop13);
+
+        nodeBStop1.addDestination(nodeBStop1c);
+        nodeBStop1c.addDestination(nodeBStop1);
+
+        nodeBStop2.addDestination(nodeBStop2c);
+        nodeBStop2c.addDestination(nodeBStop2);
+
+        nodeBStop3.addDestination(nodeBStop3c);
+        nodeBStop3c.addDestination(nodeBStop3);
+
+        nodeBStop4.addDestination(nodeBStop4c);
+        nodeBStop4c.addDestination(nodeBStop4);
+
+        nodeBStop5.addDestination(nodeBStop5c);
+        nodeBStop5c.addDestination(nodeBStop5);
+
+        nodeBStop6.addDestination(nodeBStop6c);
+        nodeBStop6c.addDestination(nodeBStop6);
+
+        nodeBStop7.addDestination(nodeBStop7c);
+        nodeBStop7c.addDestination(nodeBStop7);
+
+        nodeList.add(nodeAc);
+        nodeList.add(nodeBc);
+        nodeList.add(nodeCc);
+        nodeList.add(nodeDc);
+        nodeList.add(nodeEc);
+        nodeList.add(nodeFc);
+        nodeList.add(nodeGc);
+        nodeList.add(nodeHc);
+        nodeList.add(nodeIc);
+        nodeList.add(nodeJc);
+        nodeList.add(nodeMc);
+        nodeList.add(nodeNc);
+        nodeList.add(nodeOc);
+        nodeList.add(nodePc);
+        nodeList.add(nodeQc);
+        nodeList.add(nodeRc);
+        nodeList.add(nodeSc);
+        nodeList.add(nodeTc);
+        nodeList.add(nodeUc);
+        nodeList.add(nodeVc);
+        nodeList.add(nodeWc);
+        nodeList.add(nodeXc);
+        nodeList.add(nodeYc);
+        nodeList.add(nodeZc);
+        nodeList.add(nodeAAc);
+        nodeList.add(nodeABc);
+        nodeList.add(nodeACc);
+        nodeList.add(nodeADc);
+        nodeList.add(nodeAFc);
+        nodeList.add(nodeAGc);
+        nodeList.add(nodeAIc);
+        nodeList.add(nodeAJc);
+        nodeList.add(nodeAKc);
+        nodeList.add(nodeALc);
+        nodeList.add(nodeAMc);
+        nodeList.add(nodeANc);
+        nodeList.add(nodeAOc);
+        nodeList.add(nodeAPc);
+        nodeList.add(nodeAQc);
+        nodeList.add(nodeARc);
+        nodeList.add(nodeASc);
+        nodeList.add(nodeATc);
+        nodeList.add(nodeAUc);
+        nodeList.add(nodeAVc);
+        nodeList.add(nodeAWc);
+        nodeList.add(nodeAXc);
+        nodeList.add(nodeAYc);
+        nodeList.add(nodeAZc);
+        nodeList.add(nodeBAc);
+        nodeList.add(nodeBBc);
+        nodeList.add(nodeBCc);
+        nodeList.add(nodeBDc);
+        nodeList.add(nodeBEc);
+        nodeList.add(nodeBFc);
+        nodeList.add(nodeBGc);
+        nodeList.add(nodeBHc);
+        nodeList.add(nodeBIc);
+        nodeList.add(nodeBJc);
+        nodeList.add(nodeBKc);
+        nodeList.add(nodeBLc);
+        nodeList.add(nodeBMc);
+        nodeList.add(nodeBNc);
+        nodeList.add(nodeBOc);
+        nodeList.add(nodeBPc);
+        nodeList.add(nodeBQc);
+        nodeList.add(nodeBRc);
+        nodeList.add(nodeBSc);
+        nodeList.add(nodeBTc);
+        nodeList.add(nodeBUc);
+        nodeList.add(nodeBVc);
+        nodeList.add(nodeBWc);
+        nodeList.add(nodeBXc);
+        nodeList.add(nodeBYc);
+        nodeList.add(nodeBZc);
+        nodeList.add(nodeCAc);
+        nodeList.add(nodeCBc);
+        nodeList.add(nodeCCc);
+        nodeList.add(nodeCDc);
+        nodeList.add(nodeCEc);
+        nodeList.add(nodeCFc);
+        nodeList.add(nodeCGc);
+        nodeList.add(nodeCHc);
+        nodeList.add(nodeCIc);
+        nodeList.add(nodeCJc);
+        nodeList.add(nodeCKc);
+        nodeList.add(nodeCLc);
+        nodeList.add(nodeCMc);
+        nodeList.add(nodeCNc);
+        nodeList.add(nodeCOc);
+        nodeList.add(nodeCPc);
+        nodeList.add(nodeCQc);
+        nodeList.add(nodeCRc);
+        nodeList.add(nodeCSc);
+        nodeList.add(nodeCTc);
+        nodeList.add(nodeCUc);
+        nodeList.add(nodeCVc);
+        nodeList.add(nodeCXc);
+        nodeList.add(nodeCYc);
+        nodeList.add(nodeCZc);
+        nodeList.add(nodeDAc);
+        nodeList.add(nodeDBc);
+        nodeList.add(nodeDCc);
+        nodeList.add(nodeDDc);
+        nodeList.add(nodeDFc);
+        nodeList.add(nodeStop1c);
+        nodeList.add(nodeStop2c);
+        nodeList.add(nodeStop3c);
+        nodeList.add(nodeStop4c);
+        nodeList.add(nodeStop5c);
+        nodeList.add(nodeStop6c);
+        nodeList.add(nodeStop7c);
+        nodeList.add(nodeStop8c);
+        nodeList.add(nodeStop9c);
+        nodeList.add(nodeStop10c);
+        nodeList.add(nodeStop11c);
+        nodeList.add(nodeStop12c);
+        nodeList.add(nodeStop13c);
+        nodeList.add(nodeBStop1c);
+        nodeList.add(nodeBStop2c);
+        nodeList.add(nodeBStop3c);
+        nodeList.add(nodeBStop4c);
+        nodeList.add(nodeBStop5c);
+        nodeList.add(nodeBStop6c);
+        nodeList.add(nodeBStop7c);
+
+        graph.addNode(nodeAc);
+        graph.addNode(nodeBc);
+        graph.addNode(nodeCc);
+        graph.addNode(nodeDc);
+        graph.addNode(nodeEc);
+        graph.addNode(nodeFc);
+        graph.addNode(nodeGc);
+        graph.addNode(nodeHc);
+        graph.addNode(nodeIc);
+        graph.addNode(nodeJc);
+        graph.addNode(nodeMc);
+        graph.addNode(nodeNc);
+        graph.addNode(nodeOc);
+        graph.addNode(nodePc);
+        graph.addNode(nodeQc);
+        graph.addNode(nodeRc);
+        graph.addNode(nodeSc);
+        graph.addNode(nodeTc);
+        graph.addNode(nodeUc);
+        graph.addNode(nodeVc);
+        graph.addNode(nodeWc);
+        graph.addNode(nodeXc);
+        graph.addNode(nodeYc);
+        graph.addNode(nodeZc);
+        graph.addNode(nodeAAc);
+        graph.addNode(nodeABc);
+        graph.addNode(nodeACc);
+        graph.addNode(nodeADc);
+        graph.addNode(nodeAFc);
+        graph.addNode(nodeAGc);
+        graph.addNode(nodeAIc);
+        graph.addNode(nodeAJc);
+        graph.addNode(nodeAKc);
+        graph.addNode(nodeALc);
+        graph.addNode(nodeAMc);
+        graph.addNode(nodeANc);
+        graph.addNode(nodeAOc);
+        graph.addNode(nodeAPc);
+        graph.addNode(nodeAQc);
+        graph.addNode(nodeARc);
+        graph.addNode(nodeASc);
+        graph.addNode(nodeATc);
+        graph.addNode(nodeAUc);
+        graph.addNode(nodeAVc);
+        graph.addNode(nodeAWc);
+        graph.addNode(nodeAXc);
+        graph.addNode(nodeAYc);
+        graph.addNode(nodeAZc);
+        graph.addNode(nodeBAc);
+        graph.addNode(nodeBBc);
+        graph.addNode(nodeBCc);
+        graph.addNode(nodeBDc);
+        graph.addNode(nodeBEc);
+        graph.addNode(nodeBFc);
+        graph.addNode(nodeBGc);
+        graph.addNode(nodeBHc);
+        graph.addNode(nodeBIc);
+        graph.addNode(nodeBJc);
+        graph.addNode(nodeBKc);
+        graph.addNode(nodeBLc);
+        graph.addNode(nodeBMc);
+        graph.addNode(nodeBNc);
+        graph.addNode(nodeBOc);
+        graph.addNode(nodeBPc);
+        graph.addNode(nodeBQc);
+        graph.addNode(nodeBRc);
+        graph.addNode(nodeBSc);
+        graph.addNode(nodeBTc);
+        graph.addNode(nodeBUc);
+        graph.addNode(nodeBVc);
+        graph.addNode(nodeBWc);
+        graph.addNode(nodeBXc);
+        graph.addNode(nodeBYc);
+        graph.addNode(nodeBZc);
+        graph.addNode(nodeCAc);
+        graph.addNode(nodeCBc);
+        graph.addNode(nodeCCc);
+        graph.addNode(nodeCDc);
+        graph.addNode(nodeCEc);
+        graph.addNode(nodeCFc);
+        graph.addNode(nodeCGc);
+        graph.addNode(nodeCHc);
+        graph.addNode(nodeCIc);
+        graph.addNode(nodeCJc);
+        graph.addNode(nodeCKc);
+        graph.addNode(nodeCLc);
+        graph.addNode(nodeCMc);
+        graph.addNode(nodeCNc);
+        graph.addNode(nodeCOc);
+        graph.addNode(nodeCPc);
+        graph.addNode(nodeCQc);
+        graph.addNode(nodeCRc);
+        graph.addNode(nodeCSc);
+        graph.addNode(nodeCTc);
+        graph.addNode(nodeCUc);
+        graph.addNode(nodeCVc);
+        graph.addNode(nodeCXc);
+        graph.addNode(nodeCYc);
+        graph.addNode(nodeCZc);
+        graph.addNode(nodeDAc);
+        graph.addNode(nodeDBc);
+        graph.addNode(nodeDCc);
+        graph.addNode(nodeDDc);
+        graph.addNode(nodeDFc);
+        graph.addNode(nodeStop1c);
+        graph.addNode(nodeStop2c);
+        graph.addNode(nodeStop3c);
+        graph.addNode(nodeStop4c);
+        graph.addNode(nodeStop5c);
+        graph.addNode(nodeStop6c);
+        graph.addNode(nodeStop7c);
+        graph.addNode(nodeStop8c);
+        graph.addNode(nodeStop9c);
+        graph.addNode(nodeStop10c);
+        graph.addNode(nodeStop11c);
+        graph.addNode(nodeStop12c);
+        graph.addNode(nodeStop13c);
+        graph.addNode(nodeBStop1c);
+        graph.addNode(nodeBStop2c);
+        graph.addNode(nodeBStop3c);
+        graph.addNode(nodeBStop4c);
+        graph.addNode(nodeBStop5c);
+        graph.addNode(nodeBStop6c);
+        graph.addNode(nodeBStop7c);
+
 
         return nodeList;
     }

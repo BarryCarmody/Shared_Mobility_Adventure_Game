@@ -15,6 +15,7 @@ import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.awt.Rectangle;
 import java.util.Objects;
@@ -36,7 +37,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private static List<Node> nodeList;
 
-    private List<Line2D> routeLines = new ArrayList<>();
+    //private List<Line2D> routeLines = new ArrayList<>();
+
+    private HashMap<Line2D,String> routeLine = new HashMap<Line2D,String>();
 
     private static boolean active;
 
@@ -89,13 +92,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void nextLocation(Node destination){
+        resetNodeDist();
         if (player.route!=null) {
             player.route.clear();
         }
 
         player.route = Maps.routeBetweenNodes(graph,player.currentNode,destination);
-        routeLines.clear();
-        routeLines= new ArrayList<>();
+//        routeLines.clear();
+//        routeLines= new ArrayList<>();
+        routeLine.clear();
+        routeLine=new HashMap<>();
 
         player.route.add(destination);
 
@@ -103,15 +109,31 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             Node base=player.route.get(i);
             Node step=player.route.get(i+1);
 
+            String transport=base.getTransportType();
             Line2D line = new Line2D.Double(base.getX(), base.getY(), step.getX(), step.getY());
-            routeLines.add(line);
+
+            //List<HashMap<>> printDetails= new ArrayList<>();
+            routeLine.put(line,transport);
+
+            //routeLines.add(line);
             repaint();
         }
         System.out.println(player.route);
     }
 
     private void goThere(Node destination) {
-        routeLines.clear();
+        //routeLines.clear();
+        routeLine.clear();
+
+        //Check if Taxi needs to be called
+        for(Node node: player.getRoute()){
+            if(Objects.equals(node.getTransportType(), "Car")){
+                Car.callTaxi(node);
+                break;
+            }
+        }
+
+
         setActive(true);
         player.moving=true;
         for (Bus bus: Bus.getBusList()){
@@ -156,14 +178,33 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
+    private void drawCars(Graphics p){
+        for (Car car: Car.getCarList()){
+            car.draw(p);
+        }
+    }
+
     private void drawRouteLines(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(4.0f));
 
-        for (Line2D line: routeLines){
+//        for (Line2D line: routeLines){
+//            g2d.draw(line);
+//        }
+
+        for(Line2D line: routeLine.keySet()){
+            if(Objects.equals(routeLine.get(line), "Bike")) {
+                g2d.setColor(Color.GREEN);
+            }else if(Objects.equals(routeLine.get(line), "Bus")) {
+                g2d.setColor(Color.YELLOW);
+            }else if(Objects.equals(routeLine.get(line), "Car")) {
+                g2d.setColor(Color.RED);
+            }else {
+                g2d.setColor(Color.BLUE);
+            }
             g2d.draw(line);
         }
+
     }
 
     private void drawButtons(Graphics g){
@@ -189,6 +230,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         drawPlayer(g);
         drawBuses(g);
         drawBikes(g);
+        drawCars(g);
         drawButtons(g);
 
         Toolkit.getDefaultToolkit().sync();
@@ -202,6 +244,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         if (Level.getBike() !=null){
             Level.getBike().act();
         }
+
+        for (Car car : Car.getCarList()) {
+            car.act();
+        }
+
     }
 
     private void doGameCycle() {
@@ -226,7 +273,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         return -1;
     }
 
-    public void resetNodeDist(){
+    public static void resetNodeDist(){
         for (Node n: nodeList){
             n.setDistance(Integer.MAX_VALUE);
         }
@@ -248,6 +295,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                         Level.setBusFilter(!Level.isBusFilter());
                         button.setSelected(!button.isSelected());
                         System.out.println("Bus Filter is "+Level.isBusFilter());
+                    }else if(Objects.equals(button.getType(),"Car")){
+                        Level.setCarFilter(!Level.isCarFilter());
+                        button.setSelected(!button.isSelected());
+                        System.out.println("Car Filter is "+Level.isCarFilter());
                     }
 
                 }
@@ -272,7 +323,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         //System.out.println("Route from " + player.currentNode +" to: "+targetNode);
         if(player.getTargetNode()!=null) {
             System.out.println("Resetting");
-            resetNodeDist();
+            //resetNodeDist();
             nextLocation(player.getTargetNode());
         }
     }
