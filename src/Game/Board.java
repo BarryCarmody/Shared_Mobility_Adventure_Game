@@ -180,7 +180,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void drawCars(Graphics p){
         for (Car car: Car.getCarList()){
-            car.draw(p);
+            if(car.getVisible()) {
+                car.draw(p);
+            }
         }
     }
 
@@ -227,10 +229,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         drawNodes(g);
         drawRouteLines(g);
-        drawPlayer(g);
         drawBuses(g);
         drawBikes(g);
         drawCars(g);
+        drawPlayer(g);
         drawButtons(g);
 
         Toolkit.getDefaultToolkit().sync();
@@ -245,10 +247,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             Level.getBike().act();
         }
 
-        for (Car car : Car.getCarList()) {
-            car.act();
+        if(Car.getCarList().size()>0) {
+            for (Car car : Car.getCarList()) {
+                car.act();
+            }
         }
-
     }
 
     private void doGameCycle() {

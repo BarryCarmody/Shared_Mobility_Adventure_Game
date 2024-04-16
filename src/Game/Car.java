@@ -18,9 +18,11 @@ public class Car extends Transport{
 
     public List<Node> route;
 
-    public int stopTime;
+    public int stopTime=3;
 
     public int stoppedTime;
+
+    private boolean waiting;
 
     public static List<Car> carList= new ArrayList<>();
 
@@ -30,54 +32,102 @@ public class Car extends Transport{
 
     private static List<Node> carNodeList;
 
+    private boolean called;
+
+    public Player passenger;
+
     public Car(List<Node> start, Node pickUp){
         //potentialStarts=start;
         Node startNode=findNearestTaxi(potentialStarts,pickUp);
         setCurrentNode(startNode);
         setX(getCurrentNode().getX() - (PWIDTH / 2));
         setY(getCurrentNode().getY() - (PHEIGHT / 2));
-        System.out.println(startNode+" to "+pickUp);
+        //System.out.println(startNode+" to "+pickUp);
+        this.called=true;
         nextLocation(pickUp);
         //System.out.println("New route: "+route);
         carList.add(this);
         setMoving(true);
+        passenger=Board.getPlayer();
+        this.waiting=false;
+        setVisible(true);
     }
 
     public void act(){
         if (Board.getActive()) {
-            if(isMoving()) {
+            if(!isWaiting()) {
+                if (isMoving()) {
 
-                int curr = getCurrentSpotOnRoute();
-                Node base = getRoute().get(curr);
-                setStepNode(getRoute().get(curr + 1));
-                //System.out.println("I'm currently at "+base+ " I'm going to "+getStepNode());
-                directionOfMotion(base, getStepNode());
+                    int curr = getCurrentSpotOnRoute();
+                    Node base = getRoute().get(curr);
+                    setStepNode(getRoute().get(curr + 1));
+                    //System.out.println("I'm currently at "+base+ " I'm going to "+getStepNode());
+                    directionOfMotion(base, getStepNode());
 
-                setX(getX() + getDx());
-                setY(getY() + getDy());
+                    setX(getX() + getDx());
+                    setY(getY() + getDy());
 
-                //System.out.println(player.currentNode);
-                if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
+                    //System.out.println(player.currentNode);
+                    if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
 
-                    setCurrentNode(getStepNode());
-                    //System.out.println(getCurrentNode());
-//                    if (onboard) {
-//                        player.moveLocationtoNode(getCurrentNode());
-//                    }
-
-                    //If at end of route
-                    if (curr == getRoute().size() - 2) {
-                        setDx(0);
-                        setDy(0);
-                        setX(getStepNode().getX() - (PWIDTH / 2));
-                        setY(getStepNode().getY() - (PHEIGHT / 2));
-                        setMoving(false);
-                        //dropOff();
-                    } else {
-                        //Move to exact spot of Node
-                        setX(getStepNode().getX() - (PWIDTH / 2));
-                        setY(getStepNode().getY() - (PHEIGHT / 2));
+                        setCurrentNode(getStepNode());
+                        //System.out.println(getCurrentNode());
+                    if (onboard) {
+                        passenger.moveLocationtoNode(getCurrentNode());
                     }
+
+                        //If at end of route
+                        if (curr == getRoute().size() - 2) {
+                            setDx(0);
+                            setDy(0);
+                            setX(getStepNode().getX() - (PWIDTH / 2));
+                            setY(getStepNode().getY() - (PHEIGHT / 2));
+                            setMoving(false);
+                            if (called) {
+                                called = false;
+
+                                List<Node> temp=passenger.getRoute();
+                                List<Node> newRoute = new ArrayList<>();
+                                for(Node node:temp){
+                                    if(node.getTransportType()=="Car"){
+                                        newRoute.add(node);
+                                    }else if(!newRoute.isEmpty()){
+                                        break;
+                                    }
+                                }
+
+                                setRoute(newRoute);
+
+
+                                setMoving(true);
+                                setWaiting(true);
+                                stoppedTime=0;
+
+                            } else if (onboard) {
+                                passenger.setVisible(true);
+                                taxiLeave();
+                                setOnboard(false);
+                                setMoving(true);
+
+                            } else {
+                                System.out.println("Killshot");
+                                setVisible(false);
+                            }
+                        } else {
+                            //Move to exact spot of Node
+                            setX(getStepNode().getX() - (PWIDTH / 2));
+                            setY(getStepNode().getY() - (PHEIGHT / 2));
+                        }
+                    }
+                }
+            }else{
+                if (stoppedTime == stopTime) {
+                    setWaiting(false);
+
+                } else if(passenger.getCurrentNode()==getCurrentNode()){
+                    stoppedTime += 1;
+                    setOnboard(true);
+                    passenger.setVisible(false);
                 }
             }
 
@@ -93,6 +143,10 @@ public class Car extends Transport{
             setDx((step.getX() - base.getX()) * speed / eucdist);
             setDy((step.getY() - base.getY()) * speed / eucdist);
         }
+    }
+
+    public void killMe(){
+        setVisible(false);
     }
 
     @Override
@@ -116,6 +170,10 @@ public class Car extends Transport{
 
     public static void callTaxi(Node pickUp){
         new Car(potentialStarts,pickUp);
+    }
+
+    public void taxiLeave(){
+        leaveLocation();
     }
 
     public static Node findNearestTaxi(List<Node> locations, Node pickUp){
@@ -145,10 +203,30 @@ public class Car extends Transport{
 
         int trueStart=getCurrentSpotOnRoute();
         test=test.subList(trueStart,test.size());
-        //System.out.println("New route: "+test);
+        test.add(destination);
+        System.out.println("New route: "+test);
         setRoute(test);
-        route.add(destination);
 
+        Board.resetNodeDist();
+    }
+
+    private void leaveLocation(){
+        Board.resetNodeDist();
+        if (route!=null) {
+            route.clear();
+        }
+
+        Node endNode=findNearestTaxi(potentialStarts,getCurrentNode());
+
+        List<Node> test=Maps.routeBetweenNodes(getCarGraph(),getCurrentNode(),endNode);
+        System.out.println(test);
+        setRoute(test);
+
+        int trueStart=getCurrentSpotOnRoute();
+        test=test.subList(trueStart,test.size());
+        test.add(endNode);
+        System.out.println("New route: "+test);
+        setRoute(test);
     }
 
     public static void setPotentialStarts(List<Node> potentialStarts) {
@@ -173,6 +251,18 @@ public class Car extends Transport{
 
     public static List<Car> getCarList() {
         return carList;
+    }
+
+    public void setWaiting(boolean waiting) {
+        this.waiting = waiting;
+    }
+
+    public boolean isWaiting() {
+        return waiting;
+    }
+
+    public void setOnboard(boolean onboard) {
+        this.onboard = onboard;
     }
 
     @Override

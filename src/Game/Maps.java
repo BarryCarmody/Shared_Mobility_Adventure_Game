@@ -2388,6 +2388,8 @@ public class Maps {
         Node nodeBStop6c = new Node("BStop6c", nodeBStop6.getX(), nodeBStop6.getY(), Car.transportType);
         Node nodeBStop7c = new Node("BStop7c", nodeBStop7.getX(), nodeBStop7.getY(), Car.transportType);
         Node carStart1 = new Node("CS1c", J4Start.getX(),J4Start.getY(),Car.transportType);
+        Node carStart2 = new Node("CS2c", J4End.getX(), J4End.getY(), Car.transportType);
+        Node carStart3 = new Node("Cs3c", W31Start.getX(), W31Start.getY(),Car.transportType);
 
 
         nodeAc.addDestination(nodeBc);
