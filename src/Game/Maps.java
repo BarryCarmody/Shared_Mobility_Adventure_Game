@@ -2389,7 +2389,13 @@ public class Maps {
         Node nodeBStop7c = new Node("BStop7c", nodeBStop7.getX(), nodeBStop7.getY(), Car.transportType);
         Node carStart1 = new Node("CS1c", J4Start.getX(),J4Start.getY(),Car.transportType);
         Node carStart2 = new Node("CS2c", J4End.getX(), J4End.getY(), Car.transportType);
-        Node carStart3 = new Node("Cs3c", W31Start.getX(), W31Start.getY(),Car.transportType);
+        Node carStart3 = new Node("CS3c", W31Start.getX(), W31Start.getY(),Car.transportType);
+        Node carStart4 = new Node("CS4c", -35, nodeAI.getY(),Car.transportType);
+        Node carStart5 = new Node("CS5c",nodeCV.getX(),-20,Car.transportType);
+        Node carStart6 = new Node("CS6c",nodeDC.getX(),-20,Car.transportType);
+        Node carStart7 = new Node("CS7c",1400,nodeCE.getY(),Car.transportType);
+        Node carStart8 = new Node("CS8c",1400,nodeBP.getY(),Car.transportType);
+        Node carStart9 = new Node("CS9c",nodeT.getX(),800,Car.transportType);
 
 
         nodeAc.addDestination(nodeBc);
