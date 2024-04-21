@@ -5,7 +5,7 @@ abstract class Transport implements Mover {
 
     public static String transportType;
 
-    private int co2Emission;
+    private static int co2Emission;
 
     private double x;
 

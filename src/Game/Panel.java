@@ -3,24 +3,24 @@ package Game;
 import java.awt.*;
 import java.util.Objects;
 
-public class Button {
+public class Panel {
 
-    private int x;
+    private final int x;
 
     private int y;
 
     private int height;
 
-    private int width;
+    private final int width;
 
-    private String type;
+    private final String type;
 
     private boolean selected;
 
-    private String content;
+    private final String content;
 
 
-    public Button(int x, int y, int height, int width, String content){
+    public Panel(int x, int y, int height, int width, String content){
         this.x=x;
         this.y=y;
         this.height=height;
@@ -29,7 +29,7 @@ public class Button {
         this.content=content;
     }
 
-    public Button(int x, int y, int height, int width, String content, String type){
+    public Panel(int x, int y, int height, int width, String content, String type){
         this.x=x;
         this.y=y;
         this.height=height;
@@ -42,15 +42,35 @@ public class Button {
     public void draw(Graphics g) {
         if(Objects.equals(this.type, "Text")) {
             g.setColor(Color.YELLOW);
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "Container")){
+            g.setColor(Color.BLACK);
+
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "Bar")){
+            g.setColor(Color.RED);
+
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
         }else if(selected) {
             g.setColor(Color.WHITE);
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
         }else{
             g.setColor(Color.lightGray);
-        }
-        g.fillRect(getX(),getY(),getWidth(),getHeight());
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
 
-        g.setColor(Color.BLUE);
-        g.drawRect(getX(),getY(),getWidth(),getHeight());
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+        }
 
         //Add Text
         g.setColor(Color.BLUE);
@@ -86,4 +106,13 @@ public class Button {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
 }

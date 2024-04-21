@@ -11,6 +11,8 @@ public class Maps {
 
     public static List<Node> w31Route;
 
+    private static List<Node> carStarts;
+
 
     public void addNode(Node nodeA){
         nodes.add(nodeA);
@@ -108,6 +110,10 @@ public class Maps {
 
     public static List<Node> getW31Route() {
         return w31Route;
+    }
+
+    public static List<Node> getCarStarts() {
+        return carStarts;
     }
 
     public static List<Node> createMap1(Maps graph){
@@ -2387,7 +2393,7 @@ public class Maps {
         Node nodeBStop5c = new Node("BStop5c", nodeBStop5.getX(), nodeBStop5.getY(), Car.transportType);
         Node nodeBStop6c = new Node("BStop6c", nodeBStop6.getX(), nodeBStop6.getY(), Car.transportType);
         Node nodeBStop7c = new Node("BStop7c", nodeBStop7.getX(), nodeBStop7.getY(), Car.transportType);
-        Node carStart1 = new Node("CS1c", J4Start.getX(),J4Start.getY(),Car.transportType);
+        Node carStart1 = new Node("CS1c", J4Start.getX()+200,J4Start.getY(),Car.transportType);
         Node carStart2 = new Node("CS2c", J4End.getX(), J4End.getY(), Car.transportType);
         Node carStart3 = new Node("CS3c", W31Start.getX(), W31Start.getY(),Car.transportType);
         Node carStart4 = new Node("CS4c", -35, nodeAI.getY(),Car.transportType);
@@ -2396,6 +2402,7 @@ public class Maps {
         Node carStart7 = new Node("CS7c",1400,nodeCE.getY(),Car.transportType);
         Node carStart8 = new Node("CS8c",1400,nodeBP.getY(),Car.transportType);
         Node carStart9 = new Node("CS9c",nodeT.getX(),800,Car.transportType);
+        Node carStart10 = new Node("CS10c",nodeCD.getX(),-50,Car.transportType);
 
 
         nodeAc.addDestination(nodeBc);
@@ -3195,6 +3202,36 @@ public class Maps {
         nodeBStop7.addDestination(nodeBStop7c);
         nodeBStop7c.addDestination(nodeBStop7);
 
+        carStart1.addDestination(nodeCc);
+        nodeCc.addDestination(carStart1);
+
+        carStart2.addDestination(nodeStop7c);
+        nodeStop7c.addDestination(carStart2);
+
+        carStart3.addDestination(nodeBIc);
+        nodeBIc.addDestination(carStart3);
+
+        carStart4.addDestination(nodeAIc);
+        nodeAIc.addDestination(carStart4);
+
+        carStart5.addDestination(nodeCVc);
+        nodeCVc.addDestination(carStart5);
+
+        carStart6.addDestination(nodeDCc);
+        nodeDCc.addDestination(carStart6);
+
+        carStart7.addDestination(nodeCEc);
+        nodeCEc.addDestination(carStart7);
+
+        carStart8.addDestination(nodeBPc);
+        nodeBPc.addDestination(carStart8);
+
+        carStart9.addDestination(nodeTc);
+        nodeTc.addDestination(carStart9);
+
+        carStart10.addDestination(nodeCDc);
+        nodeCDc.addDestination(carStart10);
+
         nodeList.add(nodeAc);
         nodeList.add(nodeBc);
         nodeList.add(nodeCc);
@@ -3319,6 +3356,17 @@ public class Maps {
         nodeList.add(nodeBStop5c);
         nodeList.add(nodeBStop6c);
         nodeList.add(nodeBStop7c);
+        nodeList.add(carStart1);
+        nodeList.add(carStart2);
+        nodeList.add(carStart3);
+        nodeList.add(carStart4);
+        nodeList.add(carStart5);
+        nodeList.add(carStart6);
+        nodeList.add(carStart7);
+        nodeList.add(carStart8);
+        nodeList.add(carStart9);
+        nodeList.add(carStart10);
+
 
         graph.addNode(nodeAc);
         graph.addNode(nodeBc);
@@ -3444,7 +3492,16 @@ public class Maps {
         graph.addNode(nodeBStop5c);
         graph.addNode(nodeBStop6c);
         graph.addNode(nodeBStop7c);
-
+        graph.addNode(carStart1);
+        graph.addNode(carStart2);
+        graph.addNode(carStart3);
+        graph.addNode(carStart4);
+        graph.addNode(carStart5);
+        graph.addNode(carStart6);
+        graph.addNode(carStart7);
+        graph.addNode(carStart8);
+        graph.addNode(carStart9);
+        graph.addNode(carStart10);
 
         return nodeList;
     }

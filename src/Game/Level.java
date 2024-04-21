@@ -15,7 +15,9 @@ public class Level {
 
     private static boolean carFilter = true;
 
-    public static List<Button> buttonList = new ArrayList<>();
+    public static List<Panel> buttonList = new ArrayList<>();
+
+    public static List<Gem> gemList = new ArrayList<>();
 
     public Level(int number){
         this.number=number;
@@ -44,31 +46,40 @@ public class Level {
             new Bus(new BusRoute(BusNumber.W31,true,new ArrayList<>(Maps.getW31Route())),210);
             new Bus(new BusRoute(BusNumber.W31,false,new ArrayList<>(Maps.getW31Route())),180);
 
-            Button buttonTitle=new Button(1230,30,40,250,"Select Transport");
-            buttonList.add(buttonTitle);
-            Button bikeButton=new Button(1230,80,80,250,"Include Bike in Route","Bike");
+            Panel panelTitle =new Panel(Commons.BOARD_WIDTH-220,30,40,200,"Select Transport");
+            buttonList.add(panelTitle);
+            Panel bikeButton=new Panel(Commons.BOARD_WIDTH-220,80,60,200,"Include Bike in Route","Bike");
             buttonList.add(bikeButton);
-            Button busButton=new Button(1230,170,80,250,"Include Bus in Route","Bus");
+            Panel busButton=new Panel(Commons.BOARD_WIDTH-220,150,60,200,"Include Bus in Route","Bus");
             buttonList.add(busButton);
-            Button carButton=new Button(1230,260,80,250,"Include Car in Route","Car");
+            Panel carButton=new Panel(Commons.BOARD_WIDTH-220,220,60,200,"Include Car in Route","Car");
             buttonList.add(carButton);
-
+            Panel co2Container=new Panel(Commons.BOARD_WIDTH-270, 30,Commons.BOARD_HEIGHT-90,40,"","Container");
+            buttonList.add(co2Container);
 
             Car.setCarGraph(new Maps());
             Car.setCarNodeList(Maps.createMap1(Car.getCarGraph()));
 
             List<Node> carStart= new ArrayList<Node>();
-            carStart.add(Board.getNodeList().get(13));
-//            carStart.add(Board.getNodeList().get(46));
-//            carStart.add(Board.getNodeList().get(78));
-//            carStart.add(Board.getNodeList().get(19));
-//            carStart.add(Board.getNodeList().get(64));
+            carStart.add(Board.getNodeList().get(441));
+            carStart.add(Board.getNodeList().get(440));
+            carStart.add(Board.getNodeList().get(439));
+            carStart.add(Board.getNodeList().get(438));
+            carStart.add(Board.getNodeList().get(437));
+            carStart.add(Board.getNodeList().get(436));
+            carStart.add(Board.getNodeList().get(435));
+            carStart.add(Board.getNodeList().get(434));
+            carStart.add(Board.getNodeList().get(433));
+            carStart.add(Board.getNodeList().get(432));
             Car.setPotentialStarts(carStart);
+
+            Gem G1 = new Gem(Board.getNodeList().get(43));
+            gemList.add(G1);
 
         }
     }
 
-    public static List<Button> getButtonList() {
+    public static List<Panel> getButtonList() {
         return buttonList;
     }
 

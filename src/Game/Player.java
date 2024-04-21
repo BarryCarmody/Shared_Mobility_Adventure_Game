@@ -9,22 +9,29 @@ public class Player extends Sprite {
     private final int PHEIGHT=20;
     private final int PWIDTH=20;
 
+    private static int co2max=10000;
+
+    private int co2level;
+
+    private Panel co2Bar;
+
     private int wait=0;
 
     public Player(Node startNode) {
 
         initPlayer(startNode);
-        currentNode=startNode;
+        this.currentNode=startNode;
+        this.co2level=co2max;
     }
 
     private void initPlayer(Node startNode) {
-
         int START_X = startNode.getX() - (PWIDTH/2);
         int START_Y = startNode.getY() - (PHEIGHT/2);
 
         setX(START_X);
         setY(START_Y);
 
+        this.co2Bar=new Panel(Commons.BOARD_WIDTH-265, 35,(Commons.BOARD_HEIGHT-100),30 ,"","Bar");
     }
 
     public void act() {
@@ -60,8 +67,6 @@ public class Player extends Sprite {
                 if (curr == route.size() - 2) {
                     moving = false;
                     Board.setActive(false);
-                    Level.setCarFilter(false);
-                    Level.setCarFilter(true);
                 } else {
                     x = stepNode.getX() - (PWIDTH / 2);
                     y = stepNode.getY() - (PHEIGHT / 2);
@@ -74,6 +79,12 @@ public class Player extends Sprite {
     public void draw(Graphics g){
        g.setColor(Color.MAGENTA);
        g.fillOval((int) Math.round(x), (int) Math.round(y),PWIDTH,PHEIGHT);
+    }
+
+    public void killTheEnvironment(int damage){
+        setCo2level(Math.max(0,getCo2level()-damage));
+        co2Bar.setHeight((Commons.BOARD_HEIGHT-100)*co2level/co2max);
+        co2Bar.setY((Commons.BOARD_HEIGHT-65)-co2Bar.getHeight());
     }
 
     public Node getCurrentNode() {
@@ -92,4 +103,22 @@ public class Player extends Sprite {
     public void pickingUpBike(){
         Level.setBike(new Bike(this));
     }
+
+    public void setCo2level(int co2level) {
+        this.co2level = co2level;
+    }
+
+    public int getCo2level() {
+        return co2level;
+    }
+
+    public static int getCo2max() {
+        return co2max;
+    }
+
+    public Panel getCo2Bar() {
+        return co2Bar;
+    }
 }
+
+

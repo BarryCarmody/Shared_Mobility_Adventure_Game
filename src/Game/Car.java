@@ -9,6 +9,8 @@ public class Car extends Transport{
 
     static int speed = 12;
 
+    private static final int co2Emission=10;
+
     public static final String transportType = "Car";
 
     private final int PHEIGHT=20;
@@ -57,6 +59,7 @@ public class Car extends Transport{
         if (Board.getActive()) {
             if(!isWaiting()) {
                 if (isMoving()) {
+                    passenger.killTheEnvironment(co2Emission);
 
                     int curr = getCurrentSpotOnRoute();
                     Node base = getRoute().get(curr);
@@ -110,8 +113,8 @@ public class Car extends Transport{
                                 setMoving(true);
 
                             } else {
-                                System.out.println("Killshot");
                                 setVisible(false);
+                                System.out.println("Am I moving: "+ isMoving());
                             }
                         } else {
                             //Move to exact spot of Node
@@ -208,6 +211,9 @@ public class Car extends Transport{
         setRoute(test);
 
         Board.resetNodeDist();
+//        if (route!=null) {
+//            route.clear();
+//        }
     }
 
     private void leaveLocation(){

@@ -10,11 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.Toolkit;
 import javax.swing.Timer;
-import javax.imageio.ImageIO;
 import java.awt.geom.Line2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.awt.Rectangle;
@@ -56,7 +52,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         addKeyListener(new TAdapter());
         setFocusable(true);
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
-        setBackground(Color.LIGHT_GRAY);
+        setBackground(new Color(80,80,80));
+        //setBackground(Color.LIGHT_GRAY);
 
 //        try {
 //            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
@@ -154,6 +151,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         for (Node selectedNode: nodeList){
             if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
                 selectedNode.drawLinks(p);
+            }
+        }
+
+        for (Node selectedNode: nodeList){
+            if(Objects.equals(selectedNode.getTransportType(), "Car")) {
+                selectedNode.drawLinks(p);
+            }
+        }
+
+        for (Node selectedNode: nodeList){
+            if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
                 selectedNode.draw(p);
             }
         }
@@ -188,19 +196,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void drawRouteLines(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setStroke(new BasicStroke(4.0f));
-
-//        for (Line2D line: routeLines){
-//            g2d.draw(line);
-//        }
+        g2d.setStroke(new BasicStroke(3.0f));
 
         for(Line2D line: routeLine.keySet()){
             if(Objects.equals(routeLine.get(line), "Bike")) {
                 g2d.setColor(Color.GREEN);
             }else if(Objects.equals(routeLine.get(line), "Bus")) {
                 g2d.setColor(Color.YELLOW);
+                g2d.setStroke(new BasicStroke(5.0f));
             }else if(Objects.equals(routeLine.get(line), "Car")) {
                 g2d.setColor(Color.RED);
+                g2d.setStroke(new BasicStroke(5.0f));
             }else {
                 g2d.setColor(Color.BLUE);
             }
@@ -210,8 +216,19 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void drawButtons(Graphics g){
-        for (Button button: Level.getButtonList()){
+        for (Panel button: Level.getButtonList()){
             button.draw(g);
+        }
+    }
+
+    private void drawCo2Bar(Graphics g){
+        player.getCo2Bar().draw(g);
+
+    }
+
+    private void drawGems(Graphics g){
+        for (Gem gem: Level.gemList){
+            gem.draw(g);
         }
     }
 
@@ -233,13 +250,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         drawBikes(g);
         drawCars(g);
         drawPlayer(g);
+        drawGems(g);
         drawButtons(g);
+        drawCo2Bar(g);
 
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void update() {
         player.act();
+        System.out.println(player.getCo2level());
         for (Bus bus: Bus.getBusList()){
             bus.act();
         }
@@ -285,7 +305,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     @Override
     //Action if mouse clicked
     public void mouseClicked(MouseEvent e){
-        for(Button button: Level.getButtonList()){
+        for(Panel button: Level.getButtonList()){
             if(!Objects.equals(button.getType(),"Text")) {
                 Rectangle buttonBox = new Rectangle(button.getX(), button.getY(), button.getWidth(), button.getHeight());
                 if(buttonBox.contains(e.getPoint())){

@@ -17,6 +17,8 @@ public class Bus extends Transport {
 
     public List<Node> route;
 
+    private static final int co2Emission=2;
+
     public static List<Bus> busList= new ArrayList<>();
 
     public int stopTime;
@@ -79,7 +81,6 @@ public class Bus extends Transport {
         if (Board.getActive()) {
             if (delay==0) {
 
-
                 int curr = getCurrentSpotOnRoute();
                 Node base = route.get(curr);
                 setStepNode(route.get(curr + 1));
@@ -92,6 +93,8 @@ public class Bus extends Transport {
                     setMoving(true);
                 }
                 if (onboard) {
+                    passenger.killTheEnvironment(co2Emission);
+
                     if (passengerStop()) {
                         dropOff();
                     }

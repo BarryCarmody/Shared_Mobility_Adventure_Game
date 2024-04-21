@@ -117,8 +117,14 @@ public class Node {
 
             //Line draw details
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(Color.DARK_GRAY);
-            g2d.setStroke(new BasicStroke(4.0f));
+
+            if((Objects.equals(getTransportType(), "Walk"))) {
+                g2d.setColor(new Color(128,128,128));
+                g2d.setStroke(new BasicStroke(3.0f));
+            } else if ((Objects.equals(getTransportType(), "Car"))) {
+                g2d.setColor(Color.BLACK);
+                g2d.setStroke(new BasicStroke(5.0f));
+            }
 
             g2d.drawLine(x,y, destination.getX(), destination.getY());
         }
