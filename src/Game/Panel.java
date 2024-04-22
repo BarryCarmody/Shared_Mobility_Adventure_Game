@@ -17,7 +17,7 @@ public class Panel {
 
     private boolean selected;
 
-    private final String content;
+    private String content;
 
 
     public Panel(int x, int y, int height, int width, String content){
@@ -115,4 +115,7 @@ public class Panel {
         this.height = height;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

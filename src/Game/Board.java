@@ -359,10 +359,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             //Collects when player is walking
             if (player.getCurrentNode()==gem.getLocation()&&player.isVisible()&&!gem.isCollected()) {
                 gem.pickUp();
+                Level.updatePanels();
+
+
             }else if(Level.getBike()!=null){
                 //Collects when player is on bike
                 if(Level.getBike().getCurrentNode().getX()==gem.getLocation().getX()&&Level.getBike().getCurrentNode().getY()==gem.getLocation().getY()&&!gem.isCollected()) {
                     gem.pickUp();
+                    Level.updatePanels();
+
                 }
             }
         }

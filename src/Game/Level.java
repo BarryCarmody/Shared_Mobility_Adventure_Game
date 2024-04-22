@@ -15,6 +15,10 @@ public class Level {
 
     private static boolean carFilter = true;
 
+    private static int gemThreshold;
+
+    private static int gemsCollected;
+
     public static List<Panel> buttonList = new ArrayList<>();
 
     public static List<Gem> gemList = new ArrayList<>();
@@ -34,6 +38,8 @@ public class Level {
 
     public void initLevel(){
         if (number==1){
+            Score.setLevelscore(0);
+            setGemThreshold(3);
             Board.setNodeList(Maps.createMap1(Board.getGraph()));
             Board.setPlayer(new Player(Board.getNodeList().get(0)));
 
@@ -46,13 +52,17 @@ public class Level {
             new Bus(new BusRoute(BusNumber.W31,true,new ArrayList<>(Maps.getW31Route())),210);
             new Bus(new BusRoute(BusNumber.W31,false,new ArrayList<>(Maps.getW31Route())),180);
 
-            Panel panelTitle =new Panel(Commons.BOARD_WIDTH-220,30,40,200,"Select Transport");
+            Panel levelScore=new Panel(Commons.BOARD_WIDTH-220,30,40,200,"Level Score: 0");
+            buttonList.add(levelScore);
+            Panel gemsRequired=new Panel(Commons.BOARD_WIDTH-220,80,40,200,"Gems Required: 0/"+getGemThreshold());
+            buttonList.add(gemsRequired);
+            Panel panelTitle =new Panel(Commons.BOARD_WIDTH-220,130,40,200,"Select Transport");
             buttonList.add(panelTitle);
-            Panel bikeButton=new Panel(Commons.BOARD_WIDTH-220,80,60,200,"Include Bike in Route","Bike");
+            Panel bikeButton=new Panel(Commons.BOARD_WIDTH-220,180,60,200,"Include Bike in Route","Bike");
             buttonList.add(bikeButton);
-            Panel busButton=new Panel(Commons.BOARD_WIDTH-220,150,60,200,"Include Bus in Route","Bus");
+            Panel busButton=new Panel(Commons.BOARD_WIDTH-220,250,60,200,"Include Bus in Route","Bus");
             buttonList.add(busButton);
-            Panel carButton=new Panel(Commons.BOARD_WIDTH-220,220,60,200,"Include Car in Route","Car");
+            Panel carButton=new Panel(Commons.BOARD_WIDTH-220,320,60,200,"Include Car in Route","Car");
             buttonList.add(carButton);
             Panel co2Container=new Panel(Commons.BOARD_WIDTH-270, 30,Commons.BOARD_HEIGHT-90,40,"","Container");
             buttonList.add(co2Container);
@@ -80,6 +90,11 @@ public class Level {
             gemList.add(G2);
 
         }
+    }
+
+    public static void updatePanels() {
+        buttonList.get(0).setContent("Level Score: " + Score.getLevelscore());
+        buttonList.get(1).setContent("Gems Required: "+getGemsCollected()+"/"+getGemThreshold());
     }
 
     public static List<Panel> getButtonList() {
@@ -110,4 +125,19 @@ public class Level {
         Level.carFilter = carFilter;
     }
 
+    public static void setGemThreshold(int gemThreshold) {
+        Level.gemThreshold = gemThreshold;
+    }
+
+    public static int getGemThreshold() {
+        return gemThreshold;
+    }
+
+    public static int getGemsCollected() {
+        return gemsCollected;
+    }
+
+    public static void setGemsCollected(int gemsCollected) {
+        Level.gemsCollected = gemsCollected;
+    }
 }

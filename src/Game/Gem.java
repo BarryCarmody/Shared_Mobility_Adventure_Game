@@ -14,10 +14,20 @@ public class Gem {
 
     private boolean visible;
 
+    private int value;
+
     public Gem(Node location){
         this.location=location;
         this.collected=false;
         this.visible=true;
+        this.value=100;
+    }
+
+    public Gem(Node location, int value){
+        this.location=location;
+        this.collected=false;
+        this.visible=true;
+        this.value=value;
     }
 
     public void draw(Graphics g){
@@ -31,6 +41,8 @@ public class Gem {
     public void pickUp(){
         setVisible(false);
         setCollected(true);
+        Score.incrementLevelScore(value);
+        Level.setGemsCollected(Level.getGemsCollected()+1);
     }
 
     public boolean isVisible() {
