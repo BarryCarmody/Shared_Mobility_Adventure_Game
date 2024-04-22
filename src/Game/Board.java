@@ -115,7 +115,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             //routeLines.add(line);
             repaint();
         }
-        System.out.println(player.route);
+        //System.out.println(player.route);
     }
 
     private void goThere(Node destination) {
@@ -228,7 +228,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void drawGems(Graphics g){
         for (Gem gem: Level.gemList){
-            gem.draw(g);
+            if (gem.isVisible()) {
+                gem.draw(g);
+            }
         }
     }
 
@@ -258,8 +260,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void update() {
+        collectGem();
         player.act();
-        System.out.println(player.getCo2level());
         for (Bus bus: Bus.getBusList()){
             bus.act();
         }
@@ -287,6 +289,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     }
 
+
+
     public int nodeNumber(Node checkNode){
         for (int i=0; i<nodeList.size();i++){
             if (checkNode.equals(nodeList.get(i))){
@@ -309,24 +313,23 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             if(!Objects.equals(button.getType(),"Text")) {
                 Rectangle buttonBox = new Rectangle(button.getX(), button.getY(), button.getWidth(), button.getHeight());
                 if(buttonBox.contains(e.getPoint())){
-                    System.out.println(button.getType()+" clicked");
+//                    System.out.println(button.getType()+" clicked");
                     if(Objects.equals(button.getType(),"Bike")){
                         Level.setBikeFilter(!Level.isBikeFilter());
                         button.setSelected(!button.isSelected());
-                        System.out.println("Bike Filter is "+Level.isBikeFilter());
+//                        System.out.println("Bike Filter is "+Level.isBikeFilter());
                     }else if(Objects.equals(button.getType(),"Bus")){
                         Level.setBusFilter(!Level.isBusFilter());
                         button.setSelected(!button.isSelected());
-                        System.out.println("Bus Filter is "+Level.isBusFilter());
+//                        System.out.println("Bus Filter is "+Level.isBusFilter());
                     }else if(Objects.equals(button.getType(),"Car")){
+                        routeLine.clear();
                         Level.setCarFilter(!Level.isCarFilter());
                         button.setSelected(!button.isSelected());
-                        System.out.println("Car Filter is "+Level.isCarFilter());
+//                        System.out.println("Car Filter is "+Level.isCarFilter());
                     }
-
                 }
             }
-
         }
         //Click on Node set as target node and plan the route
         if (!active) {
@@ -335,7 +338,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                     Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
                     //int nodeNum = nodeNumber(node);
                     if (nodeBox.contains(e.getPoint())) {
-                        System.out.println("Node clicked: " + node);
+//                        System.out.println("Node clicked: " + node);
                         player.setTargetNode(node);
                         repaint();
                         break;
@@ -345,9 +348,23 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
         //System.out.println("Route from " + player.currentNode +" to: "+targetNode);
         if(player.getTargetNode()!=null) {
-            System.out.println("Resetting");
+//            System.out.println("Resetting");
             //resetNodeDist();
             nextLocation(player.getTargetNode());
+        }
+    }
+
+    public void collectGem(){
+        for (Gem gem: Level.gemList) {
+            //Collects when player is walking
+            if (player.getCurrentNode()==gem.getLocation()&&player.isVisible()&&!gem.isCollected()) {
+                gem.pickUp();
+            }else if(Level.getBike()!=null){
+                //Collects when player is on bike
+                if(Level.getBike().getCurrentNode().getX()==gem.getLocation().getX()&&Level.getBike().getCurrentNode().getY()==gem.getLocation().getY()&&!gem.isCollected()) {
+                    gem.pickUp();
+                }
+            }
         }
     }
 

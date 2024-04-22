@@ -76,6 +76,9 @@ public class Level {
             Gem G1 = new Gem(Board.getNodeList().get(43));
             gemList.add(G1);
 
+            Gem G2 = new Gem(Board.getNodeList().get(93));
+            gemList.add(G2);
+
         }
     }
 

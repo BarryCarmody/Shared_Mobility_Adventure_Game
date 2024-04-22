@@ -28,6 +28,28 @@ public class Gem {
         g.fillPolygon(xPoints,yPoints,4);
     }
 
+    public void pickUp(){
+        setVisible(false);
+        setCollected(true);
+    }
 
+    public boolean isVisible() {
+        return visible;
+    }
 
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
+
+    public Node getLocation() {
+        return location;
+    }
 }

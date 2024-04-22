@@ -17,6 +17,8 @@ public class Player extends Sprite {
 
     private int wait=0;
 
+    private int score;
+
     public Player(Node startNode) {
 
         initPlayer(startNode);
