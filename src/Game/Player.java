@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.awt.event.KeyEvent;
@@ -19,11 +20,14 @@ public class Player extends Sprite {
 
     private int score;
 
+    private Image playerImage;
+
     public Player(Node startNode) {
 
         initPlayer(startNode);
         this.currentNode=startNode;
         this.co2level=co2max;
+        loadImage();
     }
 
     private void initPlayer(Node startNode) {
@@ -81,6 +85,19 @@ public class Player extends Sprite {
     public void draw(Graphics g){
        g.setColor(Color.MAGENTA);
        g.fillOval((int) Math.round(x), (int) Math.round(y),PWIDTH,PHEIGHT);
+    }
+
+    public void loadImage(){
+        ImageIcon playerIcon=new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/player_icon2.png");
+        Image newpic=playerIcon.getImage();
+        int scaledWidth = 40;  // Desired width
+        int scaledHeight = 40;
+        playerImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
+
+    }
+
+    public void drawP(Graphics g) {
+        g.drawImage(playerImage, (int) Math.round(x), (int) Math.round(y),null);
     }
 
     public void killTheEnvironment(int damage){

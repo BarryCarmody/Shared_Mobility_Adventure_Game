@@ -65,6 +65,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
+        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -74,11 +75,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void gameInit() {
+            graph = new Maps();
+            level = new Level(1);
 
-        graph = new Maps();
-        level = new Level(1);
+        }
 
-    }
 
     public static boolean getActive(){
         return active;
@@ -139,9 +140,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     }
 
+    public void startMusic() {
+        Music.loadMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Dreams.wav");
+        Music.playMusic();
+            }
+
+
     private void drawPlayer(Graphics p){
         if (player.isVisible()){
-            player.draw(p);
+            player.drawP(p);
         }
     }
 
