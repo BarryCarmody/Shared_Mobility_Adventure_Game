@@ -1,7 +1,10 @@
 package Game;
 
+import org.w3c.dom.NodeList;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level {
 
@@ -14,6 +17,8 @@ public class Level {
     private static boolean busFilter = true;
 
     private static boolean carFilter = true;
+
+    private static int gemsAvailable;
 
     private static int gemThreshold;
 
@@ -38,10 +43,12 @@ public class Level {
 
     public void initLevel(){
         if (number==1){
+
             Score.setLevelscore(0);
             setGemThreshold(3);
             Board.setNodeList(Maps.createMap1(Board.getGraph()));
-            Board.setPlayer(new Player(Board.getNodeList().get(0)));
+            Node startNode=Board.getNodeList().get(56);
+            Board.setPlayer(new Player(startNode));
 
             new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),0);
             new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),150);
@@ -83,14 +90,46 @@ public class Level {
             carStart.add(Board.getNodeList().get(432));
             Car.setPotentialStarts(carStart);
 
-            Gem G1 = new Gem(Board.getNodeList().get(43));
-            gemList.add(G1);
 
-            Gem G2 = new Gem(Board.getNodeList().get(93));
-            gemList.add(G2);
+            //Create Gems
+            Random random=new Random();
 
+            gemsAvailable=6;
+
+            while (gemList.size()<gemsAvailable){
+                //Generates random int between 0 and 107 (number of walkable nodes)
+                int randomNumber= random.nextInt(108);
+
+                //Check if there is any current Gems too close
+                boolean flag =false;
+
+                if(eucDist(startNode,Board.getNodeList().get(randomNumber))>1500/Level.gemsAvailable) {
+                    if (gemList.isEmpty()) {
+                        gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
+                    } else {
+
+                        for (Gem gem : gemList) {
+                            if (eucDist(gem.getLocation(), Board.getNodeList().get(randomNumber)) < 1500 / Level.gemsAvailable) {
+                                flag = true;
+                            }
+                        }
+                        if (!flag) {
+                            gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
+                        }
+                    }
+                }
+            }
         }
     }
+
+    public int eucDist(Node start, Node destination){
+        int xdist = (start.getX()-destination.getX())*(start.getX()-destination.getX());
+        int ydist = (start.getY()-destination.getY())*(start.getY()-destination.getY());
+        int ed= (int) Math.sqrt(xdist+ydist);
+
+        return ed;
+    }
+
 
     public static void updatePanels() {
         buttonList.get(0).setContent("Level Score: " + Score.getLevelscore());

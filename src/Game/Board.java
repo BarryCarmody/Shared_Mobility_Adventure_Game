@@ -431,6 +431,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
 
             if (key==KeyEvent.VK_SPACE){
+                System.out.println(nodeList);
+                System.out.println(nodeList.get(107));
 
             } else if (key==KeyEvent.VK_UP) {
                 if(!active) {
