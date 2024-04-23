@@ -56,7 +56,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         //setBackground(Color.LIGHT_GRAY);
 
 //        try {
-//            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
+//            backgroundImage = ImageIO.read(new File("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/full.png"));
 //        }catch (IOException e){
 //            e.printStackTrace();
 //        }
