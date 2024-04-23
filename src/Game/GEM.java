@@ -1,16 +1,21 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class GEM {
-    private int value;
+    private int value=1000;
     private boolean collected;
     private Point position;
+    private Image gemImage;
 
-    public GEM(int value, Point position) {
+    public GEM(int value) {
+        Random rand=new Random();
         this.value = value;
         this.collected = false;
-        this.position = position;
+        this.position = new Point(rand.nextInt(Commons.BOARD_WIDTH),rand.nextInt(Commons.BOARD_HEIGHT));
+        loadImage();
     }
 
     public int getValue() {
@@ -33,10 +38,22 @@ public class GEM {
         this.position = position;
     }
 
-    public void draw(Graphics g) {
+    public void loadImage(){
+        ImageIcon gemIcon=new ImageIcon("C:/Users/Justh/OneDrive/Documents/MScComputerScience/Semester2/Java_COMP30820/Project/BarrysGame/src/Game/Images/yellowgem.png");
+        Image newpic=gemIcon.getImage();
+        int scaledWidth = 30;  // Desired width
+        int scaledHeight = 30;
+        gemImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
+
+    }
+
+    public void drawGEM(Graphics g) {
         if (!collected) {
-            g.setColor(Color.BLUE);
-            g.fillOval(position.x, position.y, 10, 10); // Adjust size as needed
+            g.drawImage(gemImage,position.x,position.y, null);
         }
     }
-}
+
+};
+
+
+
