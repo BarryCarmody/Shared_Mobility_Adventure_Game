@@ -79,7 +79,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         nodeList= Maps.createMap1(graph);
         bus1= new Bus(Maps.getJ4());
         player=new Player(nodeList.get(16));
-        Music.PlayMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Ellinia.wav");
+        Music.PlayMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Dreams.wav");
 
     }
 
