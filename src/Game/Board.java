@@ -56,7 +56,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         setBackground(Color.BLACK);
 
         try {
-            backgroundImage = ImageIO.read(new File("C:/Users/Justh/OneDrive/Documents/MScComputerScience/Semester2/Java_COMP30820/Project/BarrysGame/src/Game/Images/full.png"));
+            backgroundImage = ImageIO.read(new File("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/full.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -79,8 +79,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         nodeList= Maps.createMap1(graph);
         bus1= new Bus(Maps.getJ4());
         player=new Player(nodeList.get(16));
+        Music.PlayMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Ellinia.wav");
 
     }
+
 
     private void nextLocation(Node destination){
         if (player.route!=null) {
@@ -166,6 +168,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         update();
         repaint();
     }
+
 
     private class GameCycle implements ActionListener {
         @Override
