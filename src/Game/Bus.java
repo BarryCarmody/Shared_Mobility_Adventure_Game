@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,8 @@ public class Bus extends Transport {
 
     public int delay;
 
+    private Image busImage;
+
     public Bus(BusRoute busroute, int delay){
 
         initBus(busroute.getRoute().get(0));
@@ -39,6 +42,7 @@ public class Bus extends Transport {
         busList.add(this);
         setRoute(busroute.getRoute());
         passenger=Board.getPlayer();
+        loadImage();
 
     }
 
@@ -66,6 +70,23 @@ public class Bus extends Transport {
             g.setColor(Color.MAGENTA);
             g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
         }
+    }
+
+    public void drawBus(Graphics g){
+        g.drawImage(busImage, (int) Math.round(getX()), (int) Math.round(getY()),null);
+        if(onboard) {
+            g.setColor(Color.GREEN);
+            g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
+        }
+    }
+
+    public void loadImage(){
+        ImageIcon busIcon=new ImageIcon("Game/Images/yellowbus.png");
+        Image newpic=busIcon.getImage();
+        int scaledWidth = 40;  // Desired width
+        int scaledHeight = 40;
+        busImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
+
     }
 
     public static List<Bus> getBusList() {

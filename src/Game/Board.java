@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.SplashScreen;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -148,7 +149,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void drawPlayer(Graphics p){
         if (player.isVisible()){
-            player.drawP(p);
+            player.drawPlayer(p);
         }
     }
 
@@ -169,34 +170,34 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         for (Node selectedNode: nodeList){
             if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
 
         //Layer Special Nodes After
         for (Node selectedNode: nodeList){
             if(selectedNode.getTransportStop()) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
     }
 
     private void drawBuses(Graphics p){
         for (Bus bus: Bus.getBusList()){
-            bus.draw(p);
+            bus.drawBus(p);
         }
     }
 
     private void drawBikes(Graphics p){
         if(Level.getBike()!=null){
-            Level.getBike().draw(p);
+            Level.getBike().drawBike(p);
         }
     }
 
     private void drawCars(Graphics p){
         for (Car car: Car.getCarList()){
             if(car.getVisible()) {
-                car.draw(p);
+                car.drawCar(p);
             }
         }
     }

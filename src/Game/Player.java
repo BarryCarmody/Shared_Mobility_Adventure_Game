@@ -22,6 +22,7 @@ public class Player extends Sprite {
 
     private Image playerImage;
 
+
     public Player(Node startNode) {
 
         initPlayer(startNode);
@@ -88,15 +89,15 @@ public class Player extends Sprite {
     }
 
     public void loadImage(){
-        ImageIcon playerIcon=new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/player_icon2.png");
+        ImageIcon playerIcon=new ImageIcon("Game/Images/player_icon2.png");
         Image newpic=playerIcon.getImage();
-        int scaledWidth = 40;  // Desired width
-        int scaledHeight = 40;
+        int scaledWidth = 25;  // Desired width
+        int scaledHeight = 25;
         playerImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
 
     }
 
-    public void drawP(Graphics g) {
+    public void drawPlayer(Graphics g) {
         g.drawImage(playerImage, (int) Math.round(x), (int) Math.round(y),null);
     }
 

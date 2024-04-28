@@ -2,14 +2,22 @@ package Game;
 
 import java.awt.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Gem {
 
     private Node location;
 
-    private static final int PWIDTH=18;
+    private static final int PWIDTH = 18;
 
-    private static final int PHEIGHT=24;
+    private static final int PHEIGHT = 24;
 
     private boolean collected;
 
@@ -19,19 +27,21 @@ public class Gem {
 
     private Image gemImage;
 
-    public Gem(Node location){
-        this.location=location;
-        this.collected=false;
-        this.visible=true;
-        this.value=100;
+    private static Clip gemSoundClip = null;
+
+    public Gem(Node location) {
+        this.location = location;
+        this.collected = false;
+        this.visible = true;
+        this.value = 100;
         loadImage();
     }
 
-    public Gem(Node location, int value){
-        this.location=location;
-        this.collected=false;
-        this.visible=true;
-        this.value=value;
+    public Gem(Node location, int value) {
+        this.location = location;
+        this.collected = false;
+        this.visible = true;
+        this.value = value;
     }
 
     public void draw(Graphics g) {
@@ -39,42 +49,71 @@ public class Gem {
             int x = location.getX() - PWIDTH / 2;
             int y = location.getY() - PHEIGHT / 2;
             g.drawImage(gemImage, x, y, null);
+
         }
     }
 
-    public void pickUp(){
-        setVisible(false);
-        setCollected(true);
-        Score.incrementLevelScore(value);
-        Level.setGemsCollected(Level.getGemsCollected()+1);
+
+
+    public static void loadGemSound(String path) {
+        try {
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
+            gemSoundClip = AudioSystem.getClip();
+            gemSoundClip.open(inputStream);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void loadImage(){
-        ImageIcon gemIcon=new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/diamond-417896_1280.png");
-        Image newpic=gemIcon.getImage();
-        int scaledWidth = 30;  // Desired width
-        int scaledHeight = 30;
-        gemImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
 
+    public static void playGemSound() {
+        if (gemSoundClip != null) {
+            gemSoundClip.start();
+            gemSoundClip.loop(0);
+        }
     }
 
-    public boolean isVisible() {
-        return visible;
+        public void pickUp() {
+            setVisible(false);
+            setCollected(true);
+            Score.incrementLevelScore(value);
+            Level.setGemsCollected(Level.getGemsCollected() + 1);
+            loadGemSound("Game/Music/coin_pick_up_project.wav");
+            playGemSound();
+
+        }
+
+        public void loadImage() {
+            ImageIcon gemIcon = new ImageIcon("Game/Images/diamond-417896_1280.png");
+            Image newpic = gemIcon.getImage();
+            int scaledWidth = 30;
+            int scaledHeight = 30;
+            gemImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);
+
+        }
+
+        public boolean isVisible() {
+            return visible;
+        }
+
+        public void setVisible(boolean visible) {
+            this.visible = visible;
+        }
+
+        public boolean isCollected() {
+            return collected;
+        }
+
+        public void setCollected(boolean collected) {
+            this.collected = collected;
+        }
+
+        public Node getLocation() {
+            return location;
+        }
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public boolean isCollected() {
-        return collected;
-    }
-
-    public void setCollected(boolean collected) {
-        this.collected = collected;
-    }
-
-    public Node getLocation() {
-        return location;
-    }
-}

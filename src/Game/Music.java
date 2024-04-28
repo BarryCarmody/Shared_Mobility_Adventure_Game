@@ -10,12 +10,12 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Music {
-    private static Clip clip = null;
+    private static Clip musicClip = null;
     public static void loadMusic(String path){
         try {
             AudioInputStream inputStream=AudioSystem.getAudioInputStream(new File(path));
-            clip=AudioSystem.getClip();
-            clip.open(inputStream);
+            musicClip=AudioSystem.getClip();
+            musicClip.open(inputStream);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -26,9 +26,9 @@ public class Music {
     }
 
     public static void playMusic() {
-        if (clip != null) {
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        if (musicClip != null) {
+            musicClip.start();
+            musicClip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
