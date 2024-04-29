@@ -148,13 +148,23 @@ public class Level {
 
     public void nextLevel(){
         Score.setScore(Score.getScore()+Score.getLevelscore());
-        Score.setLevelscore(0);
-        number+=1;
-        setGemsCollected(0);
-        time=1500;
 
-        setGemThreshold(2);
-        gemsAvailable=4;
+        number+=1;
+        Score.setLevelscore(0);
+        setGemsCollected(0);
+
+
+        time=Math.max(2000-number*100,1000);
+        //inverse triangular
+        int temp=number;
+        int i=1;
+        while (temp>0) {
+            temp-=i;
+            i+=1;
+        }
+        setGemThreshold(i-1);
+        gemsAvailable=Math.max(getGemThreshold()*2-number/3,getGemThreshold());
+
 
         gemList.clear();
         Random random=new Random();

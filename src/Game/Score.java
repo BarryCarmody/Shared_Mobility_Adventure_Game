@@ -6,8 +6,7 @@ public class Score {
 
     private static int levelscore;
 
-    public void addLevelScore(){
-        score+=levelscore;
+    public void addLevelScore(){score+=levelscore;
     }
 
     public static void incrementLevelScore(int points){

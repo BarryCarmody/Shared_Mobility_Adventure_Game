@@ -100,7 +100,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         player.route = Maps.routeBetweenNodes(graph,player.currentNode,destination);
 
-        int t=player.getCurrentSpotOnRoute();
+        int t=player.getCurrentSpotOnRouteInv();
         List<Node> temp=new ArrayList();
         for (int i=t; i<player.route.size(); i++){
             temp.add(player.route.get(i));
@@ -282,10 +282,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
 
 
-        System.out.println("New");
-        for (Object[] transport: routeTransports) {
-            System.out.println(Arrays.toString(transport));
-        }
+//        System.out.println("New");
+//        for (Object[] transport: routeTransports) {
+//            System.out.println(Arrays.toString(transport));
+//        }
     }
 
     private void doDrawing(Graphics g) {
@@ -334,7 +334,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
             level.nextLevel();
+            System.out.println(Score.getScore());
         }
+
     }
 
     private void gameOver(){
@@ -510,9 +512,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                 }
                 System.out.println("Player Route is "+player.route);
             }
-//            else if (key==KeyEvent.VK_DOWN) {
-//                level.nextLevel();
-//            }
+            else if (key==KeyEvent.VK_DOWN) {
+                player.route.clear();
+                resetNodeDist();
+                routeLine.clear();
+            }
 
 
         }

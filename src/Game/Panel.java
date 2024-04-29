@@ -93,7 +93,12 @@ public class Panel {
         FontMetrics fm = g.getFontMetrics();
         int textX=getX() + (getWidth() - fm.stringWidth(content))/2;
         int textY=getY() + ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-        g.drawString(content, textX, textY);
+
+        String[] lines= content.split("NL");
+        for (String line: lines){
+            g.drawString(line,textX,textY);
+            textY+=fm.getHeight();
+        }
     }
 
     public int getX() {

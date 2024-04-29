@@ -61,6 +61,15 @@ public class Sprite {
         return -1;
     }
 
+    public int getCurrentSpotOnRouteInv(){
+        for (int i=route.size()-1; i>=0; i--){
+            if (currentNode.equals(route.get(i))){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public void directionOfMotion(Node base, Node step){
         int xdist = step.getX()-base.getX();
         int ydist = step.getY()-base.getY();
