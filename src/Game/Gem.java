@@ -44,11 +44,11 @@ public class Gem {
         this.value = value;
     }
 
-    public void draw(Graphics g) {
+    public void drawGem(Graphics g) {
         if (visible && gemImage != null) {
             int x = location.getX() - PWIDTH / 2;
             int y = location.getY() - PHEIGHT / 2;
-            g.drawImage(gemImage, x, y, null);
+            g.drawImage(gemImage, x- PWIDTH/2 , y-PHEIGHT/2 , null);
 
         }
     }

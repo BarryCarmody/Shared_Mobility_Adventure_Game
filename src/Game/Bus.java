@@ -73,10 +73,10 @@ public class Bus extends Transport {
     }
 
     public void drawBus(Graphics g){
-        g.drawImage(busImage, (int) Math.round(getX()), (int) Math.round(getY()),null);
+        g.drawImage(busImage, (int) Math.round(getX())-PWIDTH, (int) Math.round(getY())-PHEIGHT,null);
         if(onboard) {
             g.setColor(Color.GREEN);
-            g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
+            g.drawOval((int) Math.round(getX())-PWIDTH/2, (int) Math.round(getY())-PHEIGHT/2, PWIDTH, PHEIGHT);
         }
     }
 

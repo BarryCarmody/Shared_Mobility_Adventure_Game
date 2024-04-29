@@ -12,8 +12,9 @@ import java.util.TimerTask;
 public class Host extends JFrame {
     private CardLayout cardLayout = new CardLayout();
     private JPanel cardPanel = new JPanel(cardLayout);
+    //private FadingPanel splashPanel = new FadingPanel();
     private JPanel splashPanel=new JPanel(new BorderLayout());
-    private JPanel mainPanel = new JPanel(new BorderLayout());
+    public JPanel mainPanel = new JPanel(new BorderLayout());
 
 
     public Host() {
@@ -41,7 +42,7 @@ public class Host extends JFrame {
         cardPanel.add(mainPanel, "Main");
 
         cardLayout.show(cardPanel, "Splash");
-        new javax.swing.Timer(5000, e ->
+        new javax.swing.Timer(10000, e ->
         {
             cardLayout.show(cardPanel, "Main");
             Component board = mainPanel.getComponent(0);
@@ -52,7 +53,7 @@ public class Host extends JFrame {
 
     }
 
-    private void createSplashPanel() {
+    public void createSplashPanel() {
         JLabel splashLabel = new JLabel("Ja Weiward Dreamers");
         splashLabel.setFont(new Font("GOUDY STOUT", Font.BOLD, 50));
         splashLabel.setForeground(Color.white);
@@ -62,16 +63,18 @@ public class Host extends JFrame {
         splashPanel.setVisible(true);
     }
 
-    private void createMainPanel() {
+    public void createMainPanel() {
         Board gameBoard = new Board();
         mainPanel.add(gameBoard, BorderLayout.CENTER);
         mainPanel.setVisible(true);
 
+
     }
+
 
     public static void main(String[] args) {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }

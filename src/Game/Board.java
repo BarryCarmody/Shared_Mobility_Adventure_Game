@@ -68,9 +68,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         gameInit();
         startMusic();
 
+
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
         add(coordinatesLabel);
+
 
         //addMouseMotionListener(this);
     }
@@ -142,9 +144,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     public void startMusic() {
-        Music.loadMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Dreams.wav");
-        Music.playMusic();
-            }
+            Music.loadMusic("Game/Music/Dreams.wav");
+            Music.playMusic();
+
+    }
+
 
 
     private void drawPlayer(Graphics p){
@@ -237,7 +241,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void drawGems(Graphics g){
         for (Gem gem: Level.gemList){
             if (gem.isVisible()) {
-                gem.draw(g);
+                gem.drawGem(g);
             }
         }
     }
