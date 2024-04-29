@@ -12,11 +12,11 @@ public class Level {
 
     private static Bike bike;
 
-    private static boolean bikeFilter = true;
+    private static boolean bikeFilter = false;
 
-    private static boolean busFilter = true;
+    private static boolean busFilter = false;
 
-    private static boolean carFilter = true;
+    private static boolean carFilter = false;
 
     private static int gemsAvailable;
 
@@ -24,14 +24,18 @@ public class Level {
 
     private static int gemsCollected;
 
+
     public static List<Panel> buttonList = new ArrayList<>();
 
     public static List<Gem> gemList = new ArrayList<>();
+
+    private static int time;
 
     public Level(int number){
         this.number=number;
         initLevel();
     }
+
 
     public static void setBike(Bike bike) {
         Level.bike = bike;
@@ -43,83 +47,147 @@ public class Level {
 
     public void initLevel(){
         if (number==1){
+            setGemThreshold(1);
+            gemsAvailable=3;
+            time=2000;
 
-            Score.setLevelscore(0);
+        }else{
             setGemThreshold(3);
-            Board.setNodeList(Maps.createMap1(Board.getGraph()));
-            Node startNode=Board.getNodeList().get(56);
-            Board.setPlayer(new Player(startNode));
+            gemsAvailable=12;
+            time=1500;
+        }
 
-            new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),0);
-            new Bus(new BusRoute(BusNumber.J4,true,new ArrayList<>(Maps.getJ4Route())),150);
-            new Bus(new BusRoute(BusNumber.J4,false,new ArrayList<>(Maps.getJ4Route())),10);
-            new Bus(new BusRoute(BusNumber.J4,false,new ArrayList<>(Maps.getJ4Route())),140);
+        Score.setLevelscore(0);
+        Board.setNodeList(Maps.createMap1(Board.getGraph()));
+        Node startNode=Board.getNodeList().get(0);
 
-            new Bus(new BusRoute(BusNumber.W31,true,new ArrayList<>(Maps.getW31Route())),60);
-            new Bus(new BusRoute(BusNumber.W31,true,new ArrayList<>(Maps.getW31Route())),210);
-            new Bus(new BusRoute(BusNumber.W31,false,new ArrayList<>(Maps.getW31Route())),180);
+        Board.setPlayer(new Player(startNode));
 
-            Panel levelScore=new Panel(Commons.BOARD_WIDTH-220,30,40,200,"Level Score: 0");
-            buttonList.add(levelScore);
-            Panel gemsRequired=new Panel(Commons.BOARD_WIDTH-220,80,40,200,"Gems Required: 0/"+getGemThreshold());
-            buttonList.add(gemsRequired);
-            Panel panelTitle =new Panel(Commons.BOARD_WIDTH-220,130,40,200,"Select Transport");
-            buttonList.add(panelTitle);
-            Panel bikeButton=new Panel(Commons.BOARD_WIDTH-220,180,60,200,"Include Bike in Route","Bike");
-            buttonList.add(bikeButton);
-            Panel busButton=new Panel(Commons.BOARD_WIDTH-220,250,60,200,"Include Bus in Route","Bus");
-            buttonList.add(busButton);
-            Panel carButton=new Panel(Commons.BOARD_WIDTH-220,320,60,200,"Include Car in Route","Car");
-            buttonList.add(carButton);
-            Panel co2Container=new Panel(Commons.BOARD_WIDTH-270, 30,Commons.BOARD_HEIGHT-90,40,"","Container");
-            buttonList.add(co2Container);
+        Bus.busList.clear();
 
-            Car.setCarGraph(new Maps());
-            Car.setCarNodeList(Maps.createMap1(Car.getCarGraph()));
+        new Bus(new BusRoute(BusNumber.J4, true, new ArrayList<>(Maps.getJ4Route())), 0);
+        new Bus(new BusRoute(BusNumber.J4, true, new ArrayList<>(Maps.getJ4Route())), 150);
+        new Bus(new BusRoute(BusNumber.J4, false, new ArrayList<>(Maps.getJ4Route())), 10);
+        new Bus(new BusRoute(BusNumber.J4, false, new ArrayList<>(Maps.getJ4Route())), 140);
 
-            List<Node> carStart= new ArrayList<Node>();
-            carStart.add(Board.getNodeList().get(441));
-            carStart.add(Board.getNodeList().get(440));
-            carStart.add(Board.getNodeList().get(439));
-            carStart.add(Board.getNodeList().get(438));
-            carStart.add(Board.getNodeList().get(437));
-            carStart.add(Board.getNodeList().get(436));
-            carStart.add(Board.getNodeList().get(435));
-            carStart.add(Board.getNodeList().get(434));
-            carStart.add(Board.getNodeList().get(433));
-            carStart.add(Board.getNodeList().get(432));
-            Car.setPotentialStarts(carStart);
+        new Bus(new BusRoute(BusNumber.W31, true, new ArrayList<>(Maps.getW31Route())), 60);
+        new Bus(new BusRoute(BusNumber.W31, true, new ArrayList<>(Maps.getW31Route())), 210);
+        new Bus(new BusRoute(BusNumber.W31, false, new ArrayList<>(Maps.getW31Route())), 180);
 
 
-            //Create Gems
-            Random random=new Random();
+        Panel Backdrop=new Panel(Commons.BOARD_WIDTH-220,30,Commons.BOARD_HEIGHT-90,200,"", "backdrop");
+        buttonList.add(Backdrop);
 
-            gemsAvailable=6;
+        Panel time=new Panel(Commons.BOARD_WIDTH-220,30,40,200,"Time Remaining: 0");
+        buttonList.add(time);
+        Panel levelScore=new Panel(Commons.BOARD_WIDTH-220,80,40,200,"Level Score: 0");
+        buttonList.add(levelScore);
+        Panel gemsRequired=new Panel(Commons.BOARD_WIDTH-220,130,40,200,"Gems Required: 0/"+getGemThreshold());
+        buttonList.add(gemsRequired);
+        Panel panelTitle =new Panel(Commons.BOARD_WIDTH-220,180,40,200,"Select Transport");
+        buttonList.add(panelTitle);
+        Panel bikeButton=new Panel(Commons.BOARD_WIDTH-220,230,40,200,"Include Bike in Route","Bike");
+        buttonList.add(bikeButton);
+        Panel busButton=new Panel(Commons.BOARD_WIDTH-220,280,40,200,"Include Bus in Route","Bus");
+        buttonList.add(busButton);
+        Panel carButton=new Panel(Commons.BOARD_WIDTH-220,330,40,200,"Include Car in Route","Car");
+        buttonList.add(carButton);
+        Panel co2Container=new Panel(Commons.BOARD_WIDTH-270, 30,Commons.BOARD_HEIGHT-90,40,"","Container");
+        buttonList.add(co2Container);
 
-            while (gemList.size()<gemsAvailable){
-                //Generates random int between 0 and 107 (number of walkable nodes)
-                int randomNumber= random.nextInt(108);
+        Car.setCarGraph(new Maps());
+        Car.setCarNodeList(Maps.createMap1(Car.getCarGraph()));
 
-                //Check if there is any current Gems too close
-                boolean flag =false;
+        List<Node> carStart= new ArrayList<Node>();
+        carStart.add(Board.getNodeList().get(441));
+        carStart.add(Board.getNodeList().get(440));
+        carStart.add(Board.getNodeList().get(439));
+        carStart.add(Board.getNodeList().get(438));
+        carStart.add(Board.getNodeList().get(437));
+        carStart.add(Board.getNodeList().get(436));
+        carStart.add(Board.getNodeList().get(435));
+        carStart.add(Board.getNodeList().get(434));
+        carStart.add(Board.getNodeList().get(433));
+        carStart.add(Board.getNodeList().get(432));
+        Car.setPotentialStarts(carStart);
 
-                if(eucDist(startNode,Board.getNodeList().get(randomNumber))>1500/Level.gemsAvailable) {
-                    if (gemList.isEmpty()) {
-                        gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
-                    } else {
 
-                        for (Gem gem : gemList) {
-                            if (eucDist(gem.getLocation(), Board.getNodeList().get(randomNumber)) < 1500 / Level.gemsAvailable) {
-                                flag = true;
-                            }
+        //Create Gems
+        gemList.clear();
+        Random random=new Random();
+
+        while (gemList.size()<=gemsAvailable){
+            //Generates random int between 0 and 107 (number of walkable nodes)
+            int randomNumber= random.nextInt(108);
+
+            //Check if there is any current Gems too close
+            boolean flag =false;
+
+            if(eucDist(startNode,Board.getNodeList().get(randomNumber))>Math.min(1500/Level.gemsAvailable+1,400)) {
+                if (gemList.isEmpty()) {
+                    gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
+
+                } else {
+
+                    for (Gem gem : gemList) {
+                        if (eucDist(gem.getLocation(), Board.getNodeList().get(randomNumber)) < Math.min(1500/Level.gemsAvailable+1,400)) {
+                            flag = true;
                         }
-                        if (!flag) {
+                    }
+                    if (!flag) {
+                        if(gemsAvailable-gemList.size()<=1) {
+                            gemList.add(new Gem(Board.getNodeList().get(randomNumber), 250, true));
+                        }else{
                             gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
                         }
                     }
                 }
             }
         }
+    }
+
+    public void nextLevel(){
+        Score.setScore(Score.getScore()+Score.getLevelscore());
+        Score.setLevelscore(0);
+        number+=1;
+        setGemsCollected(0);
+        time=1500;
+
+        setGemThreshold(2);
+        gemsAvailable=4;
+
+        gemList.clear();
+        Random random=new Random();
+
+        while (gemList.size()<gemsAvailable){
+            //Generates random int between 0 and 107 (number of walkable nodes)
+            int randomNumber= random.nextInt(108);
+
+            //Check if there is any current Gems too close
+            boolean flag =false;
+
+            if(eucDist(Board.getPlayer().currentNode, Board.getNodeList().get(randomNumber))>Math.min(1500/Level.gemsAvailable+1,400)) {
+                if (gemList.isEmpty()) {
+                    gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
+                } else {
+
+                    for (Gem gem : gemList) {
+                        if (eucDist(gem.getLocation(), Board.getNodeList().get(randomNumber)) < Math.min(1500/Level.gemsAvailable+1,400)) {
+                            flag = true;
+                        }
+                    }
+                    if (!flag) {
+                        if(gemsAvailable-gemList.size()<=1) {
+                            gemList.add(new Gem(Board.getNodeList().get(randomNumber), 250, true));
+                            System.out.println("I Make GEM");
+                        }else{
+                            gemList.add(new Gem(Board.getNodeList().get(randomNumber)));
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     public int eucDist(Node start, Node destination){
@@ -130,10 +198,18 @@ public class Level {
         return ed;
     }
 
+    //Makes the timer work
+    public void timeRunning(){
+        if (Board.getActive()){
+            time=Math.max(0,time-1);
+        }
+    }
+
 
     public static void updatePanels() {
-        buttonList.get(0).setContent("Level Score: " + Score.getLevelscore());
-        buttonList.get(1).setContent("Gems Required: "+getGemsCollected()+"/"+getGemThreshold());
+        buttonList.get(1).setContent("Time Remaining: "+ time/10);
+        buttonList.get(2).setContent("Level Score: " + Score.getLevelscore());
+        buttonList.get(3).setContent("Gems Required: "+getGemsCollected()+"/"+getGemThreshold());
     }
 
     public static List<Panel> getButtonList() {
@@ -178,5 +254,9 @@ public class Level {
 
     public static void setGemsCollected(int gemsCollected) {
         Level.gemsCollected = gemsCollected;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

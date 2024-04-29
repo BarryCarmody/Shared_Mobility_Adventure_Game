@@ -54,7 +54,7 @@ public class Node {
         adjacentNodes.put(destination,distance);
     }
 
-    private int calculateDistance(Node destination){
+    public int calculateDistance(Node destination){
         double deltaX=this.x-destination.getX();
         double deltaY=this.y-destination.getY();
         return (int) (Math.sqrt(deltaX*deltaX+deltaY*deltaY));

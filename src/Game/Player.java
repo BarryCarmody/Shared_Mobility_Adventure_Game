@@ -69,6 +69,13 @@ public class Player extends Sprite {
                 if (curr == route.size() - 2) {
                     moving = false;
                     Board.setActive(false);
+                    System.out.println("Im at "+currentNode);
+                    targetNode=null;
+                    Level.setCarFilter(false);
+                    Level.setBikeFilter(false);
+                    Level.setBusFilter(false);
+
+
                 } else {
                     x = stepNode.getX() - (PWIDTH / 2);
                     y = stepNode.getY() - (PHEIGHT / 2);

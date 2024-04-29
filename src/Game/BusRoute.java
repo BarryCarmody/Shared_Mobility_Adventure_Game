@@ -16,7 +16,6 @@ public class BusRoute{
         if (direction==false){
             Collections.reverse(this.route);
         }
-        //System.out.println(this.route);
     }
 
     public List<Node> getRoute(){

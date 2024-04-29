@@ -15,8 +15,6 @@ public class Panel {
 
     private final String type;
 
-    private boolean selected;
-
     private String content;
 
 
@@ -36,7 +34,6 @@ public class Panel {
         this.width=width;
         this.type=type;
         this.content=content;
-        this.selected=true;
     }
 
     public void draw(Graphics g) {
@@ -46,6 +43,11 @@ public class Panel {
 
             g.setColor(Color.BLUE);
             g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "backdrop")){
+            g.setColor(Color.WHITE);
+
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
 
         }else if(Objects.equals(this.type, "Container")){
             g.setColor(Color.BLACK);
@@ -57,7 +59,21 @@ public class Panel {
 
             g.fillRect(getX(),getY(),getWidth(),getHeight());
 
-        }else if(selected) {
+        }else if(Objects.equals(this.type, "Car")&&Level.isCarFilter()) {
+            g.setColor(Color.WHITE);
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "Bus")&&Level.isBusFilter()) {
+            g.setColor(Color.WHITE);
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "Bike")&&Level.isBikeFilter()) {
             g.setColor(Color.WHITE);
             g.fillRect(getX(),getY(),getWidth(),getHeight());
 
@@ -97,14 +113,6 @@ public class Panel {
     }
     public String getType() {
         return type;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
     }
 
     public void setY(int y) {

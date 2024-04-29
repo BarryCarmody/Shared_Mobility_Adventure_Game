@@ -542,7 +542,7 @@ public class Maps {
         nodeBY.addDestination(nodeBZ);
 
         nodeBZ.addDestination(nodeBX);
-        nodeBZ.addDestination(nodeBZ);
+        nodeBZ.addDestination(nodeBY);
         nodeBZ.addDestination(nodeCJ);
 
         nodeCA.addDestination(nodeBR);
@@ -2658,7 +2658,7 @@ public class Maps {
         nodeBYc.addDestination(nodeBZc);
 
         nodeBZc.addDestination(nodeBXc);
-        nodeBZc.addDestination(nodeBZc);
+        nodeBZc.addDestination(nodeBYc);
         nodeBZc.addDestination(nodeCJc);
 
         nodeCAc.addDestination(nodeBRc);

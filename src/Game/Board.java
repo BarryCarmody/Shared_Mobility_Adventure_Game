@@ -11,6 +11,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.Toolkit;
 import javax.swing.Timer;
 import java.awt.geom.Line2D;
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.awt.Rectangle;
@@ -40,6 +42,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private static boolean active;
 
     private Level level;
+
+    private ArrayList<Object[]> routeTransports;
 
     public Board(){
 
@@ -95,6 +99,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
 
         player.route = Maps.routeBetweenNodes(graph,player.currentNode,destination);
+
+        int t=player.getCurrentSpotOnRoute();
+        List<Node> temp=new ArrayList();
+        for (int i=t; i<player.route.size(); i++){
+            temp.add(player.route.get(i));
+        }
+        player.route=temp;
+
 //        routeLines.clear();
 //        routeLines= new ArrayList<>();
         routeLine.clear();
@@ -117,6 +129,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
         //System.out.println(player.route);
     }
+
 
     private void goThere(Node destination) {
         //routeLines.clear();
@@ -244,6 +257,37 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         doDrawing(g);
     }
 
+    //Generate the Route Panels
+    private void generateRoutePanels(){
+        routeTransports= new ArrayList<>();
+        Object[] currentTransport= new Object[4];
+
+        for (int i=0; i<player.route.size()-1;i++){
+            if (i == 0) {
+                if(Objects.equals(player.route.get(1).getTransportType(), "Walk")){
+                    currentTransport=new Object[]{"Walk",player.route.get(0),player.route.get(1),player.route.get(0).calculateDistance(player.route.get(1))}; //{Transport Type, Start node, End node, Distance}
+                }else{
+                    currentTransport=new Object[]{player.route.get(1).getTransportType(),player.route.get(1),player.route.get(1),0};
+                }
+            }else if(Objects.equals(player.route.get(i).getTransportType(), player.route.get(i+1).getTransportType())){
+                currentTransport[2]=player.route.get(i+1); //Adjust End Node of transport
+                currentTransport[3]=(int) currentTransport[3]+player.route.get(i).calculateDistance(player.route.get(i+1));
+            }else{
+                routeTransports.add(currentTransport);
+                currentTransport=new Object[]{player.route.get(i+1).getTransportType(),player.route.get(i+1),player.route.get(i+1),0};
+            }
+        }
+        if(Objects.equals(player.route.get(player.route.size()-2).getTransportType(), "Walk")){
+            routeTransports.add(currentTransport);
+        }
+
+
+        System.out.println("New");
+        for (Object[] transport: routeTransports) {
+            System.out.println(Arrays.toString(transport));
+        }
+    }
+
     private void doDrawing(Graphics g) {
 
         drawNodes(g);
@@ -261,7 +305,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private void update() {
         collectGem();
+        revealEndGate();
         player.act();
+        level.timeRunning();
         for (Bus bus: Bus.getBusList()){
             bus.act();
         }
@@ -274,11 +320,28 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                 car.act();
             }
         }
+        Level.updatePanels();
+        //System.out.println(level.getTime());
+        levelFinished();
+        gameOver();
     }
 
     private void doGameCycle() {
         update();
         repaint();
+    }
+
+    private void levelFinished(){
+        if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
+            level.nextLevel();
+        }
+    }
+
+    private void gameOver(){
+        if(level.getTime()==0||player.getCo2level()==0){
+            setActive(false);
+            System.out.println("LOSER");
+        }
     }
 
     private class GameCycle implements ActionListener {
@@ -306,70 +369,31 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
     }
 
-    @Override
-    //Action if mouse clicked
-    public void mouseClicked(MouseEvent e){
-        for(Panel button: Level.getButtonList()){
-            if(!Objects.equals(button.getType(),"Text")) {
-                Rectangle buttonBox = new Rectangle(button.getX(), button.getY(), button.getWidth(), button.getHeight());
-                if(buttonBox.contains(e.getPoint())){
-//                    System.out.println(button.getType()+" clicked");
-                    if(Objects.equals(button.getType(),"Bike")){
-                        Level.setBikeFilter(!Level.isBikeFilter());
-                        button.setSelected(!button.isSelected());
-//                        System.out.println("Bike Filter is "+Level.isBikeFilter());
-                    }else if(Objects.equals(button.getType(),"Bus")){
-                        Level.setBusFilter(!Level.isBusFilter());
-                        button.setSelected(!button.isSelected());
-//                        System.out.println("Bus Filter is "+Level.isBusFilter());
-                    }else if(Objects.equals(button.getType(),"Car")){
-                        routeLine.clear();
-                        Level.setCarFilter(!Level.isCarFilter());
-                        button.setSelected(!button.isSelected());
-//                        System.out.println("Car Filter is "+Level.isCarFilter());
-                    }
-                }
-            }
-        }
-        //Click on Node set as target node and plan the route
-        if (!active) {
-            for (Node node : graph.getNodes()) {
-                if(Objects.equals(node.getTransportType(), "Walk")) {
-                    Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
-                    //int nodeNum = nodeNumber(node);
-                    if (nodeBox.contains(e.getPoint())) {
-//                        System.out.println("Node clicked: " + node);
-                        player.setTargetNode(node);
-                        repaint();
-                        break;
-                    }
-                }
-            }
-        }
-        //System.out.println("Route from " + player.currentNode +" to: "+targetNode);
-        if(player.getTargetNode()!=null) {
-//            System.out.println("Resetting");
-            //resetNodeDist();
-            nextLocation(player.getTargetNode());
-        }
-    }
-
     public void collectGem(){
         for (Gem gem: Level.gemList) {
             //Collects when player is walking
             if (player.getCurrentNode()==gem.getLocation()&&player.isVisible()&&!gem.isCollected()) {
-                gem.pickUp();
-                Level.updatePanels();
+                if(!gem.isEndGate()){
+                    gem.pickUp();
+                }
+
+                //Level.updatePanels();
 
 
             }else if(Level.getBike()!=null){
                 //Collects when player is on bike
                 if(Level.getBike().getCurrentNode().getX()==gem.getLocation().getX()&&Level.getBike().getCurrentNode().getY()==gem.getLocation().getY()&&!gem.isCollected()) {
                     gem.pickUp();
-                    Level.updatePanels();
+                    //Level.updatePanels();
 
                 }
             }
+        }
+    }
+
+    public void revealEndGate(){
+        if(Level.getGemsCollected()>=Level.getGemThreshold()){
+            Level.gemList.get(Level.gemList.size()-1).setVisible(true);
         }
     }
 
@@ -395,6 +419,52 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     public static void setGraph(Maps graph) {
         Board.graph = graph;
+    }
+
+    @Override
+    //Action if mouse clicked
+    public void mouseClicked(MouseEvent e){
+        for(Panel button: Level.getButtonList()){
+            if(!Objects.equals(button.getType(),"Text")) {
+                Rectangle buttonBox = new Rectangle(button.getX(), button.getY(), button.getWidth(), button.getHeight());
+                if(buttonBox.contains(e.getPoint())){
+                    if(Objects.equals(button.getType(),"Bike")){
+                        routeLine.clear();
+                        Level.setBikeFilter(!Level.isBikeFilter());
+                    }else if(Objects.equals(button.getType(),"Bus")){
+                        routeLine.clear();
+                        Level.setBusFilter(!Level.isBusFilter());
+                    }else if(Objects.equals(button.getType(),"Car")){
+                        routeLine.clear();
+                        Level.setCarFilter(!Level.isCarFilter());
+                    }
+                }
+            }
+        }
+        //Click on Node set as target node and plan the route
+        if (!active) {
+            for (Node node : graph.getNodes()) {
+                if(Objects.equals(node.getTransportType(), "Walk")) {
+                    Rectangle nodeBox = new Rectangle(node.getX() - 20, node.getY() - 20, 30, 30);
+                    //int nodeNum = nodeNumber(node);
+                    if (nodeBox.contains(e.getPoint())) {
+                        if(player.route!=null){
+                            player.route.clear();
+                        }
+//                        System.out.println("Node clicked: " + node);
+                        player.setTargetNode(node);
+                        //repaint();
+                        break;
+                    }
+                }
+            }
+        }
+        if(player.getTargetNode()!=null) {
+//            System.out.println("Resetting");
+            //resetNodeDist();
+            nextLocation(player.getTargetNode());
+            generateRoutePanels();
+        }
     }
 
     @Override
@@ -438,7 +508,13 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
                 if(!active) {
                     goThere(player.getTargetNode());
                 }
+                System.out.println("Player Route is "+player.route);
             }
+//            else if (key==KeyEvent.VK_DOWN) {
+//                level.nextLevel();
+//            }
+
+
         }
     }
 }
