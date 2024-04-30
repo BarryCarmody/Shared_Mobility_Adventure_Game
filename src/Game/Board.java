@@ -60,10 +60,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setBackground(new Color(80,80,80));
 
+        gameInit();
+
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
 
-        gameInit();
 //        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
@@ -362,7 +363,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             }
         }
         Level.updatePanels();
-        //System.out.println(level.getTime());
         levelFinished();
         gameOver();
     }

@@ -36,7 +36,7 @@ public class GameScene extends Scene {
             e.printStackTrace();
         }
 
-        window.add(new Board());
+        //window.add(new Board());
 
         // For level testing
         try {

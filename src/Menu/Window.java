@@ -34,6 +34,7 @@ public class Window extends JFrame implements Runnable {
                 currentScene = new GameScene(this, keyListener, mouseListener);
                 var ex = new Host();
                 ex.setVisible(true);
+                dispose();
                 break;
             default:
                 System.out.println("Unknown scene.");
