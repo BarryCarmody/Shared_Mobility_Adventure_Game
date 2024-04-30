@@ -117,7 +117,7 @@ public class Bike extends Transport{
     }
 
     public void loadImage() {
-        ImageIcon cyclistIcon = new ImageIcon("src/Game/Images/cyclist1.png");
+        ImageIcon cyclistIcon = new ImageIcon("Game/Images/cyclist1.png");
         Image newpic = cyclistIcon.getImage();
         int scaledWidth = 25;  // Desired width
         int scaledHeight = 25;

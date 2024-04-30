@@ -81,7 +81,7 @@ public class Bus extends Transport {
     }
 
     public void loadImage(){
-        ImageIcon busIcon=new ImageIcon("src/Game/Images/yellowbus.png");
+        ImageIcon busIcon=new ImageIcon("Game/Images/yellowbus.png");
         Image newpic=busIcon.getImage();
         int scaledWidth = 40;  // Desired width
         int scaledHeight = 40;

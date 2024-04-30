@@ -71,7 +71,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
-        //startMusic();
+        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -156,9 +156,16 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     public void startMusic() {
-        Music.loadMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Dreams.wav");
-        Music.playMusic();
-            }
+        // Create a Timer that fires once after 10 seconds
+        javax.swing.Timer timer = new javax.swing.Timer(5000, e -> {
+            Music.loadMusic("Game/Music/Dreams.wav");
+            Music.playMusic();
+            // Cast the source to Timer and stop it
+            ((javax.swing.Timer)e.getSource()).stop();
+        });
+        timer.setRepeats(false); // Ensure the timer only fires once
+        timer.start();
+    }
 
 
     private void drawPlayer(Graphics p){
@@ -377,7 +384,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
             level.nextLevel();
-            Gem.loadGemSound("src/Game/Music/coin_pick_up_project.wav");
+            Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
             System.out.println(Score.getScore());
         }

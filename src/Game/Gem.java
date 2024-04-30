@@ -102,7 +102,7 @@ public class Gem {
     }
 
     public void pickUp() {
-        loadGemSound("src/Game/Music/coin_pick_up_project.wav");
+        loadGemSound("Game/Music/coin_pick_up_project.wav");
         playGemSound();
         setVisible(false);
         setCollected(true);
@@ -111,7 +111,7 @@ public class Gem {
     }
 
     public void loadImage() {
-        ImageIcon gemIcon = new ImageIcon("src/Game/Images/diamond-417896_1280.png");
+        ImageIcon gemIcon = new ImageIcon("Game/Images/diamond-417896_1280.png");
         Image newpic = gemIcon.getImage();
         int scaledWidth = 30;
         int scaledHeight = 30;

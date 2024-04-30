@@ -101,13 +101,13 @@ public class Node {
 
     public void loadImage() {
         if (transportStop && (Objects.equals(getTransportType(), "Bus"))){
-            ImageIcon busIcon = new ImageIcon("src/Game/Images/busStop.png");
+            ImageIcon busIcon = new ImageIcon("Game/Images/busStop.png");
             Image newpic = busIcon.getImage();
             int scaledWidth = 30;  // Desired width
             int scaledHeight = 30;
             busStopImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);}
         else if  (transportStop&&(Objects.equals(getTransportType(), "Bike"))){
-            ImageIcon playerIcon = new ImageIcon("src/Game/Images/bicycleStand.png");
+            ImageIcon playerIcon = new ImageIcon("Game/Images/bicycleStand.png");
             Image newpic = playerIcon.getImage();
             int scaledWidth = 30;  // Desired width
             int scaledHeight = 30;

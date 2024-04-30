@@ -184,7 +184,7 @@ public class Car extends Transport{
     }
 
     public void loadImage(){
-        ImageIcon busIcon=new ImageIcon("src/Game/Images/redcar1.png");
+        ImageIcon busIcon=new ImageIcon("Game/Images/redcar1.png");
         Image newpic=busIcon.getImage();
         int scaledWidth = 40;
         int scaledHeight = 40;
