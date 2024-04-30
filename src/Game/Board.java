@@ -64,7 +64,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
-        startMusic();
+//        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -202,6 +202,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void drawCars(Graphics p){
+//        if (Car.taxi != null) {
+//            Car.taxi.drawCar(p);
+//        }
         for (Car car: Car.getCarList()){
             if(car.getVisible()) {
                 car.drawCar(p);
@@ -308,13 +311,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             }else if (Objects.equals(node.getTransportType(), "Bus")) {
                 estTime = (int) Math.ceil((int) transport[3]/Bus.speed/10)+1;
                 estCO2=(estTime*Bus.getCo2Emission()*1000)/Player.getCo2max();
-                estCO2upper=estCO2+2;
-                C02string=estCO2+"% - "+estCO2upper+"%";
+//                estCO2upper=estCO2+2;
+//                C02string=estCO2+"% - "+estCO2upper+"%";
+                C02string=estCO2+"%";
             }else {
                 estTime = (int) Math.ceil((int) transport[3]/Car.speed/10)+1;
                 estCO2=(estTime*Car.getCo2Emission()*1000)/Player.getCo2max()+3;
-                estCO2upper=estCO2+6;
-                C02string=estCO2+"% - "+estCO2upper+"%";
+//                estCO2upper=estCO2+6;
+//                C02string=estCO2+"% - "+estCO2upper+"%";
+                C02string=estCO2+"%";
             }
 
             String content=transport[0].toString()+"NLDistance: "+transport[3].toString()+"NLTravel Time: "+estTime+"NLEstimated CO2: "+C02string;
@@ -540,11 +545,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             int key=e.getKeyCode();
 
 
-            if (key==KeyEvent.VK_SPACE){
+            if (key==KeyEvent.VK_RIGHT){
                 System.out.println(nodeList);
                 System.out.println(nodeList.get(107));
 
-            } else if (key==KeyEvent.VK_UP) {
+            } else if (key==KeyEvent.VK_SPACE) {
                 if(!active) {
                     goThere(player.getTargetNode());
                 }

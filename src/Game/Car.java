@@ -29,6 +29,8 @@ public class Car extends Transport{
 
     public static List<Car> carList= new ArrayList<>();
 
+//    public static Car taxi;
+
     private static List<Node> potentialStarts;
 
     private static Maps carGraph;
@@ -50,8 +52,9 @@ public class Car extends Transport{
         //System.out.println(startNode+" to "+pickUp);
         this.called=true;
         nextLocation(pickUp);
-        //System.out.println("New route: "+route);
+//        System.out.println("New route: "+route);
         carList.add(this);
+//        taxi = this;
         setMoving(true);
         passenger=Board.getPlayer();
         this.waiting=false;
@@ -63,7 +66,7 @@ public class Car extends Transport{
         if (Board.getActive()) {
             if(!isWaiting()) {
                 if (isMoving()) {
-                    passenger.killTheEnvironment(co2Emission);
+                    if (onboard) {passenger.killTheEnvironment(co2Emission);}
 
                     int curr = getCurrentSpotOnRoute();
                     Node base = getRoute().get(curr);
