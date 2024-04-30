@@ -175,4 +175,7 @@ public class Bus extends Transport {
         this.route = route;
     }
 
+    public static int getCo2Emission() {
+        return co2Emission;
+    }
 }

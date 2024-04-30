@@ -280,4 +280,8 @@ public class Car extends Transport{
     public List<Node> getRoute() {
         return route;
     }
+
+    public static int getCo2Emission() {
+        return co2Emission;
+    }
 }
