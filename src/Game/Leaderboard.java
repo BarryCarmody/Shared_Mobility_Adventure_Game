@@ -19,7 +19,7 @@ public class Leaderboard {
         }
 
         public  HashMap<String, Integer> finalLeaderboard(){
-                for (int i=0;i<5;i++) {
+                for (int i=0;i<10;i++) {
                         Stats currentStats = stats.get(i);
                         currentStats.setPlayerName();
                         Map.put(currentStats.getPlayerName(), currentStats.getScore());
