@@ -26,6 +26,7 @@ public class Leaderboard {
                 }
             System.out.println("Leaderboard");
             return Map;
+
         }
 
 //        public static void main (String[] args) {
