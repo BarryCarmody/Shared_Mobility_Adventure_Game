@@ -134,7 +134,7 @@ public class Node {
 
     public void drawTransport(Graphics g){
         if((Objects.equals(getTransportType(), "Walk"))) {
-            g.setColor(Color.MAGENTA);
+            g.setColor(Color.ORANGE);
             g.fillOval(x - 5, y - 5, 10, 10);
         }else if(transportStop&&(Objects.equals(getTransportType(), "Bus"))){
             g.drawImage(busStopImage, x-15, y-15,null);

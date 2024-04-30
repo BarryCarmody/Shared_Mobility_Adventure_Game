@@ -5,9 +5,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Game.Commons;
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 public class Host extends JFrame {
     private CardLayout cardLayout = new CardLayout();
@@ -49,7 +46,6 @@ public class Host extends JFrame {
                 board.requestFocusInWindow();
             }
         }).start();
-
     }
 
     private void createSplashPanel() {

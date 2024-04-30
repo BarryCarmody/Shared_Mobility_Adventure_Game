@@ -59,13 +59,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         setFocusable(true);
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setBackground(new Color(80,80,80));
-        //setBackground(Color.LIGHT_GRAY);
-
-//        try {
-//            backgroundImage = ImageIO.read(new File("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/full.png"));
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
@@ -77,7 +70,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         coordinatesLabel.setForeground(Color.BLACK);
         add(coordinatesLabel);
 
-        //addMouseMotionListener(this);
     }
 
     private void gameInit() {
@@ -110,8 +102,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
         player.route=temp;
 
-//        routeLines.clear();
-//        routeLines= new ArrayList<>();
         routeLine.clear();
         routeLine=new HashMap<>();
 
@@ -124,18 +114,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             String transport=base.getTransportType();
             Line2D line = new Line2D.Double(base.getX(), base.getY(), step.getX(), step.getY());
 
-            //List<HashMap<>> printDetails= new ArrayList<>();
             routeLine.put(line,transport);
 
-            //routeLines.add(line);
             repaint();
         }
-        //System.out.println(player.route);
     }
 
 
     private void goThere(Node destination) {
-        //routeLines.clear();
         routeLine.clear();
 
         //Check if Taxi needs to be called
@@ -310,22 +296,22 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             int estCO2upper;
             String C02string;
             if (Objects.equals(node.getTransportType(), "Walk")){
-                estTime= (int) transport[3]/Sprite.speed/10;
+                estTime= (int) Math.ceil((int) transport[3]/Sprite.speed/10)+1;
                 estCO2=0;
                 estCO2upper=0;
                 C02string="0%";
             }else if (Objects.equals(node.getTransportType(), "Bike")){
-                estTime= (int) transport[3]/Bike.speed/10;
+                estTime= (int) Math.ceil((int) transport[3]/Bike.speed/10)+1;
                 estCO2=0;
                 estCO2upper=0;
                 C02string="0%";
             }else if (Objects.equals(node.getTransportType(), "Bus")) {
-                estTime = (int) transport[3]/Bus.speed/10;
+                estTime = (int) Math.ceil((int) transport[3]/Bus.speed/10)+1;
                 estCO2=(estTime*Bus.getCo2Emission()*1000)/Player.getCo2max();
                 estCO2upper=estCO2+2;
                 C02string=estCO2+"% - "+estCO2upper+"%";
             }else {
-                estTime = (int) transport[3]/Car.speed/10;
+                estTime = (int) Math.ceil((int) transport[3]/Car.speed/10)+1;
                 estCO2=(estTime*Car.getCo2Emission()*1000)/Player.getCo2max()+3;
                 estCO2upper=estCO2+6;
                 C02string=estCO2+"% - "+estCO2upper+"%";
