@@ -13,10 +13,9 @@ public class Stats {
     public void  setPlayerName(){
         Scanner myObj = new Scanner(System.in); // Create a Scanner object
         System.out.println("Enter Player Name: ");
-        // Read user input
         this.playerName = myObj.nextLine();
-        System.out.println("You're player name is" + this.playerName);
-        myObj.close();
+        System.out.println("You're player name is " + this.playerName);
+//        myObj.close();
     }
 
 
