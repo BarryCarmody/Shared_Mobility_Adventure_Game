@@ -373,6 +373,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void levelFinished(){
+        // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
             level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");

@@ -23,6 +23,7 @@ public class Gem {
 
     private boolean visible;
 
+//    gem points
     private int value;
 
     private boolean endGate;
