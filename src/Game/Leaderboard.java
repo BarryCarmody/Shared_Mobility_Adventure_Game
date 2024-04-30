@@ -9,7 +9,7 @@ public class Leaderboard {
                 this.stats = new ArrayList<>();
                 this.Map = new HashMap<>();
         }
-
+        //adding stats to array stats
         public void addStats(Stats s) {
                 stats.add(s);
         }
