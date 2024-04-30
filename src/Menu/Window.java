@@ -4,6 +4,7 @@ import Game.Host;
 
 import javax.swing.*;
 import java.awt.*;
+import Game.Commons;
 
 public class Window extends JFrame implements Runnable {
     private int currentState;
@@ -12,8 +13,8 @@ public class Window extends JFrame implements Runnable {
     private final KL keyListener = new KL();
     private final ML mouseListener = new ML();
 
-    public Window(int width, int height, String title) {
-        setSize(width, height);
+    public Window(String title) {
+        setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setTitle(title);
         setResizable(false);
         setVisible(true);

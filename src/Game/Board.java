@@ -64,7 +64,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
-        startMusic();
+        //startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -143,10 +143,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     public void startMusic() {
         // Create a Timer that fires once after 10 seconds
-        javax.swing.Timer timer = new javax.swing.Timer(5000, e -> {
+        javax.swing.Timer timer = new javax.swing.Timer(3000, e -> {
             Music.loadMusic("Game/Music/Dreams.wav");
             Music.playMusic();
-            // Cast the source to Timer and stop it
             ((javax.swing.Timer)e.getSource()).stop();
         });
         timer.setRepeats(false); // Ensure the timer only fires once
@@ -340,6 +339,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void update() {
+        if (player != null) {
+            player.act();
+            // other game updates
+        } else {
+            System.out.println("Warning: Player object has not been initialized.");
+        }
         revealEndGate();
         player.act();
         collectGem();

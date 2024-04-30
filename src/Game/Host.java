@@ -35,17 +35,17 @@ public class Host extends JFrame {
         createMainPanel();
 
         cardPanel.add(splashPanel, "Splash");
-        cardPanel.add(mainPanel, "Main");
-
+        cardPanel.add(mainPanel,"Main");
         cardLayout.show(cardPanel, "Splash");
-        new javax.swing.Timer(5000, e ->
+        new javax.swing.Timer(3000, e ->
         {
-            cardLayout.show(cardPanel, "Main");
-            Component board = mainPanel.getComponent(0);
-            if (board != null) {
-                board.requestFocusInWindow();
-            }
+        cardLayout.show(cardPanel, "Main");
+        Component board = mainPanel.getComponent(0);
+        if (board != null) {
+        board.requestFocusInWindow();
+        }
         }).start();
+
     }
 
     private void createSplashPanel() {
@@ -64,6 +64,7 @@ public class Host extends JFrame {
         mainPanel.setVisible(true);
 
     }
+
 
     public static void main(String[] args) {
         try {

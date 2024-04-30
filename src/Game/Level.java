@@ -57,6 +57,14 @@ public class Level {
             time=1500;
         }
 
+        try {
+            Node startNode = Board.getNodeList().get(0);
+            Board.setPlayer(new Player(startNode));
+        } catch (Exception e) {
+            System.out.println("Failed to initialize player: " + e.getMessage());
+            e.printStackTrace();
+        }
+
         Score.setLevelscore(0);
         Board.setNodeList(Maps.createMap1(Board.getGraph()));
         Node startNode=Board.getNodeList().get(0);

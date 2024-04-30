@@ -6,7 +6,7 @@ public class Menu {
     static String title = "CarbonFree";
 
     public static void main(String[] args) {
-        Window window = new Window(width, height, title);
+        Window window = new Window(title);
         Thread thread = new Thread(window);
         thread.start();
     }
