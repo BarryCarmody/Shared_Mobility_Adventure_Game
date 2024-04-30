@@ -13,7 +13,7 @@ public class Leaderboard {
         public void addStats(Stats s) {
                 stats.add(s);
         }
-
+        //Sorting stats in descending order
         public void sortStatsByScore() {
                 stats.sort((a, b) -> Integer.compare(b.getScore(), a.getScore()));
         }
@@ -25,7 +25,7 @@ public class Leaderboard {
                         Map.put(currentStats.getPlayerName(), currentStats.getScore());
                 }
             System.out.println("Leaderboard");
-            return Map;
+            return Map; // returing final leaderboard
 
         }
 
