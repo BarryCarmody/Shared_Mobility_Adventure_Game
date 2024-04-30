@@ -59,6 +59,34 @@ public class Panel {
 
             g.fillRect(getX(),getY(),getWidth(),getHeight());
 
+        }else if(Objects.equals(this.type, "RouteWalk")) {
+            g.setColor(new Color(153, 255, 255));
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.BLUE);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "RouteBus")) {
+            g.setColor(new Color(255, 255, 153));
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.YELLOW);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "RouteBike")) {
+            g.setColor(new Color(153, 255, 153));
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.GREEN);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
+        }else if(Objects.equals(this.type, "RouteCar")) {
+            g.setColor(new Color(255, 153, 153));
+            g.fillRect(getX(),getY(),getWidth(),getHeight());
+
+            g.setColor(Color.RED);
+            g.drawRect(getX(),getY(),getWidth(),getHeight());
+
         }else if(Objects.equals(this.type, "Car")&&Level.isCarFilter()) {
             g.setColor(Color.WHITE);
             g.fillRect(getX(),getY(),getWidth(),getHeight());
@@ -89,11 +117,17 @@ public class Panel {
         }
 
         //Add Text
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLACK);
         FontMetrics fm = g.getFontMetrics();
-        int textX=getX() + (getWidth() - fm.stringWidth(content))/2;
-        int textY=getY() + ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-
+        int textX;
+        int textY;
+        if (Objects.equals(type, "RouteWalk")||Objects.equals(type, "RouteBike")||Objects.equals(type, "RouteBus")||Objects.equals(type, "RouteCar")) {
+            textX = getX()+5;
+            textY = getY() +2+ fm.getAscent();
+        }else{
+            textX = getX() + (getWidth() - fm.stringWidth(content))/2;
+            textY = getY() + ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+        }
         String[] lines= content.split("NL");
         for (String line: lines){
             g.drawString(line,textX,textY);

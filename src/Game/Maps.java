@@ -1274,7 +1274,7 @@ public class Maps {
         nodeCSb.addDestination(nodeStop11b);
 
         nodeStop11b.addDestination(nodeCSb);
-        nodeStop11b.addDestination(nodeCSb);
+        nodeStop11b.addDestination(nodeCTb);
 
         nodeCTb.addDestination(nodeStop11b);
         nodeCTb.addDestination(nodeCXb);

@@ -154,7 +154,7 @@ public class Level {
         setGemsCollected(0);
 
 
-        time=Math.max(2000-number*100,1000);
+        time=Math.max(1600-number*50,1000);
         //inverse triangular
         int temp=number;
         int i=1;
@@ -163,8 +163,7 @@ public class Level {
             i+=1;
         }
         setGemThreshold(i-1);
-        gemsAvailable=Math.max(getGemThreshold()*2-number/3,getGemThreshold());
-
+        gemsAvailable=getGemThreshold()+3;
 
         gemList.clear();
         Random random=new Random();
