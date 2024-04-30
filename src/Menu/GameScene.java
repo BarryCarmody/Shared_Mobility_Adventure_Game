@@ -24,6 +24,8 @@ public class GameScene extends Scene {
     private Level currentLevel;
     private Level nextLevel;
 
+    private Board board;
+
     public GameScene(final Window window, final KL keyListener, final ML mouseListener) {
         this.keyListener = keyListener;
         this.mouseListener = mouseListener;
@@ -101,5 +103,10 @@ public class GameScene extends Scene {
         g.drawImage(infoIconImage, infoButtonRect.x, infoButtonRect.y, infoButtonRect.width, infoButtonRect.height, null);
         g.drawImage(infoIconImage, infoButtonRect2.x, infoButtonRect2.y, infoButtonRect2.width, infoButtonRect2.height, null);
         g.drawImage(infoIconImage, infoButtonRect3.x, infoButtonRect3.y, infoButtonRect3.width, infoButtonRect3.height, null);
+    }
+
+    public void initBoard(Window window){
+        board = new Board();
+        window.add(board);
     }
 }

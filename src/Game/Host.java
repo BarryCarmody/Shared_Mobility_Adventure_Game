@@ -8,7 +8,7 @@ public class Host extends JFrame{
         initialise();
     }
 
-    private void initialise(){
+    public void initialise(){
         add(new Board());
 
         setTitle("I'm not safe");

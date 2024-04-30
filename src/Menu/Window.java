@@ -1,5 +1,7 @@
 package Menu;
 
+import Game.Host;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,6 +32,8 @@ public class Window extends JFrame implements Runnable {
                 break;
             case 1:
                 currentScene = new GameScene(this, keyListener, mouseListener);
+                var ex = new Host();
+                ex.setVisible(true);
                 break;
             default:
                 System.out.println("Unknown scene.");
