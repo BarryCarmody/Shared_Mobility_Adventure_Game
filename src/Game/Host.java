@@ -17,7 +17,11 @@ public class Host extends JFrame {
         initialise();
     }
 
-    public void initialise() {
+
+    public void initialise(){
+        add(new Board());
+
+
         setTitle("I'm not safe");
         setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
