@@ -71,7 +71,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
-        startMusic();
+        //startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -347,9 +347,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void update() {
-        collectGem();
         revealEndGate();
         player.act();
+        collectGem();
         level.timeRunning();
         for (Bus bus: Bus.getBusList()){
             bus.act();
@@ -377,6 +377,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
             level.nextLevel();
+            Gem.loadGemSound("src/Game/Music/coin_pick_up_project.wav");
+            Gem.playGemSound();
             System.out.println(Score.getScore());
         }
 

@@ -96,7 +96,7 @@ public class Player extends Sprite {
     }
 
     public void loadImage(){
-        ImageIcon playerIcon=new ImageIcon("Game/Images/player_icon2.png");
+        ImageIcon playerIcon=new ImageIcon("src/Game/Images/player_icon.png");
         Image newpic=playerIcon.getImage();
         int scaledWidth = 25;  // Desired width
         int scaledHeight = 25;

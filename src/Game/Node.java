@@ -101,13 +101,13 @@ public class Node {
 
     public void loadImage() {
         if (transportStop && (Objects.equals(getTransportType(), "Bus"))){
-            ImageIcon busIcon = new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/busStop.png");
+            ImageIcon busIcon = new ImageIcon("src/Game/Images/busStop.png");
             Image newpic = busIcon.getImage();
             int scaledWidth = 30;  // Desired width
             int scaledHeight = 30;
             busStopImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);}
         else if  (transportStop&&(Objects.equals(getTransportType(), "Bike"))){
-            ImageIcon playerIcon = new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/bicycle.png");
+            ImageIcon playerIcon = new ImageIcon("src/Game/Images/bicycleStand.png");
             Image newpic = playerIcon.getImage();
             int scaledWidth = 30;  // Desired width
             int scaledHeight = 30;
@@ -115,27 +115,26 @@ public class Node {
         }
 
 
-    public void draw(Graphics g){
-        if((Objects.equals(getTransportType(), "Walk"))) {
-            g.setColor(Color.ORANGE);
-            g.fillOval(x - 5, y - 5, 10, 10);
-        }else if(transportStop&&(Objects.equals(getTransportType(), "Bus"))){
-            g.setColor(Color.YELLOW);
-            g.fillRect(x - 8, y - 8, 16, 16);
-            g.setColor(Color.BLUE);
-            g.drawRect(x - 8, y - 8, 16, 16);
-        }else if(transportStop&&(Objects.equals(getTransportType(), "Bike"))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(x - 8, y - 8, 16, 16);
-            g.setColor(Color.WHITE);
-            g.drawRect(x - 8, y - 8, 16, 16);
-        }
-
-    }
+//    public void draw(Graphics g){
+//        if((Objects.equals(getTransportType(), "Walk"))) {
+//            g.setColor(Color.ORANGE);
+//            g.fillOval(x - 5, y - 5, 10, 10);
+//        }else if(transportStop&&(Objects.equals(getTransportType(), "Bus"))){
+//            g.setColor(Color.YELLOW);
+//            g.fillRect(x - 8, y - 8, 16, 16);
+//            g.setColor(Color.BLUE);
+//            g.drawRect(x - 8, y - 8, 16, 16);
+//        }else if(transportStop&&(Objects.equals(getTransportType(), "Bike"))) {
+//            g.setColor(Color.GREEN);
+//            g.fillRect(x - 8, y - 8, 16, 16);
+//            g.setColor(Color.WHITE);
+//            g.drawRect(x - 8, y - 8, 16, 16);
+//        }
+//    }
 
     public void drawTransport(Graphics g){
         if((Objects.equals(getTransportType(), "Walk"))) {
-            g.setColor(Color.ORANGE);
+            g.setColor(Color.MAGENTA);
             g.fillOval(x - 5, y - 5, 10, 10);
         }else if(transportStop&&(Objects.equals(getTransportType(), "Bus"))){
             g.drawImage(busStopImage, x-15, y-15,null);
