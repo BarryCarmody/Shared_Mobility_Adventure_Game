@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.SplashScreen;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -61,7 +62,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         //setBackground(Color.LIGHT_GRAY);
 
 //        try {
-//            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
+//            backgroundImage = ImageIO.read(new File("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/full.png"));
 //        }catch (IOException e){
 //            e.printStackTrace();
 //        }
@@ -70,6 +71,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer.start();
 
         gameInit();
+        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -79,11 +81,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void gameInit() {
+            graph = new Maps();
+            level = new Level(1);
 
-        graph = new Maps();
-        level = new Level(1);
+        }
 
-    }
 
     public static boolean getActive(){
         return active;
@@ -153,9 +155,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     }
 
+    public void startMusic() {
+        Music.loadMusic("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Music/Dreams.wav");
+        Music.playMusic();
+            }
+
+
     private void drawPlayer(Graphics p){
         if (player.isVisible()){
-            player.draw(p);
+            player.drawPlayer(p);
         }
     }
 
@@ -176,34 +184,34 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         for (Node selectedNode: nodeList){
             if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
 
         //Layer Special Nodes After
         for (Node selectedNode: nodeList){
             if(selectedNode.getTransportStop()) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
     }
 
     private void drawBuses(Graphics p){
         for (Bus bus: Bus.getBusList()){
-            bus.draw(p);
+            bus.drawBus(p);
         }
     }
 
     private void drawBikes(Graphics p){
         if(Level.getBike()!=null){
-            Level.getBike().draw(p);
+            Level.getBike().drawBike(p);
         }
     }
 
     private void drawCars(Graphics p){
         for (Car car: Car.getCarList()){
             if(car.getVisible()) {
-                car.draw(p);
+                car.drawCar(p);
             }
         }
     }

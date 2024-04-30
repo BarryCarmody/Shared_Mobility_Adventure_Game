@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.lang.Math;
@@ -23,6 +24,10 @@ public class Node {
 
     Map<Node, Integer> adjacentNodes = new HashMap<>();
 
+    private Image busStopImage;
+
+    private Image bikeStationImage;
+
     public Node(String name, int x, int y){
         this.name=name;
         this.x=x;
@@ -37,6 +42,7 @@ public class Node {
         this.y=y;
         this.transportType=transport;
         this.transportStop=false;
+        loadImage();
     }
 
     public Node(String name, int x, int y, String transport, boolean transportStop){
@@ -45,6 +51,7 @@ public class Node {
         this.y=y;
         this.transportType=transport;
         this.transportStop=transportStop;
+        loadImage();
     }
 
 
@@ -92,6 +99,22 @@ public class Node {
         return name;
     }
 
+    public void loadImage() {
+        if (transportStop && (Objects.equals(getTransportType(), "Bus"))){
+            ImageIcon busIcon = new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/busStop.png");
+            Image newpic = busIcon.getImage();
+            int scaledWidth = 30;  // Desired width
+            int scaledHeight = 30;
+            busStopImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);}
+        else if  (transportStop&&(Objects.equals(getTransportType(), "Bike"))){
+            ImageIcon playerIcon = new ImageIcon("C:/Users/Justh/IdeaProjects/BarrysGame/src/Game/Images/bicycle.png");
+            Image newpic = playerIcon.getImage();
+            int scaledWidth = 30;  // Desired width
+            int scaledHeight = 30;
+            bikeStationImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);}
+        }
+
+
     public void draw(Graphics g){
         if((Objects.equals(getTransportType(), "Walk"))) {
             g.setColor(Color.ORANGE);
@@ -106,6 +129,18 @@ public class Node {
             g.fillRect(x - 8, y - 8, 16, 16);
             g.setColor(Color.WHITE);
             g.drawRect(x - 8, y - 8, 16, 16);
+        }
+
+    }
+
+    public void drawTransport(Graphics g){
+        if((Objects.equals(getTransportType(), "Walk"))) {
+            g.setColor(Color.ORANGE);
+            g.fillOval(x - 5, y - 5, 10, 10);
+        }else if(transportStop&&(Objects.equals(getTransportType(), "Bus"))){
+            g.drawImage(busStopImage, x-15, y-15,null);
+        }else if(transportStop&&(Objects.equals(getTransportType(), "Bike"))) {
+            g.drawImage(bikeStationImage, x-15, y-15,null);
         }
 
     }
