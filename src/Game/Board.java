@@ -2,6 +2,7 @@ package Game;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.SplashScreen;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -58,32 +59,25 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         setFocusable(true);
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setBackground(new Color(80,80,80));
-        //setBackground(Color.LIGHT_GRAY);
-
-//        try {
-//            backgroundImage = ImageIO.read(new File("C:/Users/barry/OneDrive/Desktop/Notes/Semester2/COMP30820/Ass/GAYM/src/Game/Images/full.png"));
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
 
         gameInit();
+//        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
         add(coordinatesLabel);
 
-        //addMouseMotionListener(this);
     }
 
     private void gameInit() {
+            graph = new Maps();
+            level = new Level(1);
 
-        graph = new Maps();
-        level = new Level(1);
+        }
 
-    }
 
     public static boolean getActive(){
         return active;
@@ -108,8 +102,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         }
         player.route=temp;
 
-//        routeLines.clear();
-//        routeLines= new ArrayList<>();
         routeLine.clear();
         routeLine=new HashMap<>();
 
@@ -122,18 +114,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             String transport=base.getTransportType();
             Line2D line = new Line2D.Double(base.getX(), base.getY(), step.getX(), step.getY());
 
-            //List<HashMap<>> printDetails= new ArrayList<>();
             routeLine.put(line,transport);
 
-            //routeLines.add(line);
             repaint();
         }
-        //System.out.println(player.route);
     }
 
 
     private void goThere(Node destination) {
-        //routeLines.clear();
         routeLine.clear();
 
         //Check if Taxi needs to be called
@@ -153,9 +141,22 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     }
 
+    public void startMusic() {
+        // Create a Timer that fires once after 10 seconds
+        javax.swing.Timer timer = new javax.swing.Timer(5000, e -> {
+            Music.loadMusic("Game/Music/Dreams.wav");
+            Music.playMusic();
+            // Cast the source to Timer and stop it
+            ((javax.swing.Timer)e.getSource()).stop();
+        });
+        timer.setRepeats(false); // Ensure the timer only fires once
+        timer.start();
+    }
+
+
     private void drawPlayer(Graphics p){
         if (player.isVisible()){
-            player.draw(p);
+            player.drawPlayer(p);
         }
     }
 
@@ -176,34 +177,37 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
         for (Node selectedNode: nodeList){
             if(Objects.equals(selectedNode.getTransportType(), "Walk")) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
 
         //Layer Special Nodes After
         for (Node selectedNode: nodeList){
             if(selectedNode.getTransportStop()) {
-                selectedNode.draw(p);
+                selectedNode.drawTransport(p);
             }
         }
     }
 
     private void drawBuses(Graphics p){
         for (Bus bus: Bus.getBusList()){
-            bus.draw(p);
+            bus.drawBus(p);
         }
     }
 
     private void drawBikes(Graphics p){
         if(Level.getBike()!=null){
-            Level.getBike().draw(p);
+            Level.getBike().drawBike(p);
         }
     }
 
     private void drawCars(Graphics p){
+//        if (Car.taxi != null) {
+//            Car.taxi.drawCar(p);
+//        }
         for (Car car: Car.getCarList()){
             if(car.getVisible()) {
-                car.draw(p);
+                car.drawCar(p);
             }
         }
     }
@@ -295,25 +299,27 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             int estCO2upper;
             String C02string;
             if (Objects.equals(node.getTransportType(), "Walk")){
-                estTime= (int) transport[3]/Sprite.speed/10;
+                estTime= (int) Math.ceil((int) transport[3]/Sprite.speed/10)+1;
                 estCO2=0;
                 estCO2upper=0;
                 C02string="0%";
             }else if (Objects.equals(node.getTransportType(), "Bike")){
-                estTime= (int) transport[3]/Bike.speed/10;
+                estTime= (int) Math.ceil((int) transport[3]/Bike.speed/10)+1;
                 estCO2=0;
                 estCO2upper=0;
                 C02string="0%";
             }else if (Objects.equals(node.getTransportType(), "Bus")) {
-                estTime = (int) transport[3]/Bus.speed/10;
+                estTime = (int) Math.ceil((int) transport[3]/Bus.speed/10)+1;
                 estCO2=(estTime*Bus.getCo2Emission()*1000)/Player.getCo2max();
-                estCO2upper=estCO2+2;
-                C02string=estCO2+"% - "+estCO2upper+"%";
+//                estCO2upper=estCO2+2;
+//                C02string=estCO2+"% - "+estCO2upper+"%";
+                C02string=estCO2+"%";
             }else {
-                estTime = (int) transport[3]/Car.speed/10;
+                estTime = (int) Math.ceil((int) transport[3]/Car.speed/10)+1;
                 estCO2=(estTime*Car.getCo2Emission()*1000)/Player.getCo2max()+3;
-                estCO2upper=estCO2+6;
-                C02string=estCO2+"% - "+estCO2upper+"%";
+//                estCO2upper=estCO2+6;
+//                C02string=estCO2+"% - "+estCO2upper+"%";
+                C02string=estCO2+"%";
             }
 
             String content=transport[0].toString()+"NLDistance: "+transport[3].toString()+"NLTravel Time: "+estTime+"NLEstimated CO2: "+C02string;
@@ -339,9 +345,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void update() {
-        collectGem();
         revealEndGate();
         player.act();
+        collectGem();
         level.timeRunning();
         for (Bus bus: Bus.getBusList()){
             bus.act();
@@ -367,8 +373,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     private void levelFinished(){
+        // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
             level.nextLevel();
+            Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
+            Gem.playGemSound();
             System.out.println(Score.getScore());
         }
 
@@ -537,11 +546,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             int key=e.getKeyCode();
 
 
-            if (key==KeyEvent.VK_SPACE){
+            if (key==KeyEvent.VK_RIGHT){
                 System.out.println(nodeList);
                 System.out.println(nodeList.get(107));
 
-            } else if (key==KeyEvent.VK_UP) {
+            } else if (key==KeyEvent.VK_SPACE) {
                 if(!active) {
                     goThere(player.getTargetNode());
                 }

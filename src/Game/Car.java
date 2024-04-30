@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.util.*;
@@ -28,6 +29,8 @@ public class Car extends Transport{
 
     public static List<Car> carList= new ArrayList<>();
 
+//    public static Car taxi;
+
     private static List<Node> potentialStarts;
 
     private static Maps carGraph;
@@ -38,6 +41,8 @@ public class Car extends Transport{
 
     public Player passenger;
 
+    private Image carImage;
+
     public Car(List<Node> start, Node pickUp){
         //potentialStarts=start;
         Node startNode=findNearestTaxi(potentialStarts,pickUp);
@@ -47,19 +52,21 @@ public class Car extends Transport{
         //System.out.println(startNode+" to "+pickUp);
         this.called=true;
         nextLocation(pickUp);
-        //System.out.println("New route: "+route);
+//        System.out.println("New route: "+route);
         carList.add(this);
+//        taxi = this;
         setMoving(true);
         passenger=Board.getPlayer();
         this.waiting=false;
         setVisible(true);
+        loadImage();
     }
 
     public void act(){
         if (Board.getActive()) {
             if(!isWaiting()) {
                 if (isMoving()) {
-                    passenger.killTheEnvironment(co2Emission);
+                    if (onboard) {passenger.killTheEnvironment(co2Emission);}
 
                     int curr = getCurrentSpotOnRoute();
                     Node base = getRoute().get(curr);
@@ -169,6 +176,23 @@ public class Car extends Transport{
             g.setColor(Color.MAGENTA);
             g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
         }
+    }
+
+    public void drawCar(Graphics g){
+        g.drawImage(carImage, (int) Math.round(getX()), (int) Math.round(getY()),null);
+        if(onboard) {
+            g.setColor(Color.GREEN);
+            g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
+        }
+    }
+
+    public void loadImage(){
+        ImageIcon busIcon=new ImageIcon("Game/Images/redcar1.png");
+        Image newpic=busIcon.getImage();
+        int scaledWidth = 40;
+        int scaledHeight = 40;
+        carImage=newpic.getScaledInstance(scaledWidth,scaledHeight,Image.SCALE_DEFAULT);
+
     }
 
     public static void callTaxi(Node pickUp){

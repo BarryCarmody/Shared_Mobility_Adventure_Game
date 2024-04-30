@@ -2,6 +2,7 @@ package Game;
 
 public class Score {
 
+    // cumulative score for the player
     private static int score;
 
     private static int levelscore;
@@ -9,6 +10,7 @@ public class Score {
     public void addLevelScore(){score+=levelscore;
     }
 
+    // increment player score upon gem retrieval
     public static void incrementLevelScore(int points){
         setLevelscore(getLevelscore()+points);
     }

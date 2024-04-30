@@ -1,5 +1,6 @@
 package Game;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +19,8 @@ public class Bike extends Transport{
 
     public static final String transportType = "Bike";
 
+    private Image cyclistImage;
+
     public Bike(Player passenger){
 
         //Sets Start Point
@@ -32,6 +35,7 @@ public class Bike extends Transport{
         setOnboard(true);
         player.setVisible(false);
         setMoving(true);
+        loadImage();
 
 
     }
@@ -48,6 +52,7 @@ public class Bike extends Transport{
                     setX(getX() + getDx());
                     setY(getY() + getDy());
 
+
                     //System.out.println(player.currentNode);
                     if (Math.abs(10 + getX() - getStepNode().getX()) < (1 + speed) && Math.abs(10 + getY() - getStepNode().getY()) < (1 + speed)) {
 
@@ -55,6 +60,7 @@ public class Bike extends Transport{
                         System.out.println(getCurrentNode());
                         if (onboard) {
                             player.moveLocationtoNode(getCurrentNode());
+
                         }
 
                         //If at end of route
@@ -109,6 +115,19 @@ public class Bike extends Transport{
             g.drawOval((int) Math.round(getX()), (int) Math.round(getY()), PWIDTH, PHEIGHT);
         }
     }
+
+    public void loadImage() {
+        ImageIcon cyclistIcon = new ImageIcon("Game/Images/cyclist1.png");
+        Image newpic = cyclistIcon.getImage();
+        int scaledWidth = 25;  // Desired width
+        int scaledHeight = 25;
+        cyclistImage = newpic.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_DEFAULT);
+    }
+
+    public void drawBike(Graphics g){
+        g.drawImage(cyclistImage, (int) Math.round(x), (int) Math.round(y),null);
+        }
+
 
     public void moveLocationtoNode(Node moveToNode){
         setX(moveToNode.getX()- (PWIDTH/2));

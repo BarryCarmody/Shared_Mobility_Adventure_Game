@@ -7,9 +7,9 @@ abstract class Transport implements Mover {
 
     private static int co2Emission;
 
-    private double x;
+    public double x;
 
-    private double y;
+    public double y;
 
     private double dx;
 
