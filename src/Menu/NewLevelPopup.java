@@ -28,8 +28,8 @@ public class NewLevelPopup extends PopupScreen {
     protected void addElements() {
         try {
             // Text
-            final JLabel nextLevelMessage = new JLabel("<html>New level: " + nextLevel.getDescription() + "<br/>" +
-                    "Target Gems: " + nextLevel.getGemTarget() + "</html>");
+            final JLabel nextLevelMessage = new JLabel("<html>New level: " + nextLevel.getLevel() + "<br/>" +
+                    "Target Gems: " + nextLevel.getGemThreshold() + "</html>");
             nextLevelMessage.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 
             // Button

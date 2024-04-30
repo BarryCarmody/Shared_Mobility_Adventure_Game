@@ -28,8 +28,8 @@ public class LevelCompletePopup extends PopupScreen {
     protected void addElements() {
         try {
             // Text
-            final JLabel nextLevelMessage = new JLabel("<html>Well done, you have completed: " + previousLevel.getDescription() + "<br/>" +
-                    "Obtained Gems: " + previousLevel.getGemsObtained() + "/" + previousLevel.getGemTarget() + "</html>");
+            final JLabel nextLevelMessage = new JLabel("<html>Well done, you have completed: " + previousLevel.getLevel() + "<br/>" +
+                    "Obtained Gems: " + previousLevel.getGemsCollected() + "/" + previousLevel.getGemThreshold() + "</html>");
             nextLevelMessage.setFont(new Font("Britannic Bold", Font.BOLD, 25));
 
             // Button

@@ -28,9 +28,9 @@ public class InGameOptionsPopup extends PopupScreen {
     protected void addElements() {
         try {
             // Text
-            final JLabel nextLevelMessage = new JLabel("<html>Level: " + currentLevel.getDescription() + "<br/>" +
-                    "Current Gems: " + currentLevel.getGemsObtained() + "<br/>" +
-                    "Target Gems: " + currentLevel.getGemTarget() + "<br/><br/>" +
+            final JLabel nextLevelMessage = new JLabel("<html>Level: " + currentLevel.getLevel() + "<br/>" +
+                    "Current Gems: " + currentLevel.getGemsCollected() + "<br/>" +
+                    "Target Gems: " + currentLevel.getGemThreshold() + "<br/><br/>" +
                     "Instructions: Here's how to play! TODO <br/>" +
                     "</html>");
             nextLevelMessage.setFont(new Font("Britannic Bold", Font.BOLD, 25));

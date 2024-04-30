@@ -261,6 +261,10 @@ public class Level {
         return gemsCollected;
     }
 
+    public int getLevel() {
+        return this.number;
+    }
+
     public static void setGemsCollected(int gemsCollected) {
         Level.gemsCollected = gemsCollected;
     }
