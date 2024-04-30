@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 
 public abstract class PopupScreen extends JFrame implements ActionListener {
     private boolean isOpen;
-    private JFrame container;
+    private Component container;
     private PopupScreenType popupType;
     protected GridBagConstraints constraints = new GridBagConstraints();
     protected GridBagLayout layout = new GridBagLayout();
@@ -74,7 +74,7 @@ public abstract class PopupScreen extends JFrame implements ActionListener {
      * Set the container who opened the popup, so it can be used for positioning later
      * @param container the source container
      */
-    public final void setRelativeContainer(final JFrame container) {
+    public final void setRelativeContainer(final Component container) {
         this.container = container;
     }
 

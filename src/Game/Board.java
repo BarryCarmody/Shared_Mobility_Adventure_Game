@@ -20,6 +20,9 @@ import java.util.List;
 import java.awt.Rectangle;
 import java.util.Objects;
 
+import Menu.PopupScreen;
+import Menu.LevelCompletePopup;
+
 public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private Dimension boardSize;
@@ -375,6 +378,9 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
+            final PopupScreen levelCompletePopup = new LevelCompletePopup(level);
+            levelCompletePopup.setRelativeContainer(this);
+            levelCompletePopup.drawPopupScreen();
             level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
