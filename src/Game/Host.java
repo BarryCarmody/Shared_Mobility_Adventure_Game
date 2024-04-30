@@ -41,7 +41,7 @@ public class Host extends JFrame {
         cardPanel.add(mainPanel, "Main");
 
         cardLayout.show(cardPanel, "Splash");
-        new javax.swing.Timer(5000, e ->
+        new javax.swing.Timer(100, e ->
         {
             cardLayout.show(cardPanel, "Main");
             Component board = mainPanel.getComponent(0);
