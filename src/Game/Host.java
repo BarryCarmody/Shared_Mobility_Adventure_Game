@@ -17,7 +17,9 @@ public class Host extends JFrame {
         initialise();
     }
 
-    public void initialise() {
+
+    public void initialise(){
+
         setTitle("I'm not safe");
         setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
 
@@ -67,7 +69,7 @@ public class Host extends JFrame {
 
     public static void main(String[] args) {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }

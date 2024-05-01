@@ -47,9 +47,15 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private List<Panel> routePanels = new ArrayList<>();
 
+    private Leaderboard leaderboard;
+
+    private Education edu;
+
     public Board(){
 
         initBoard();
+        edu = new Education();
+        leaderboard = new Leaderboard();
         setFocusable(true);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -60,10 +66,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         boardSize= new Dimension(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         setBackground(new Color(80,80,80));
 
+        gameInit();
+
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
 
-        gameInit();
 //        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
@@ -362,7 +369,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
             }
         }
         Level.updatePanels();
-        //System.out.println(level.getTime());
         levelFinished();
         gameOver();
     }
@@ -375,17 +381,26 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
-            level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
+            edu.presentQuestion();
             System.out.println(Score.getScore());
+            level.nextLevel();
         }
 
     }
 
-    private void gameOver(){
-        if(level.getTime()==0||player.getCo2level()==0){
+//    private void gameOver(){
+//        if(level.getTime()==0||player.getCo2level()==0){
+//            setActive(false);
+//            System.out.println("LOSER");
+//        }
+//    }
+
+    private void gameOver() {
+        if ((level.getTime() == 0 || player.getCo2level() == 0) && !leaderboard.isDisplayed()) {
             setActive(false);
+            leaderboard.promptForInitialsAndDisplay();  // only display leaderboard if it hasn't been already displayed
             System.out.println("LOSER");
         }
     }

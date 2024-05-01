@@ -15,6 +15,10 @@ public class Score {
         setLevelscore(getLevelscore()+points);
     }
 
+    public static void incrementScore(int points) {
+        score += points;
+    }
+
     public static int getScore() {
         return score;
     }

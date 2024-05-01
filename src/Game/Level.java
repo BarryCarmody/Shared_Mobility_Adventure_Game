@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class Level {
 
+    private int gemTargetMultiplier = 100;
+    private int gemsObtained = 0;
+
     public int number;
 
     private static Bike bike;
@@ -31,11 +34,10 @@ public class Level {
 
     private static int time;
 
-    public Level(int number){
-        this.number=number;
+    public Level(int number) {
+        this.number = number;
         initLevel();
     }
-
 
     public static void setBike(Bike bike) {
         Level.bike = bike;
@@ -211,6 +213,7 @@ public class Level {
     public void timeRunning(){
         if (Board.getActive()){
             time=Math.max(0,time-1);
+            System.out.println(time);
         }
     }
 
@@ -267,5 +270,21 @@ public class Level {
 
     public int getTime() {
         return time;
+    }
+
+    public String getDescription() {
+        return "Level " + number;
+    }
+
+    public int getGemTarget() {
+        return gemTargetMultiplier * number;
+    }
+
+    public int getGemsObtained() {
+        return gemsObtained;
+    }
+
+    public void addGem() {
+        gemsObtained++;
     }
 }
