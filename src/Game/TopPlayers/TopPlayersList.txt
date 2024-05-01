@@ -7,3 +7,7 @@ RED, 0
 DOG, 0
 FIG, 0
 JUG, 100
+FER, 0
+DAS, 0
+TIZ, 400
+TRY, 1500

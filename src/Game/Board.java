@@ -49,9 +49,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private Leaderboard leaderboard;
 
+    private Education edu;
+
     public Board(){
 
         initBoard();
+        edu = new Education();
         leaderboard = new Leaderboard();
         setFocusable(true);
         addMouseMotionListener(this);
@@ -378,10 +381,11 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
-            level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
+            edu.presentQuestion();
             System.out.println(Score.getScore());
+            level.nextLevel();
         }
 
     }
