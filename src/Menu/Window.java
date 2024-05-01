@@ -31,7 +31,8 @@ public class Window extends JFrame implements Runnable {
                 currentScene = new MenuScene(this, keyListener, mouseListener);
                 break;
             case 1:
-                currentScene = new GameScene(this, keyListener, mouseListener);
+                currentScene = null;
+                //new GameScene(this, keyListener, mouseListener);
                 var ex = new Host();
                 ex.setVisible(true);
                 dispose();
@@ -44,15 +45,17 @@ public class Window extends JFrame implements Runnable {
     }
 
     public void update() {
-        Image dbImage = createImage(getWidth(), getHeight());
-        Graphics dbg = dbImage.getGraphics();
-        draw(dbg);
-        getGraphics().drawImage(dbImage, 0, 0, this);
+        if (currentScene != null) {
+            Image dbImage = createImage(getWidth(), getHeight());
+            Graphics dbg = dbImage.getGraphics();
+            draw(dbg);
+            getGraphics().drawImage(dbImage, 0, 0, this);
 
-        currentScene.update();
+            currentScene.update();
+        }
     }
 
-    public void draw(Graphics g) {
+    private void draw(Graphics g) {
         //Graphics2D g2 = (Graphics2D) g; //sets graphics object to a 2D object
         currentScene.draw(g);
     }

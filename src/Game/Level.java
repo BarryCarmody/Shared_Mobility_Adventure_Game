@@ -8,9 +8,6 @@ import java.util.Random;
 
 public class Level {
 
-    private int gemTargetMultiplier = 100;
-    private int gemsObtained = 0;
-
     public int number;
 
     private static Bike bike;
@@ -274,17 +271,5 @@ public class Level {
 
     public String getDescription() {
         return "Level " + number;
-    }
-
-    public int getGemTarget() {
-        return gemTargetMultiplier * number;
-    }
-
-    public int getGemsObtained() {
-        return gemsObtained;
-    }
-
-    public void addGem() {
-        gemsObtained++;
     }
 }

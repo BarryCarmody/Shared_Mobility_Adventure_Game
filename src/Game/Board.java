@@ -20,6 +20,9 @@ import java.util.List;
 import java.awt.Rectangle;
 import java.util.Objects;
 
+import Menu.PopupScreen;
+import Menu.LevelCompletePopup;
+
 public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private Dimension boardSize;
@@ -149,14 +152,14 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     }
 
     public void startMusic() {
-        // Create a Timer that fires once after 10 seconds
+       
         javax.swing.Timer timer = new javax.swing.Timer(5000, e -> {
             Music.loadMusic("Game/Music/Dreams.wav");
             Music.playMusic();
             // Cast the source to Timer and stop it
             ((javax.swing.Timer)e.getSource()).stop();
         });
-        timer.setRepeats(false); // Ensure the timer only fires once
+        timer.setRepeats(false); 
         timer.start();
     }
 
@@ -381,6 +384,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
+            final PopupScreen levelCompletePopup = new LevelCompletePopup(level);
+            levelCompletePopup.setRelativeContainer(this);
+            levelCompletePopup.drawPopupScreen();
+            level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
             edu.presentQuestion();
