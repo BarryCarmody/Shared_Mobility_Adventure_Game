@@ -83,6 +83,7 @@ public class Education {
             String correctAnswerText = question.getChoices()[correctAnswer];
             JOptionPane.showMessageDialog(null, "Wrong Answer! Correct was: " + (correctAnswer + 1) + ": " + correctAnswerText, "Answer", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 
     static class Question {

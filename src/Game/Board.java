@@ -384,18 +384,20 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
     private void levelFinished(){
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
-            final PopupScreen levelCompletePopup = new LevelCompletePopup(level);
-            levelCompletePopup.setRelativeContainer(this);
-            levelCompletePopup.drawPopupScreen();
+
             level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
             edu.presentQuestion();
+            final PopupScreen levelCompletePopup = new LevelCompletePopup(level);
+            levelCompletePopup.setRelativeContainer(this);
+            levelCompletePopup.drawPopupScreen();
             System.out.println(Score.getScore());
             level.nextLevel();
         }
 
     }
+
 
 //    private void gameOver(){
 //        if(level.getTime()==0||player.getCo2level()==0){
