@@ -48,7 +48,7 @@ public class Leaderboard {
         list.setFixedCellWidth(100);
 
         frame.add(new JScrollPane(list));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300, 300);
         frame.setLocationRelativeTo(null);
     }
