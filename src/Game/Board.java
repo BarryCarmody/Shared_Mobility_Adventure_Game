@@ -47,9 +47,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     private List<Panel> routePanels = new ArrayList<>();
 
+    private Leaderboard leaderboard;
+
     public Board(){
 
         initBoard();
+        leaderboard = new Leaderboard();
         setFocusable(true);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -383,9 +386,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
 
     }
 
-    private void gameOver(){
-        if(level.getTime()==0||player.getCo2level()==0){
+//    private void gameOver(){
+//        if(level.getTime()==0||player.getCo2level()==0){
+//            setActive(false);
+//            System.out.println("LOSER");
+//        }
+//    }
+
+    private void gameOver() {
+        if ((level.getTime() == 0 || player.getCo2level() == 0) && !leaderboard.isDisplayed()) {
             setActive(false);
+            leaderboard.promptForInitialsAndDisplay();  // only display leaderboard if it hasn't been already displayed
             System.out.println("LOSER");
         }
     }
