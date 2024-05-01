@@ -116,6 +116,10 @@ public class Leaderboard {
         display();
     }
 
+    public void pureDisplay() {
+        frame.setVisible(true);
+    }
+
     public void display() {
         if (!isDisplayed) {
             frame.setVisible(true);

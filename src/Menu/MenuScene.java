@@ -1,5 +1,7 @@
 package Menu;
 
+import Game.Leaderboard;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,11 +16,13 @@ public class MenuScene extends Scene {
     private BufferedImage playCurrentImage, leaderboardCurrentImage;
     private final Rectangle playRect = new Rectangle(320, 370, 200, 50);
     private final Rectangle leaderBoardRect = new Rectangle(320, 430, 200, 50);
+    private Leaderboard leaderboard;
 
     public MenuScene(final Window window, final KL keyListener, final ML mouseListener) {
         this.window = window;
         this.keyListener = keyListener;
         this.mouseListener = mouseListener;
+        leaderboard = new Leaderboard();
 
         try {
             title = ImageIO.read(new File("assets/title.png"));
@@ -56,6 +60,9 @@ public class MenuScene extends Scene {
 
         if (mouseListener.isInRectangle(leaderBoardRect)) {
             leaderboardCurrentImage = leaderBoardPressed;
+            if (mouseListener.isPressed()) {
+                leaderboard.pureDisplay();
+            }
         } else {
             leaderboardCurrentImage = leaderBoard;
         }
