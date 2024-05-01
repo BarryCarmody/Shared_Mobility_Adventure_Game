@@ -74,7 +74,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
 
-//        startMusic();
+        startMusic();
 
         coordinatesLabel = new JLabel("X: 0 Y: 0");
         coordinatesLabel.setForeground(Color.BLACK);
@@ -385,7 +385,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener{
         // if player is at the of a level
         if (player.getCurrentNode()==Level.gemList.get(Level.gemList.size()-1).getLocation()&&!active) {
 
-            level.nextLevel();
             Gem.loadGemSound("Game/Music/coin_pick_up_project.wav");
             Gem.playGemSound();
             edu.presentQuestion();
